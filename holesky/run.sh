@@ -1,17 +1,16 @@
-#!/bin/sh
+#!/bin/sh -e
 
-optIn() {
+. helper.sh
 
-}
+cmd=$1
+shift
 
-optOut() {
-
-}
-
-if [ "$1" = "opt-in" ]; then
-  optIn
-elif [ "$1" = "opt-out" ]; then
-  optOut
+if [ "$cmd" = "opt-in" ]; then
+	_oprtool optin "$@"
+elif [ "$cmd" = "opt-out" ]; then
+	_oprtool optout "$@"
+elif [ "$cmd" = "deposit" ]; then
+	_oprtool deposit "$@"
 else
   echo "Invalid command"
 fi
