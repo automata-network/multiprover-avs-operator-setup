@@ -1,6 +1,6 @@
-#!/bin/sh -e
+#!/bin/bash -e
 
-. helper.sh
+. ./helper.sh
 
 cmd=$1
 shift

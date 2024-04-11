@@ -5,8 +5,8 @@ function _oprtool() {
 	if [[ "$NETWORK" != "" ]]; then
 		network="--network $NETWORK"
 	fi
-	blsKey=$(_get_key config/operator.json .BlsKeyFile)
-	ecdsaKey=$(_get_key config/operator.json .EcdsaKeyFile)
+	blsKey=$(_get_key config/operator.json BlsKeyFile)
+	ecdsaKey=$(_get_key config/operator.json EcdsaKeyFile)
 	docker run \
 	--rm \
 	--volume ./config/operator.json:/app/config/operator.json \
@@ -28,5 +28,5 @@ function _expand_docker() {
 function _get_key() {
 	file=$1
 	key=$2
-	cat $1 | jq $key | awk -F'"' '{print $2}'
+	cat $1 | grep '\"'$key'\":' | awk -F'"' '{print $(NF-1)}'
 }
