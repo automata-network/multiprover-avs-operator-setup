@@ -11,6 +11,9 @@ elif [ "$cmd" = "opt-out" ]; then
 	_oprtool optout "$@"
 elif [ "$cmd" = "deposit" ]; then
 	_oprtool deposit "$@"
+elif [ "$cmd" = "operator" ]; then
+	. ./docker-compose-env.sh
+	docker compose up
 else
   echo "Invalid command"
 fi
