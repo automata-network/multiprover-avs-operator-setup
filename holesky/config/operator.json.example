@@ -1,5 +1,5 @@
 {
-    "BlsKeyFile": "~/.eigenlayer/operator_keys/operator.ecdsa.key.json",
+    "BlsKeyFile": "~/.eigenlayer/operator_keys/operator.bls.key.json",
     "EcdsaKeyFile": "~/.eigenlayer/operator_keys/operator.ecdsa.key.json",
     "BlsKeyPassword": "",
     "EcdsaKeyPassword": "",

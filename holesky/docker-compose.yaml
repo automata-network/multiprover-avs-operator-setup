@@ -4,7 +4,9 @@ services:
   operator:
     image: ghcr.io/automata-network/multi-prover-avs/operator:latest
     container_name: multi-prover-operator
-    command: -c config/operator.json
+    command: -c /config/operator.json
     volumes:
       - ./config:/config
+      - "${BLS_KEY_FILE_HOST}:${BLS_KEY_FILE_DOCKER}:readonly"
+      - "${ECDSA_KEY_FILE_HOST}:${ECDSA_KEY_FILE_DOCKER}:readonly"
     working_dir: /
