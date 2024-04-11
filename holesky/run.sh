@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 . ./helper.sh
+. ./docker-compose-env.sh
 
 cmd=$1
 shift
@@ -12,10 +13,8 @@ elif [ "$cmd" = "opt-out" ]; then
 elif [ "$cmd" = "deposit" ]; then
 	_oprtool deposit "$@"
 elif [ "$cmd" = "operator" ]; then
-	. ./docker-compose-env.sh
 	docker compose up -d
 elif [ "$cmd" = "operator-log" ]; then
-	. ./docker-compose-env.sh
 	docker compose logs
 else
   echo "Invalid command"
