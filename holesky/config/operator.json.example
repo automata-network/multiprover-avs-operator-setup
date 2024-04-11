@@ -3,12 +3,12 @@
     "EcdsaKeyFile": "~/.eigenlayer/operator_keys/operator.ecdsa.key.json",
     "BlsKeyPassword": "",
     "EcdsaKeyPassword": "",
-    "ProverURL": "http://prover:8545",
 
+    "ProverURL": "https://avs-prover-staging.ata.network",
     "Simulation": false,
     "ETHRpcURL": "https://ethereum-holesky-rpc.publicnode.com",
     "ETHWsURL": "wss://ethereum-holesky-rpc.publicnode.com", 
-    "AggregatorURL": "http://aggregator:18545",
+    "AggregatorURL": "https://avs-aggregator-staging.ata.network",
     "EigenMetricsIpPortAddress": "0.0.0.0:15682",
     "TaskFetcher": {
         "OffsetFile": "config/operator_task_fetcher.offset",
@@ -18,6 +18,6 @@
             "0xa13baf47339d63b743e7da8741db5456dac1e556"
         ]
     },
-    "RegistryCoordinatorAddress": "0xceC22CaD5d6Ab541C068C88bb1F252F7CbA903d1",
-    "TEELivenessVerifierAddress": "0x35f9c0aAB581FEF086f58557fa5725693E94B227"
+    "RegistryCoordinatorAddress": "0x62c715575cE3Ad7C5a43aA325b881c70564f2215",
+    "TEELivenessVerifierAddress": "0x63AED86c0c6Df1e60E01AAF9bcD39ad5cD2e3344"
 }
