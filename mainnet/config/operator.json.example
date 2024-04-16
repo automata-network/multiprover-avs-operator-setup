@@ -6,7 +6,8 @@
     "ProverURL": "",
     "Simulation": false,
     "ETHRpcURL": "https://ethereum-rpc.publicnode.com",
-    "ETHWsURL": "wss://ethereum-rpc.publicnode.com", 
+    "ETHWsURL": "wss://ethereum-rpc.publicnode.com",
+    "AttestationLayerRpcURL": "https://mainnet.optimism.io",
     "AggregatorURL": "https://avs-aggregator.ata.network",
     "EigenMetricsIpPortAddress": "0.0.0.0:15682",
     "TaskFetcher": {
@@ -18,5 +19,5 @@
         ]
     },
     "RegistryCoordinatorAddress": "0x414696E4F7f06273973E89bfD3499e8666D63Bd4",
-    "TEELivenessVerifierAddress": "0xE5445838C475A2980e6a88054ff1514230b83aEb"
+    "TEELivenessVerifierAddress": "0x8E26055388347A2f4A7a112A7210CcC88A1c2F30"
 }
