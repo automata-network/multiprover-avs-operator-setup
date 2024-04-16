@@ -7,7 +7,7 @@
     "Simulation": false,
     "ETHRpcURL": "https://ethereum-rpc.publicnode.com",
     "ETHWsURL": "wss://ethereum-rpc.publicnode.com",
-    "AttestationLayerRpcURL": "https://mainnet.optimism.io",
+    "AttestationLayerRpcURL": "https://optimism-rpc.publicnode.com",
     "AggregatorURL": "https://avs-aggregator.ata.network",
     "EigenMetricsIpPortAddress": "0.0.0.0:15682",
     "TaskFetcher": {
