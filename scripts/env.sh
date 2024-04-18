@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR=$(dirname $0)
+
 function _oprtool() {
 	network=""
 	if [[ "$NETWORK" != "" ]]; then
@@ -15,6 +17,10 @@ function _oprtool() {
 	$network \
 	ghcr.io/automata-network/multi-prover-avs/oprtool:v0.1.0 \
 	"$@" -config /app/config/operator.json
+}
+
+function _init_run() {
+	../scripts/docker-compose-env.sh
 }
 
 function _require_file() {

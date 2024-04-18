@@ -2,6 +2,7 @@
 
 . $(dirname $0)/../scripts/env.sh
 cd $(dirname $0)
+_init_run
 
 cmd=$1
 shift

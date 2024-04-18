@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. $(dirname $0)/env.sh
+. ../scripts/env.sh
 
 if [[ -f "config/operator.json" ]]; then
 

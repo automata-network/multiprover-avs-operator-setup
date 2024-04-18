@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   sgx-prover:
     image: ghcr.io/automata-network/sgx-prover:avs-v0.1.0
