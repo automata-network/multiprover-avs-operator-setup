@@ -1,0 +1,13 @@
+{
+    "verifier": {
+        "endpoint": "https://mainnet.optimism.io",
+        "addr": "0x8E26055388347A2f4A7a112A7210CcC88A1c2F30"
+    },
+    "scroll_chain": {
+        "contract": "0xa13baf47339d63b743e7da8741db5456dac1e556",
+        "endpoint": "https://1rpc.io/eth",
+        "wait_block": 5,
+        "max_block": 20
+    },
+    "l2": ""<Scroll Mainnet Archive Node RPC endpoint>"
+}
