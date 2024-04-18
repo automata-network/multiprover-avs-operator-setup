@@ -9,5 +9,5 @@
         "wait_block": 5,
         "max_block": 20
     },
-    "l2": ""<Scroll Mainnet Archive Node RPC endpoint>"
+    "l2": "<Scroll Mainnet Archive Node RPC endpoint>"
 }
