@@ -17,7 +17,7 @@ elif [ "$cmd" = "opt-out" ]; then
 elif [ "$cmd" = "deposit" ]; then
 	_oprtool deposit "$@"
 elif [ "$cmd" = "operator" ]; then
-	_require_file config/operator.json
+	_operator_config_check
 	docker compose up -d
 elif [ "$cmd" = "operator-log" ]; then
 	docker compose logs

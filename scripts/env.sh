@@ -7,13 +7,7 @@ function _oprtool() {
 	if [[ "$NETWORK" != "" ]]; then
 		network="--network $NETWORK"
 	fi
-	_require_file ./config/operator.json
-
-	blsKey=$(_get_key config/operator.json BlsKeyFile)
-	ecdsaKey=$(_get_key config/operator.json EcdsaKeyFile)
-
-	_require_file $(_expand_host $blsKey)
-	_require_file $(_expand_host $ecdsaKey)
+	_operator_config_check
 
 	docker run \
 	--rm \
@@ -50,6 +44,16 @@ function _get_key() {
 	file=$1
 	key=$2
 	cat $1 | grep '\"'$key'\":' | awk -F'"' '{print $(NF-1)}'
+}
+
+function _operator_check() {
+	_require_file ./config/operator.json
+
+	blsKey=$(_get_key config/operator.json BlsKeyFile)
+	ecdsaKey=$(_get_key config/operator.json EcdsaKeyFile)
+
+	_require_file $(_expand_host $blsKey)
+	_require_file $(_expand_host $ecdsaKey)
 }
 
 function _prover_check() {
