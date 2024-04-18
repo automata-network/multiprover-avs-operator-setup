@@ -3,7 +3,7 @@ version: '3'
 services:
   sgx-prover:
     image: ghcr.io/automata-network/sgx-prover:avs-v0.1.0
-    container_name: sgx-prover-avs-mainnet
+    container_name: sgx-prover-avs-holesky
     command: --disable_check_report_metadata
     privileged: true
     ports:
