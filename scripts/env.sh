@@ -46,6 +46,19 @@ function _get_key() {
 	cat $1 | grep '\"'$key'\":' | awk -F'"' '{print $(NF-1)}'
 }
 
+function _prover_check() {
+	_require_file ./config/prover.json
+	tls=$(_get_key ./config/prover.json tls)
+	if [[ "$tls" != "" ]]; then
+		if [[ ! "$tls" =~ ^"config" ]]; then
+			echo "$tls.key $tls.crt should be placed in the config folder" >&2
+			return 1
+		fi
+		_require_file $tls.key
+		_require_file $tls.crt
+	fi
+}
+
 function _available_cmd() {
 	echo "Available command:"
 	cat $(basename $1) | grep 'if \[' | awk -F'"' '{print $4}' | grep -v '^$' | awk '{print "\t'$0' "$0}'

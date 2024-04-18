@@ -22,7 +22,7 @@ elif [ "$cmd" = "operator" ]; then
 elif [ "$cmd" = "operator-log" ]; then
 	docker compose logs
 elif [ "$cmd" = "prover" ]; then
-	_require_file config/prover.json
+	_prover_check
 	docker compose -f docker-compose-prover.yaml up "$@"
 else
 	echo "Invalid command"

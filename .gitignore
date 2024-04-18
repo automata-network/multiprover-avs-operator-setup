@@ -7,3 +7,5 @@ holesky/config/prover.json
 mainnet/config/prover.json
 holesky/.env
 mainnet/.env
+*/config/*.crt
+*/config/*.key

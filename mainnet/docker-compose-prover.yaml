@@ -10,5 +10,5 @@ services:
       - /dev/sgx_provision:/dev/sgx_provision
       - /dev/sgx:/dev/sgx
       - /dev/sgx_enclave:/dev/sgx_enclave
-      - ./config/prover.json:/workspace/config/prover.json
+      - ./config/:/workspace/config/
     working_dir: /workspace
