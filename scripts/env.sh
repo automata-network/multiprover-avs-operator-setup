@@ -17,6 +17,15 @@ function _oprtool() {
 	"$@" -config /app/config/operator.json
 }
 
+function _require_file() {
+	if [[ -f "$1" ]]; then
+		echo -n
+	else
+		echo "error: file $1 is required" >&2
+		exit 1
+	fi
+}
+
 function _expand_host() {
 	bash -c "ls $1"
 }
