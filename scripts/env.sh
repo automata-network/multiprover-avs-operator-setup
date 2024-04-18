@@ -9,6 +9,11 @@ function _oprtool() {
 	fi
 	blsKey=$(_get_key config/operator.json BlsKeyFile)
 	ecdsaKey=$(_get_key config/operator.json EcdsaKeyFile)
+
+	_require_file ./config/operator.json
+	_require_file $(_expand_host $blsKey)
+	_require_file $(_expand_host $ecdsaKey)
+
 	docker run \
 	--rm \
 	--volume ./config/operator.json:/app/config/operator.json \
