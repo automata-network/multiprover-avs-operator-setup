@@ -16,6 +16,8 @@ elif [ "$cmd" = "operator" ]; then
 	docker compose up -d
 elif [ "$cmd" = "operator-log" ]; then
 	docker compose logs
+elif [ "$cmd" = "prover" ]; then
+	docker compose -f docker-compose-prover.yaml up "$@"
 else
   echo "Invalid command"
 fi

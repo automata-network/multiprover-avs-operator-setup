@@ -1,0 +1,13 @@
+{
+    "verifier": {
+        "endpoint": "https://ethereum-holesky-rpc.publicnode.com",
+        "addr": "0x63AED86c0c6Df1e60E01AAF9bcD39ad5cD2e3344"
+    },
+    "scroll_chain": {
+        "contract": "0xa13baf47339d63b743e7da8741db5456dac1e556",
+        "endpoint": "https://1rpc.io/eth",
+        "wait_block": 5,
+        "max_block": 20
+    },
+    "l2": ""<Scroll Mainnet Archive Node RPC endpoint>"
+}
