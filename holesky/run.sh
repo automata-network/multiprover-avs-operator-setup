@@ -5,6 +5,9 @@ cd $(dirname $0)
 _init_run
 
 cmd=$1
+if [[ "$cmd" == "" ]]; then
+	_available_cmd $0
+fi
 shift
 
 if [ "$cmd" = "opt-in" ]; then
@@ -22,5 +25,6 @@ elif [ "$cmd" = "prover" ]; then
 	_require_file config/prover.json
 	docker compose -f docker-compose-prover.yaml up "$@"
 else
-  echo "Invalid command"
+	echo "Invalid command"
+	_available_cmd $0
 fi
