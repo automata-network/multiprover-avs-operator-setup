@@ -45,3 +45,9 @@ function _get_key() {
 	key=$2
 	cat $1 | grep '\"'$key'\":' | awk -F'"' '{print $(NF-1)}'
 }
+
+function _available_cmd() {
+	echo "Available command:"
+	cat $1 | grep 'if \[' | awk -F'"' '{print $4}' | grep -v '^$' | awk '{print "\t'$0' "$0}'
+	return 1
+}
