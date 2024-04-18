@@ -2,10 +2,10 @@ services:
   sgx-prover:
     image: ghcr.io/automata-network/sgx-prover:avs-v0.1.0
     container_name: sgx-prover-avs-mainnet
-    command: --disable_check_report_metadata
+    command: --disable_check_report_metadata -p ${PORT:-18232}
     privileged: true
     ports:
-      - 18232:18232
+      - ${PORT:-18232}:${PORT:-18232}
     volumes:
       - /dev/sgx_provision:/dev/sgx_provision
       - /dev/sgx:/dev/sgx

@@ -48,6 +48,6 @@ function _get_key() {
 
 function _available_cmd() {
 	echo "Available command:"
-	cat $1 | grep 'if \[' | awk -F'"' '{print $4}' | grep -v '^$' | awk '{print "\t'$0' "$0}'
+	cat $(basename $1) | grep 'if \[' | awk -F'"' '{print $4}' | grep -v '^$' | awk '{print "\t'$0' "$0}'
 	return 1
 }
