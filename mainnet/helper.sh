@@ -5,14 +5,27 @@ function _oprtool() {
 	if [[ "$NETWORK" != "" ]]; then
 		network="--network $NETWORK"
 	fi
+	if [[ "$ENTRYPOINT" != "" ]]; then
+		ENTRYPOINT="-it --entrypoint $ENTRYPOINT"
+	fi
 	blsKey=$(_get_key config/operator.json BlsKeyFile)
+	cmd=$1
+	shift
+	key=$(_expand_host $1)
+	shift
+	if [[ ! -f "$key" ]]; then
+		echo "ecdsa key not existed" >&2
+		return 1
+	fi
 	docker run \
-	--rm \
+	--rm -it \
 	--volume ./config/operator.json:/app/config/operator.json \
 	--volume $(_expand_host $blsKey):$(_expand_docker $blsKey) \
+	--volume $key:$key \
 	$network \
-	ghcr.io/automata-network/multi-prover-avs/oprtool:v0.1.0 \
-	"$@" -config /app/config/operator.json
+	$ENTRYPOINT \
+	ghcr.io/automata-network/multi-prover-avs/oprtool:v0.1.2 \
+	$cmd -ecdsakeypath $key -config /app/config/operator.json "$@"
 }
 
 function _expand_host() {
