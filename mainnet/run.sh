@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-. $(dirname $0)/../scripts/env.sh
+. $(dirname $0)/../utils/helper.sh
 cd $(dirname $0)
 _init_run
 
@@ -21,9 +21,6 @@ elif [ "$cmd" = "operator" ]; then
 	docker compose up -d
 elif [ "$cmd" = "operator-log" ]; then
 	docker compose logs
-elif [ "$cmd" = "prover" ]; then
-	_prover_check
-	docker compose -f docker-compose-prover.yaml up "$@"
 else
 	echo "Invalid command"
 	_available_cmd $0

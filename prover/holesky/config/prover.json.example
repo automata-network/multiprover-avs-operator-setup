@@ -9,5 +9,10 @@
         "wait_block": 5,
         "max_block": 20
     },
-    "l2": "<Scroll Mainnet Archive Node RPC endpoint>"
+    "l2": "<Scroll Mainnet Archive Node RPC endpoint>",
+    "server": {
+        "tls": "/a/b/c",
+        "body_limit": 2097152,
+        "workers": 10
+    }
 }
