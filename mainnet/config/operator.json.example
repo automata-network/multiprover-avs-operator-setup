@@ -1,8 +1,6 @@
 {
     "BlsKeyFile": "~/.eigenlayer/operator_keys/operator.bls.key.json",
-    "EcdsaKeyFile": "~/.eigenlayer/operator_keys/operator.ecdsa.key.json",
     "BlsKeyPassword": "",
-    "EcdsaKeyPassword": "",
     "ProverURL": "https://avs-prover-mainnet1.ata.network:18232",
     "Simulation": false,
     "ETHRpcURL": "https://ethereum-rpc.publicnode.com",
