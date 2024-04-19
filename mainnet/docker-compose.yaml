@@ -2,11 +2,10 @@ version: '3'
 
 services:
   operator:
-    image: ghcr.io/automata-network/multi-prover-avs/operator:v0.1.1
+    image: ghcr.io/automata-network/multi-prover-avs/operator:v0.1.2
     container_name: multi-prover-operator-mainnet
     command: -c /config/operator.json
     volumes:
       - ./config:/config
       - "${BLS_KEY_FILE_HOST}:${BLS_KEY_FILE_DOCKER}:readonly"
-      - "${ECDSA_KEY_FILE_HOST}:${ECDSA_KEY_FILE_DOCKER}:readonly"
     working_dir: /
