@@ -12,15 +12,16 @@ else
 fi
 
 if [ "$cmd" = "opt-in" ]; then
-	. ./docker-compose-env.sh $key
+	. ./docker-compose-env.sh
 	_oprtool optin $key "$@"
 elif [ "$cmd" = "opt-out" ]; then
-	. ./docker-compose-env.sh $key
+	. ./docker-compose-env.sh
 	_oprtool optout $key "$@"
 elif [ "$cmd" = "deposit" ]; then
-	. ./docker-compose-env.sh $key
+	. ./docker-compose-env.sh
 	_oprtool deposit $key "$@"
 elif [ "$cmd" = "operator" ]; then
+	. ./docker-compose-env.sh
 	docker compose up -d
 elif [ "$cmd" = "operator-log" ]; then
 	docker compose logs
