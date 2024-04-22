@@ -28,8 +28,16 @@ function _oprtool() {
 	$cmd -ecdsakeypath $key -config /app/config/operator.json "$@"
 }
 
+function _require_ecdsa_key() {
+	if [[ "$1" == "" ]]; then
+		echo "Error: You need to provide the ECDSA key to finish this operation"
+		return 1
+	fi
+}
+
 function _expand_host() {
-	bash -c "ls $1"
+	fp=$(bash -c "ls $1") # decode ~ prefix
+	echo $(cd $(dirname $fp); pwd)/$(basename $fp);
 }
 
 function _expand_docker() {
