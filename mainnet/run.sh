@@ -16,13 +16,12 @@ if [ "$cmd" = "opt-in" ]; then
 elif [ "$cmd" = "opt-out" ]; then
 	ENV=$key _require_env $cmd "<ecdsa key file path>"
 	. ./docker-compose-env.sh
-	_oprtool optout key "$@"
+	_oprtool optout $key "$@"
 elif [ "$cmd" = "deposit" ]; then
 	ENV=$key _require_env $cmd "<ecdsa key file path>"
 	. ./docker-compose-env.sh
 	_oprtool deposit $key "$@"
 elif [ "$cmd" = "operator" ]; then
-	ENV=$key _require_env $cmd "<ecdsa key file path>"
 	. ./docker-compose-env.sh
 	docker compose up -d
 elif [ "$cmd" = "operator-log" ]; then
