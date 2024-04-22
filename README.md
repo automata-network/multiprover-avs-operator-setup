@@ -4,3 +4,4 @@ Multi-Prover AVS allows decentralized systems (rollups, coprocessors, L2s) to in
 
 ## Runbooks
 * [Holesky testnet](https://atanetwork.notion.site/Automata-Multi-Prover-AVS-Testnet-Operator-Guide-48ad947de8404716b9e4e1e946618f08?pvs=74)
+* [Ethereum mainnet](https://atanetwork.notion.site/Automata-Multi-Prover-AVS-Mainnet-Operator-Guide-c97ce084638e47038a00123946045859?pvs=74)
