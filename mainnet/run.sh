@@ -4,23 +4,23 @@
 
 cmd=$1
 shift
-key=$1
-if [[ "$key" != "" ]]; then
+ecdsa_key=$1
+if [[ "$ecdsa_key" != "" ]]; then
 	shift
 fi
 
 if [ "$cmd" = "opt-in" ]; then
-	ENV=$key _require_env $cmd "<ecdsa key file path>"
+	_require_ecdsa_key "$ecdsa_key"
 	. ./docker-compose-env.sh
-	_oprtool optin $key "$@"
+	_oprtool optin $ecdsa_key "$@"
 elif [ "$cmd" = "opt-out" ]; then
-	ENV=$key _require_env $cmd "<ecdsa key file path>"
+	_require_ecdsa_key "$ecdsa_key"
 	. ./docker-compose-env.sh
-	_oprtool optout $key "$@"
+	_oprtool optout $ecdsa_key "$@"
 elif [ "$cmd" = "deposit" ]; then
-	ENV=$key _require_env $cmd "<ecdsa key file path>"
+	_require_ecdsa_key "$ecdsa_key"
 	. ./docker-compose-env.sh
-	_oprtool deposit $key "$@"
+	_oprtool deposit $ecdsa_key "$@"
 elif [ "$cmd" = "operator" ]; then
 	. ./docker-compose-env.sh
 	docker compose up -d
