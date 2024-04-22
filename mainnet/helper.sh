@@ -28,6 +28,14 @@ function _oprtool() {
 	$cmd -ecdsakeypath $key -config /app/config/operator.json "$@"
 }
 
+function _require_env() {
+	key=$ENV
+	if [[ "$key" == "" ]]; then
+		echo "usage: $0 $@"
+		return 1
+	fi
+}
+
 function _expand_host() {
 	bash -c "ls $1"
 }
