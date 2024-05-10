@@ -18,7 +18,7 @@ function _oprtool() {
 		return 1
 	fi
 	docker run \
-	--rm \
+	--rm -it \
 	--volume ./config/operator.json:/app/config/operator.json \
 	--volume $(_expand_host $blsKey):$(_expand_docker $blsKey) \
 	--volume $key:$key \
