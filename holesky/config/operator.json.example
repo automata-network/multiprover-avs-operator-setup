@@ -1,15 +1,14 @@
 {
     "BlsKeyFile": "~/.eigenlayer/operator_keys/operator.bls.key.json",
-    "EcdsaKeyFile": "~/.eigenlayer/operator_keys/operator.ecdsa.key.json",
     "BlsKeyPassword": "",
-    "EcdsaKeyPassword": "",
-
     "ProverURL": "https://avs-prover-staging.ata.network",
     "Simulation": false,
     "ETHRpcURL": "https://ethereum-holesky-rpc.publicnode.com",
     "ETHWsURL": "wss://ethereum-holesky-rpc.publicnode.com", 
     "AggregatorURL": "https://avs-aggregator-staging.ata.network",
     "EigenMetricsIpPortAddress": "0.0.0.0:15682",
+    "AttestationLayerRpcURL": "https://ethereum-holesky-rpc.publicnode.com",
+    "AttestationLayerEcdsaKey": "",
     "TaskFetcher": {
         "OffsetFile": "config/operator_task_fetcher.offset",
         "Endpoint": "https://1rpc.io/eth",
