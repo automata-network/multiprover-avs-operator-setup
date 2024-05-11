@@ -1,18 +1,28 @@
 #!/bin/bash -e
 
 . ./helper.sh
-. ./docker-compose-env.sh
 
 cmd=$1
 shift
+ecdsa_key=$1
+if [[ "$ecdsa_key" != "" ]]; then
+	shift
+fi
 
 if [ "$cmd" = "opt-in" ]; then
-	_oprtool optin "$@"
+	_require_ecdsa_key "$ecdsa_key"
+	. ./docker-compose-env.sh
+	_oprtool optin $ecdsa_key "$@"
 elif [ "$cmd" = "opt-out" ]; then
-	_oprtool optout "$@"
+	_require_ecdsa_key "$ecdsa_key"
+	. ./docker-compose-env.sh
+	_oprtool optout $ecdsa_key "$@"
 elif [ "$cmd" = "deposit" ]; then
-	_oprtool deposit "$@"
+	_require_ecdsa_key "$ecdsa_key"
+	. ./docker-compose-env.sh
+	_oprtool deposit $ecdsa_key "$@"
 elif [ "$cmd" = "operator" ]; then
+	. ./docker-compose-env.sh
 	docker compose up -d
 elif [ "$cmd" = "operator-log" ]; then
 	docker compose logs
