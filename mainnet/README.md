@@ -48,7 +48,7 @@ Below are the configs you **need to provide**:
 - **BlsKeyFile**: BLS key generated using EigenLayer CLI, the default path is `~/.eigenlayer/operator_keys/xxx.bls.key.json` . Please use absolute path for this configuration.
 - **BlsKeyPassword**: Password of the BLS key.
 - **AttestationLayerEcdsaKey**: The private key (without the 0x prefix) of an externally owned account (EOA) responsible for submitting the TEE attestation, it is **NOT** the operator's ECDSA key. Please fund 0.02 Optimism ETH to this EOA. For your security, we recommend using this EOA for the sole purpose of submitting attestations.
-- **TaskFetcher.Endpoint**: RPC endpoint of the Ethereum Mainnet. Replace `[https://1rpc.io/eth](https://1rpc.io/eth)` with the endpoint you get from the RPC service provider.
+- **TaskFetcher.Endpoint**: RPC endpoint of the Ethereum Mainnet. Replace `https://1rpc.io/eth` with the endpoint you get from the RPC service provider.
 
 Below are the configs that you can use as **the default value**:
 
@@ -92,9 +92,6 @@ You will need a minimum of 0.01 ETH to get started as an operator.
 #### Restaking on Ethereum Mainnet
 
 >💡 **Skip ahead if you have already restake on Ethereum**
-Make sure that the wallet corresponding to the **EcdsaKeyFile** holds enough ETH or LST
-
->💡 Make sure you are operating on [app.eigenlayer.xyz](https://app.eigenlayer.xyz/).
 
 >💡 Please refer to [FAQ #2](https://www.notion.so/Automata-Multi-Prover-AVS-Mainnet-Operator-Guide-c97ce084638e47038a00123946045859?pvs=21) if you encounter `Operator does not meet minimum stake requirement for quorum` error.
 

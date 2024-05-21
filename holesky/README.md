@@ -51,7 +51,7 @@ Below are the configs you **need to provide**:
 - **BlsKeyFile**: BLS key generated using EigenLayer CLI, the default path is `~/.eigenlayer/operator_keys/xxx.bls.key.json` , please use absolute path for this configuration.
 - **BlsKeyPassword**: Password of the BLS key.
 - **AttestationLayerEcdsaKey**: The private key (without the 0x prefix) of an externally owned account (EOA) responsible for submitting the TEE attestation, it is **NOT** the operator's ECDSA key. Please fund 1 holETH to this EOA. For your security, we recommend using this EOA for the sole purpose of submitting attestations.
-- **TaskFetcher.Endpoint**: RPC endpoint of the Ethereum mainnet, replace the `[https://1rpc.io/eth](https://1rpc.io/eth)` with the endpoint you get from RPC service provider.
+- **TaskFetcher.Endpoint**: RPC endpoint of the Ethereum mainnet, replace the `https://1rpc.io/eth` with the endpoint you get from RPC service provider.
 
 Below are the configs that you can **use the default value**:
 
@@ -93,7 +93,6 @@ You will need a minimum of 32 ETH to get started as an operator. Refer to [this 
 #### Restaking on Holesky Testnet
 
 >💡 **Skip ahead if you have already restake on Holesky**
-Make sure that the wallet corresponding to the **EcdsaKeyFile** holds enough WETH or LST
 
 Follow [EigenLayer’s restaking guide](https://docs.eigenlayer.xyz/eigenlayer/restaking-guides/restaking-user-guide/) to restake the ETH or LST. 
 
@@ -107,8 +106,6 @@ Alternatively, the code and tooling required to restake LST on EigenLayer is als
 - `key path of operator's ECDSA key` : the path to the operator’s ECDSA key, for example, `~/.eigenlayer/operator_keys/operator.ecdsa.key.json`.
 - `strategy`: Strategy contract address of the LST that you want to stake, the `0x7D704507b76571a51d9caE8AdDAbBFd0ba0e63d3` is the strategy address of `Lido Staked Ether` , you can change it to any [supported strategies](#multi-prover-avs-restaking-requirements).
 - `amount`: Amount of LST (determined by the strategy address) you want to stake, here `32` means 32 `Lido Staked Ether`.
-
->💡 Make sure you are operating on [holesky.eigenlayer.xyz](https://holesky.eigenlayer.xyz/)
 
 ### Opt-in into Multi-Prover AVS
 
@@ -230,3 +227,9 @@ Enter the password for /root/.eigenlayer/operator_keys/eigenda.ecdsa.key.json: *
 5. **There are some weird docker permission errors such as** `docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock` 
     
     Make sure that the user you are running the command with have the appropriate permissions, such as being in the `docker` group.
+
+6. **Why do I need to provide the `AttestationLayerEcdsaKey` and fund it with 1 holETH?**
+    
+    The `AttestationLayerEcdsaKey` is used to submit attestations to the on-chain verifier. Our calculations indicate the 1 holETH will suffice to cover gas costs for attestation verification over a long period.
+    
+    During the initial launch on Holesky testnet, we used the operator's ECDSA key to submit attestations, while we decide to use another EOA to submit attestations now, which is more secure to operators since the operator ECDSA key is not used by the operator node anymore, and you can keep it more securely.
