@@ -1,13 +1,19 @@
 version: '3'
 
+networks:
+  multiprover-mainnet-network:
+    name: multiprover-avs-mainnet-network
+
 services:
   operator:
     image: ghcr.io/automata-network/multi-prover-avs/operator:v0.1.3
     container_name: multi-prover-operator-mainnet
     command: -c /config/operator.json
-    ports:
-      - "15682:15682"
+    expose:
+      - 15682
     volumes:
       - ./config:/config
       - "${BLS_KEY_FILE_HOST}:${BLS_KEY_FILE_DOCKER}:readonly"
     working_dir: /
+    networks:
+      - multiprover-mainnet-network
