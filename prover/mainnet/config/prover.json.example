@@ -1,7 +1,6 @@
 {
     "l2": "<Scroll Mainnet Archive Node RPC endpoint>",
     "server": {
-        "tls": "/a/b/c",
-        "workers": 10
+        "tls": "/a/b/c"
     }
 }

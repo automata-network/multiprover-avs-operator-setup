@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   operator:
     image: ghcr.io/automata-network/multi-prover-avs/operator:v0.1.3
