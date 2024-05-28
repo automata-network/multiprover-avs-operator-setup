@@ -1,12 +1,8 @@
 #!/bin/bash -e
 
-<<<<<<< HEAD
-. ./helper.sh
-=======
 . $(dirname $0)/../utils/helper.sh
 cd $(dirname $0)
 _init_run
->>>>>>> origin/prover
 
 cmd=$1
 if [[ "$cmd" == "" ]]; then
@@ -31,11 +27,7 @@ elif [ "$cmd" = "deposit" ]; then
 	. ./docker-compose-env.sh
 	_oprtool deposit $ecdsa_key "$@"
 elif [ "$cmd" = "operator" ]; then
-<<<<<<< HEAD
-	. ./docker-compose-env.sh
-=======
 	_operator_config_check
->>>>>>> origin/prover
 	docker compose up -d
 elif [ "$cmd" = "operator-log" ]; then
 	docker compose logs
