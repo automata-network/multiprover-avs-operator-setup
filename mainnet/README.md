@@ -48,18 +48,22 @@ Below are the configs you **need to provide**:
 - **BlsKeyFile**: BLS key generated using EigenLayer CLI, the default path is `~/.eigenlayer/operator_keys/xxx.bls.key.json` . Please use absolute path for this configuration.
 - **BlsKeyPassword**: Password of the BLS key.
 - **AttestationLayerEcdsaKey**: The private key (without the 0x prefix) of an externally owned account (EOA) responsible for submitting the TEE attestation, it is **NOT** the operator's ECDSA key. Please fund 0.02 Optimism ETH to this EOA. For your security, we recommend using this EOA for the sole purpose of submitting attestations.
-- **TaskFetcher.Endpoint**: RPC endpoint of the Ethereum Mainnet. Replace `https://1rpc.io/eth` with the endpoint you get from the RPC service provider.
+
+Below are the configs that we recommend **not to use the default value if possible**:
+
+- **ProverURL**: RPC endpoint of the TEE Prover. The default value is `https://avs-prover-mainnet1.ata.network:18232` , which is a TEE prover run by Automata Network. However, we recommend running your own prover. The guide for how to setup the prover can be found [here](../prover/README.md).
+
+> 💡 We recommend running your own prover, as the TEE prover run by Automata Network will operate in whitelist mode in a future release. When whitelist mode is enabled, please contact us to whitelist your operator IP.
+
 
 Below are the configs that you can use as **the default value**:
 
-- **ProverURL**: RPC endpoint of the TEE Prover, the default value is `https://avs-prover-mainnet1.ata.network:18232` , which is a TEE prover run by Automata Network. Operators will be able to run their own TEE prover in the next release.
 - **Simulation**: The default value is `false` . In the simulation mode, the operator will not actually process the task.
 - **ETHRpcURL**: Ethereum RPC url used to interact with Ethereum Mainnet.
-- **ETHWsURL**: Ethereum WS url used to interact with Ethereum Mainnet.
 - **AttestationLayerRpcURL**: The RPC url of the network that TEE liveness verifier contract is deployed on. The TEE liveness verifier contract is deployed on Optimism Mainnet during the initial launch.
 - **AggregatorURL**: URL of aggregator hosted by Automata team. Aggregator checks the validity of TEE prover, aggregates the BLS signatures and submits the task to the AVS service manager. The verifier is deployed on Optimism Mainnet to reduce the operator's operating overheads (gas fees) when submitting the attestation.
 - **EigenMetricsIpPortAddress**: The ip + port used to fetch metrics.
-- **TaskFetcher**: Define the tasks of this operator. On Ethereum Mainnet, the task is to sample and prove the batch submitted by Scroll to L1.
+- **NodeApiIpPortAddress**: The ip + port used for Eigenlayer node API. Please see [this doc](https://docs.eigenlayer.xyz/eigenlayer/avs-guides/spec/api/) for what you can query.
 - **RegistryCoordinatorAddress**: Registry coordinator contracts address of Multi-Prover AVS on Ethereum Mainnet.
 - **TEELivenessVerifierAddress**: TEE liveness verifier contracts runs on Optimism Mainnet, which verifies the attestation provided by the TEE prover and manages its lifecycle.
 
@@ -217,6 +221,12 @@ The following logs confirm that you have opted out from the Multi-Prover AVS suc
 2024/04/16 09:44:15 [avsregistry.(*AvsRegistryChainWriter).DeregisterOperator:writer.go:325][INFO] succesfully deregistered operator with the AVS's registry coordinator txHash=0x196d2e1c543da56945cff142f6edb3fcd25ce0a290171343310f39afcf611979
 2024/04/16 09:44:15 [main.(*OprToolOptOut).FlaglyHandle:main.go:110][INFO] Tx: 0x196d2e1c543da56945cff142f6edb3fcd25ce0a290171343310f39afcf611979, Succ: true
 ```
+
+
+## Monitoring
+
+We recommend setting up monitoring so that you can detect if your operator node is running as expected. The guide for how to setup monitoring can be found [here](../monitoring/README.md).
+
 
 ## FAQ
 

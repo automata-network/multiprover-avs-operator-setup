@@ -46,15 +46,20 @@ cp config/operator.json.example config/operator.json
 vim config/operator.json
 ```
 
-Below are the configs you **need to provide**:
+Below are the configs that you **need to provide**:
 
 - **BlsKeyFile**: BLS key generated using EigenLayer CLI, the default path is `~/.eigenlayer/operator_keys/xxx.bls.key.json` , please use absolute path for this configuration.
 - **BlsKeyPassword**: Password of the BLS key.
 - **AttestationLayerEcdsaKey**: The private key (without the 0x prefix) of an externally owned account (EOA) responsible for submitting the TEE attestation, it is **NOT** the operator's ECDSA key. Please fund 1 holETH to this EOA. For your security, we recommend using this EOA for the sole purpose of submitting attestations.
 
+Below are the configs that we recommend **not to use the default value if possible**:
+
+- **ProverURL**: RPC endpoint of the TEE Prover. The default value is `https://avs-prover-staging.ata.network` , which is a TEE prover run by Automata Network. However, we recommend running your own prover. The guide for how to setup the prover can be found [here](../prover/README.md).
+
+> 💡 We recommend running your own prover, as the TEE prover run by Automata Network will operate in whitelist mode in a future release. When whitelist mode is enabled, please contact us to whitelist your operator IP.
+
 Below are the configs that you can **use the default value**:
 
-- **ProverURL**: RPC endpoint of the TEE Prover, the default value is `https://avs-prover-staging.ata.network` , which is a TEE prover run by Automata Network.
 - **Simulation**: The default value is `false` . In the simulation mode, the operator will not actually process the task.
 - **ETHRpcURL**: Holesky RPC url used to interact with Ethereum Holesky testnet.
 - **AttestationLayerRpcURL**: The RPC url of the network that TEE liveness verifier contract is deployed on, which is the Ethereum Holesky testnet.
@@ -191,7 +196,7 @@ Run the following command if you want to opt-out from the Multi-Prover AVS:
 
 - `key path of operator's ECDSA key` : the path to the operator’s ECDSA key, for example, `~/.eigenlayer/operator_keys/operator.ecdsa.key.json`.
 
-The following logs confirm that you opt-out from the Multi-Prover AVS successfully:
+The following logs confirm that you opted-out from the Multi-Prover AVS successfully:
 
 ```bash
 Enter the password for /root/.eigenlayer/operator_keys/eigenda.ecdsa.key.json: ************************
@@ -201,6 +206,10 @@ Enter the password for /root/.eigenlayer/operator_keys/eigenda.ecdsa.key.json: *
 2024/05/10 08:50:27 [avsregistry.(*AvsRegistryChainWriter).DeregisterOperator:writer.go:325][INFO] succesfully deregistered operator with the AVS's registry coordinator txHash=0x71c0b4994d73422cb1362c197f81c666297f7aff9d091fb9a850db8206a1cdc7
 2024/05/10 08:50:27 [main.(*OprToolOptOut).FlaglyHandle:main.go:122][INFO] tx: 0x71c0b4994d73422cb1362c197f81c666297f7aff9d091fb9a850db8206a1cdc7, succ: true
 ```
+
+## Monitoring
+
+We recommend setting up monitoring so that you can detect if your operator node is running as expected. The guide for how to setup monitoring can be found [here](../monitoring/README.md).
 
 ## FAQ
 
