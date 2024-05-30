@@ -26,7 +26,7 @@ function _oprtool() {
 	--volume $key:$key \
 	$network \
 	$ENTRYPOINT \
-	ghcr.io/automata-network/multi-prover-avs/oprtool:v0.1.2 \
+	ghcr.io/automata-network/multi-prover-avs/oprtool:v0.2.0 \
 	$cmd -ecdsakeypath $key -config /app/config/operator.json "$@"
 }
 
@@ -74,10 +74,8 @@ function _operator_check() {
 	_require_file ./config/operator.json
 
 	blsKey=$(_get_key config/operator.json BlsKeyFile)
-	ecdsaKey=$(_get_key config/operator.json EcdsaKeyFile)
 
 	_require_file $(_expand_host $blsKey)
-	_require_file $(_expand_host $ecdsaKey)
 }
 
 function _prover_check() {

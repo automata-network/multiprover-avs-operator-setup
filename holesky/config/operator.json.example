@@ -5,8 +5,9 @@
     "ETHRpcURL": "https://ethereum-holesky-rpc.publicnode.com",
     "AggregatorURL": "https://avs-aggregator-staging.ata.network",
     "EigenMetricsIpPortAddress": "0.0.0.0:15682",
+    "NodeApiIpPortAddress": "0.0.0.0:15692",
     "AttestationLayerRpcURL": "https://ethereum-holesky-rpc.publicnode.com",
     "AttestationLayerEcdsaKey": "",
     "RegistryCoordinatorAddress": "0x62c715575cE3Ad7C5a43aA325b881c70564f2215",
-    "TEELivenessVerifierAddress": "0x63AED86c0c6Df1e60E01AAF9bcD39ad5cD2e3344"
+    "TEELivenessVerifierAddress": "0x2E8628F6000Ef85dea615af6Da4Fd6dF4fD149e6"
 }
