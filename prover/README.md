@@ -9,8 +9,8 @@
 ## Overview
 The article describes how to set up a TEE prover used by Automata Multi-Prover AVS operator and upgrade the operator node to use your own TEE prover.
 
-## Setup server to run the TEE prover
-> 💡 The steps below introduce how to set up a Standard_DC4s_v3 virtual machine on Azure, if you already have a server that supports Intel SGX and DCAP, you can skip this section. Please contact us if you decide to use your own server since we need more info about your sever to get the attestation verification pass.
+## 1. Setup server to run the TEE prover
+> 💡 The steps below introduce how to set up a Standard_DC4s_v3 virtual machine on Azure. If you already have a server that supports Intel SGX and DCAP, you can skip this section. Please contact us if you decide to use your own server since we need more info about your sever to get the attestation verification pass.
 
 1. Login to [Microsoft Azure portal](https://portal.azure.com/#home) and click the `Virtual machines` service.
 2. Create → Azure virtual machine.
@@ -18,16 +18,30 @@ The article describes how to set up a TEE prover used by Automata Multi-Prover A
     2. Fill the necessary basic info.
     3. Choose `Ubuntu Server 20.04 LTS - x64 Gen2` as the basic image.
     4. Choose any region which supports `Standard_DC4s_v3` VM size, and select the `Standard_DC4s_v3` size.
-    5. Keep the rest of the configuration as their default settings.
+    5. Keep the rest of the configurations as their default settings.
 3. Download the ssh key during the setup, modify the permission to 400 and ssh to the vm.
 
 ```bash
 $ chmod 400 <the pem file downloaded during the setup>
 ```
 
-## Setup TEE prover
+## 2. Certificate Private Key Format
+> 💡 If you are planning to host the prover on the same server as the operator, you can use HTTP and skip this section.
 
-### Setup prover using image
+- When generating the certificate for your prover server, make sure that the key type is RSA and not ECDSA or ED25519.
+
+- Make sure the private key is also in PEM format and not DER format.
+
+- The private key also needs to begin in `-----BEGIN RSA PRIVATE KEY-----`. If needed, convert the key using the following command:
+
+```
+openssl rsa -inform PEM -outform PEM -in tls.key -out tls.key
+```
+
+
+## 3. Setup TEE prover
+
+### Setup prover using Docker image
 > 💡 Skip this part if you want to build the prover from source code
 
 1. Clone the setup repo and enter the `mainnet` or `holesky` folder
@@ -45,19 +59,22 @@ $ cp config/prover.json.example config/prover.json
 $ vim config/prover.json
 ```
 
-Below are the configs you **need to provide**:
-- **l2:** the endpoint of scroll, for example: `http://localhost:8545` , this should be the endpoint of archive node since the prover need to fetch the states from archive node to compute the proof, typically, the RPC methods with `scroll_` prefix are required.
-- **server.tls**: the path of tls cert and key, for exmaple, the default value of this config is `/a/b/c`, which means the prover will try to load the `/a/b/c.crt` and `/a/b/c.key`.
+If using HTTPS, also move your cert and key into the config folder.
+
+
+Below are the configs that you **need to provide**:
+- **l2:** the endpoint of scroll, for example: `http://localhost:8545` , this should be the endpoint of an archive node since the prover needs to fetch the states from an archive node to compute the proof. RPC methods with the `scroll_` prefix are required.
+- **server.tls**: the path to the tls cert and key. Leave as an empty string if not using HTTPS. Our scripts assume that the cert and key are inside the config folder, and that the cert and key have the same basename. For example, if the the path is set to `config/tls`, the prover will then try to load `./config/tls.crt` and `./config/tls.key`.
 
 3. Run the sgx prover
 ```bash
 $ ./run.sh docker
 # or
-$ ./run.sh docker -d # running in background
+$ ./run.sh docker -d # to run in the background
 ```
 
 ### Setup prover from source code
-> 💡 Skip this part if you want to run the prover using the provided image
+> 💡 Skip this part if you want to run the prover using the provided docker image
 
 #### Setup the Intel SGX environment
 1. Clone the setup repo and setup the SGX environment.
@@ -68,8 +85,9 @@ $ sudo ./sgx_install_deps.sh
 ```
 
 #### Build prover from source
-1. Clone the latest prover code and switch to the `avs` branch
+1. Change to the prover directory and clone the latest prover code and switch to the `avs` branch
 ```bash
+$ cd ..
 $ git clone https://github.com/automata-network/sgx-prover.git
 $ cd sgx-prover
 $ git checkout avs
@@ -77,26 +95,78 @@ $ git checkout avs
 
 2. Switch to the root user, and compile the code
 ```bash
-$ sudo su -
+$ sudo -s
 $ . ~/.bashrc
 $ BUILD=1 RELEASE=1 ./scripts/prover.sh
 ```
 
-Below are the configs you **need to provide**:
-- **l2:** the endpoint of scroll, for example: `http://localhost:8545` , this should be the endpoint of archive node since the prover need to fetch the states from archive node to compute the proof, typically, the RPC methods with `scroll_` prefix are required.
-- **server.tls**: the path of tls cert and key, for exmaple, the default value of this config is `/a/b/c`, which means the prover will try to load the `/a/b/c.crt` and `/a/b/c.key`.
+3. Now, go to either the mainnet or holesky folder and copy over the sgx_prover and sgx_prover_enclave binary.
 
-3. Run the sgx prover
+```bash
+$ cd ../mainnet
+# or
+$ cd ../holesky
+
+$ cp ../sgx-prover/bin/sgx/target/release/sgx-prover sgx_prover
+$ cp ../sgx-prover/bin/sgx/target/release/sgx_prover_enclave.signed.so .
+```
+
+
+4. Update the configuration
+```bash
+$ cp config/prover.json.example config/prover.json
+$ vim config/prover.json
+```
+
+If using HTTPS, also move your cert and key into the config folder.
+
+
+Below are the configs that you **need to provide**:
+- **l2:** the endpoint of scroll, for example: `http://localhost:8545` , this should be the endpoint of an archive node since the prover needs to fetch the states from an archive node to compute the proof. RPC methods with the `scroll_` prefix are required.
+- **server.tls**: the path to the tls cert and key. Leave as an empty string if not using HTTPS. Our scripts assume that the cert and key are inside the config folder, and that the cert and key have the same basename. For example, if the the path is set to `config/tls`, the prover will then try to load `./config/tls.crt` and `./config/tls.key`.
+
+5. Run the sgx prover
 ```bash
 $ ./run.sh binary
 ```
 
-## Verify the prover
-Use the following curl command to verify the prover is running in the SGX environment, use https if you configure the tls connection:
+6. When setting "ProverURL" in the operator config, you can use `http://172.10.0.1:18232` (this is the ip of your host on the docker0 network interface).
+
+## 4. Verify that the prover works
+Use the following curl command to verify that the prover is running in the SGX environment successfully (use https instead of http if you configured it):
 
 ```bash
-$ curl -k http://localhost:port -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":1,"method":"generateAttestationReport","params":["0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"]}'
+$ curl -k http://localhost:18232 -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":1,"method":"generateAttestationReport","params":["0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"]}'
 
 Expected result
 $ {"jsonrpc":"2.0","result":"<the dcap attestation quote hex string>","id":1}
 ```
+
+
+## 5. Set the Operator "ProverURL" config
+
+- If the operator and prover dockers are running on the same host, you can use `http://172.17.0.1:18232` (this is the ip of your host on the docker0 network interface).
+
+## Common Problems
+
+### Q. Help! My docker container crashes with the following error:
+```
+...
+sgx-prover-avs-holesky  | thread '<unnamed>' panicked at 'index out of bounds: the len is 0 but the index is 0', /root/.cargo/git/checkouts/net-http-rs-161299090de15460/2451885/src/http_server.rs:129:43
+sgx-prover-avs-holesky  | fatal runtime error: failed to initiate panic, error 5
+sgx-prover-avs-holesky  | thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: SGX_ERROR_ENCLAVE_CRASHED', sgx-prover/src/main.rs:38:6
+sgx-prover-avs-holesky  | note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+sgx-prover-avs-holesky exited with code 101
+...
+
+```
+A. This might be due to issues in the private key format. Check that the certificate is not in DER format and it starts with `-----BEGIN RSA PRIVATE KEY-----` and ends with `-----END RSA PRIVATE KEY-----
+`.
+
+
+
+### Q. Help! I got the following error when I run the curl command:
+```
+curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to localhost:18232
+```
+A. If you changed the port numbers from the default, please check that the port numbers match.
