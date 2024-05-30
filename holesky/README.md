@@ -7,7 +7,7 @@
 
 ## Introduction
 
-This guide lays out the requirements and steps to register an operator with EigenLayer and opt-in to running the Multi-Prover AVS on Holesky testnet. Responsibilities of the operator will include sampling and proving batched transactions submitted by Scroll to the base layer. 
+This guide lays out the requirements and steps to register an operator with EigenLayer and opt-in to running the Multi-Prover AVS on Holesky testnet. Responsibilities of the operator will include sampling and proving batched transactions submitted by Scroll to the base layer.
 
 ## Requirements
 
@@ -27,7 +27,7 @@ This guide lays out the requirements and steps to register an operator with Eige
 
 ### Install EigenLayer CLI and register as operator
 
-Follow [EigenLayer’s guide](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-installation) to install the EigenLayer CLI and register as an operator. 
+Follow [EigenLayer’s guide](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-installation) to install the EigenLayer CLI and register as an operator.
 
 ## Running Multi-Prover AVS
 
@@ -51,18 +51,16 @@ Below are the configs you **need to provide**:
 - **BlsKeyFile**: BLS key generated using EigenLayer CLI, the default path is `~/.eigenlayer/operator_keys/xxx.bls.key.json` , please use absolute path for this configuration.
 - **BlsKeyPassword**: Password of the BLS key.
 - **AttestationLayerEcdsaKey**: The private key (without the 0x prefix) of an externally owned account (EOA) responsible for submitting the TEE attestation, it is **NOT** the operator's ECDSA key. Please fund 1 holETH to this EOA. For your security, we recommend using this EOA for the sole purpose of submitting attestations.
-- **TaskFetcher.Endpoint**: RPC endpoint of the Ethereum mainnet, replace the `https://1rpc.io/eth` with the endpoint you get from RPC service provider.
 
 Below are the configs that you can **use the default value**:
 
 - **ProverURL**: RPC endpoint of the TEE Prover, the default value is `https://avs-prover-staging.ata.network` , which is a TEE prover run by Automata Network.
 - **Simulation**: The default value is `false` . In the simulation mode, the operator will not actually process the task.
 - **ETHRpcURL**: Holesky RPC url used to interact with Ethereum Holesky testnet.
-- **ETHWsURL**: Holesky WS url used to interact with Ethereum Holesky testnet.
 - **AttestationLayerRpcURL**: The RPC url of the network that TEE liveness verifier contract is deployed on, which is the Ethereum Holesky testnet.
 - **AggregatorURL**: URL of aggregator hosted by Automata team. Aggregator will check validity of TEE prover, aggregator the BLS signature and submit the task to AVS service manager.
 - **EigenMetricsIpPortAddress**: The ip + port used to fetch metrics.
-- **TaskFetcher**: Define the tasks of this operator. On Holesky testnet, the task is to sample and prove the batch submitted by scroll to L1.
+- **NodeApiIpPortAddress**: The ip + port used for Eigenlayer node API. Please see [this doc](https://docs.eigenlayer.xyz/eigenlayer/avs-guides/spec/api/) for what you can query.
 - **RegistryCoordinatorAddress**: Registry coordinator contracts address of Multi-Prover AVS on Holesky testnet.
 - **TEELivenessVerifierAddress**: TEE liveness verifier contracts address on Holesky testnet, which verify the attestation provided by the TEE prover and manage its lifecycle.
 
@@ -70,7 +68,7 @@ Below are the configs that you can **use the default value**:
 
 #### Multi-Prover AVS restaking requirements
 
-Multi-Prover AVS support the following strategies on Holesky: 
+Multi-Prover AVS supports the following strategies on Holesky:
 
 | Token Symbol  | Token Name | Strategy Address |
 | --- | --- | --- |
@@ -94,9 +92,9 @@ You will need a minimum of 32 ETH to get started as an operator. Refer to [this 
 
 >💡 **Skip ahead if you have already restake on Holesky**
 
-Follow [EigenLayer’s restaking guide](https://docs.eigenlayer.xyz/eigenlayer/restaking-guides/restaking-user-guide/) to restake the ETH or LST. 
+Follow [EigenLayer’s restaking guide](https://docs.eigenlayer.xyz/eigenlayer/restaking-guides/restaking-user-guide/) to restake the ETH or LST.
 
-Alternatively, the code and tooling required to restake LST on EigenLayer is also available below(make sure you have already get LST before using the tool): 
+Alternatively, the code and tooling required to restake LST on EigenLayer is also available below(make sure you have already get LST before using the tool):
 
 ```bash
 # Change the `strategy` and `amount` args accordingly
@@ -207,29 +205,35 @@ Enter the password for /root/.eigenlayer/operator_keys/eigenda.ecdsa.key.json: *
 ## FAQ
 
 1. **Why did my operator fail to opt-in the Multi-Prover AVS?**
-    
+
     Confirm that your operator’s ECDSA key is added to the whitelist. Also, make sure that you have staked at least 32 ETH or LST.
-    
+
 2. **I encountered a insufficient stake error when opting in. What should I do?**
-    
-    You may receive `execution reverted: StakeRegistry.registerOperator: Operator does not meet minimum stake` error when running the `./run.sh opt-in` even if you have staked 32 ETH or LST. In that case, just stake more ETH and opt-in again. 
-    
-    The Multi-Prover AVS requires operators to own at least 32 weighted shares in proportion to the overall staking asset. This error occurs when the amount of ETH staked is not 1:1 to the share staked. 
-    
+
+    You may receive `execution reverted: StakeRegistry.registerOperator: Operator does not meet minimum stake` error when running the `./run.sh opt-in` even if you have staked 32 ETH or LST. In that case, just stake more ETH and opt-in again.
+
+    The Multi-Prover AVS requires operators to own at least 32 weighted shares in proportion to the overall staking asset. This error occurs when the amount of ETH staked is not 1:1 to the share staked.
+
 3. **How to solve the `unknown shorthand flag: `d` in -d` error?**
-    
+
     Please make sure that the docker-compose is installed in a [plugin](https://docs.docker.com/compose/install/linux/) way.
-    
+
 4. **Why do I receive errors when running the `docker compose xxx` commands?**
-    
+
     Run `. ./docker-compose-env.sh` under the `multiprover-avs-operator-setup` folder. This will update the ENV variables according to the latest `config/operator.json` file.
-    
-5. **There are some weird docker permission errors such as** `docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock` 
-    
+
+5. **There are some weird docker permission errors such as** `docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock`
+
     Make sure that the user you are running the command with have the appropriate permissions, such as being in the `docker` group.
 
 6. **Why do I need to provide the `AttestationLayerEcdsaKey` and fund it with 1 holETH?**
-    
+
     The `AttestationLayerEcdsaKey` is used to submit attestations to the on-chain verifier. Our calculations indicate the 1 holETH will suffice to cover gas costs for attestation verification over a long period.
-    
+
     During the initial launch on Holesky testnet, we used the operator's ECDSA key to submit attestations, while we decide to use another EOA to submit attestations now, which is more secure to operators since the operator ECDSA key is not used by the operator node anymore, and you can keep it more securely.
+
+7. **Why do I get the following error when trying to register attestation report?**
+    ```bash
+    multi-prover-operator  | 2024/05/30 06:28:34 [main.main:main.go:42][FATAL] [operator.(*Operator).registerAttestationReport:381;operator.(*Operator).RegisterAttestationReport:409;operator.(*Operator).Start:127(0xBa8851a907474B022DbACa15B1e5f609F3682205)] execution reverted
+    ```
+    There is an update to the contract address for `"TEELivenessVerifierAddress"`. Please double check the address from the updated `config/operator.json.example`.
