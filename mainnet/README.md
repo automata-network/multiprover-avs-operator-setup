@@ -1,9 +1,20 @@
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 - [Introduction](#introduction)
 - [Requirements](#requirements)
-- [Operator Setup](#operator-setup)
+- [Operator setup](#operator-setup)
+  - [Install EigenLayer CLI and register as operator](#install-eigenlayer-cli-and-register-as-operator)
 - [Running Multi-Prover AVS](#running-multi-prover-avs)
+  - [Clone the setup repository](#clone-the-setup-repository)
+  - [Update the configuration](#update-the-configuration)
+  - [Deposit into strategies](#deposit-into-strategies)
+    - [Multi-Prover AVS restaking requirements](#multi-prover-avs-restaking-requirements)
+    - [Restaking on Ethereum Mainnet](#restaking-on-ethereum-mainnet)
+  - [Opt into Multi-Prover AVS](#opt-into-multi-prover-avs)
+  - [Run the operator node](#run-the-operator-node)
+  - [Opt out from Multi-Prover AVS](#opt-out-from-multi-prover-avs)
+- [Monitoring](#monitoring)
 - [FAQ](#faq)
+
 
 ## Introduction
 
@@ -71,7 +82,7 @@ Below are the configs that you can use as **the default value**:
 
 #### Multi-Prover AVS restaking requirements
 
-Multi-Prover AVS support the following strategies on Ethereum Mainnet: 
+Multi-Prover AVS supports the following strategies on Ethereum Mainnet: 
 
 | Token Symbol  | Token Name | Strategy Address |
 | --- | --- | --- |

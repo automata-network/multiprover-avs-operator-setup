@@ -1,8 +1,18 @@
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 - [Introduction](#introduction)
 - [Requirements](#requirements)
-- [Operator Setup](#operator-setup)
+- [Operator setup](#operator-setup)
+  - [Install EigenLayer CLI and register as operator](#install-eigenlayer-cli-and-register-as-operator)
 - [Running Multi-Prover AVS](#running-multi-prover-avs)
+  - [Clone the setup repository](#clone-the-setup-repository)
+  - [Update the configuration](#update-the-configuration)
+  - [Deposit into strategies](#deposit-into-strategies)
+    - [Multi-Prover AVS restaking requirements](#multi-prover-avs-restaking-requirements)
+    - [Restaking on Holesky Testnet](#restaking-on-holesky-testnet)
+  - [Opt-in into Multi-Prover AVS](#opt-in-into-multi-prover-avs)
+  - [Run the operator node](#run-the-operator-node)
+  - [Opt-out from Multi-Prover AVS](#opt-out-from-multi-prover-avs)
+- [Monitoring](#monitoring)
 - [FAQ](#faq)
 
 ## Introduction

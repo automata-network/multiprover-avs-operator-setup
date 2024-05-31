@@ -1,10 +1,16 @@
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 - [Overview](#overview)
-- [Setup server to run TEE prover](#setup-server-to-run-the-tee-prover)
-- [Setup TEE prover](#setup-tee-prover)
-    - [Setup TEE prover using image](#setup-prover-using-image)
-    - [Setup TEE prover from source code](#setup-prover-from-source-code)
-- [Verify the prover](#verify-the-prover)
+- [1. Setup server to run the TEE prover](#1-setup-server-to-run-the-tee-prover)
+- [2. Certificate Private Key Format](#2-certificate-private-key-format)
+- [3. Setup TEE prover](#3-setup-tee-prover)
+  - [Setup prover using Docker image](#setup-prover-using-docker-image)
+  - [Setup prover from source code](#setup-prover-from-source-code)
+    - [Setup the Intel SGX environment](#setup-the-intel-sgx-environment)
+    - [Build prover from source](#build-prover-from-source)
+- [4. Verify that the prover works](#4-verify-that-the-prover-works)
+- [5. Set the Operator "ProverURL" config](#5-set-the-operator-proverurl-config)
+- [Security Recommendations](#security-recommendations)
+- [FAQs](#faqs)
 
 ## Overview
 The article describes how to set up a TEE prover used by Automata Multi-Prover AVS operator and upgrade the operator node to use your own TEE prover.
@@ -28,7 +34,7 @@ $ chmod 400 <the pem file downloaded during the setup>
 ## 2. Certificate Private Key Format
 > 💡 If you are planning to host the prover on the same server as the operator, you can use HTTP and skip this section.
 
-- When generating the certificate for your prover server, make sure that the key type is RSA and not ECDSA or ED25519.
+- When generating the certificate for your prover server, make sure that the private key type is RSA and not ECDSA or ED25519.
 
 - Make sure the private key is also in PEM format and not DER format.
 
@@ -63,7 +69,7 @@ If using HTTPS, also move your cert and key into the config folder.
 
 
 Below are the configs that you **need to provide**:
-- **l2:** the endpoint of scroll, for example: `http://localhost:8545` , this should be the endpoint of an archive node since the prover needs to fetch the states from an archive node to compute the proof. RPC methods with the `scroll_` prefix are required.
+- **l2:** the endpoint of scroll, for example: `http://localhost:8545`. This should be the endpoint of an archive node since the prover needs to fetch the states from an archive node to compute the proof. RPC methods with the `scroll_` prefix are required.
 - **server.tls**: the path to the tls cert and key. Leave as an empty string if not using HTTPS. Our scripts assume that the cert and key are inside the config folder, and that the cert and key have the same basename. For example, if the the path is set to `config/tls`, the prover will then try to load `./config/tls.crt` and `./config/tls.key`.
 
 3. Run the sgx prover
@@ -85,7 +91,7 @@ $ sudo ./sgx_install_deps.sh
 ```
 
 #### Build prover from source
-1. Change to the prover directory and clone the latest prover code and switch to the `avs` branch
+1. Change to the prover directory and clone the latest sgx-prover code and switch to the `avs` branch
 ```bash
 $ cd ..
 $ git clone https://github.com/automata-network/sgx-prover.git
@@ -100,7 +106,7 @@ $ . ~/.bashrc
 $ BUILD=1 RELEASE=1 ./scripts/prover.sh
 ```
 
-3. Now, go to either the mainnet or holesky folder and copy over the sgx_prover and sgx_prover_enclave binary.
+3. Now, go to either the `mainnet` or `holesky` folder and copy over the sgx-prover and sgx_prover_enclave binary.
 
 ```bash
 $ cd ../mainnet
@@ -122,15 +128,13 @@ If using HTTPS, also move your cert and key into the config folder.
 
 
 Below are the configs that you **need to provide**:
-- **l2:** the endpoint of scroll, for example: `http://localhost:8545` , this should be the endpoint of an archive node since the prover needs to fetch the states from an archive node to compute the proof. RPC methods with the `scroll_` prefix are required.
+- **l2:** the endpoint of scroll, for example: `http://localhost:8545`. This should be the endpoint of an archive node since the prover needs to fetch the states from an archive node to compute the proof. RPC methods with the `scroll_` prefix are required.
 - **server.tls**: the path to the tls cert and key. Leave as an empty string if not using HTTPS. Our scripts assume that the cert and key are inside the config folder, and that the cert and key have the same basename. For example, if the the path is set to `config/tls`, the prover will then try to load `./config/tls.crt` and `./config/tls.key`.
 
 5. Run the sgx prover
 ```bash
 $ ./run.sh binary
 ```
-
-6. When setting "ProverURL" in the operator config, you can use `http://172.10.0.1:18232` (this is the ip of your host on the docker0 network interface).
 
 ## 4. Verify that the prover works
 Use the following curl command to verify that the prover is running in the SGX environment successfully (use https instead of http if you configured it):
@@ -147,26 +151,39 @@ $ {"jsonrpc":"2.0","result":"<the dcap attestation quote hex string>","id":1}
 
 - If the operator and prover dockers are running on the same host, you can use `http://172.17.0.1:18232` (this is the ip of your host on the docker0 network interface).
 
-## Common Problems
+- Otherwise please use the public ip of your VM or the DNS name that you have set for it.
 
-### Q. Help! My docker container crashes with the following error:
-```
-...
-sgx-prover-avs-holesky  | thread '<unnamed>' panicked at 'index out of bounds: the len is 0 but the index is 0', /root/.cargo/git/checkouts/net-http-rs-161299090de15460/2451885/src/http_server.rs:129:43
-sgx-prover-avs-holesky  | fatal runtime error: failed to initiate panic, error 5
-sgx-prover-avs-holesky  | thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: SGX_ERROR_ENCLAVE_CRASHED', sgx-prover/src/main.rs:38:6
-sgx-prover-avs-holesky  | note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-sgx-prover-avs-holesky exited with code 101
-...
+## Security Recommendations
 
-```
-A. This might be due to issues in the private key format. Check that the certificate is not in DER format and it starts with `-----BEGIN RSA PRIVATE KEY-----` and ends with `-----END RSA PRIVATE KEY-----
-`.
+- If you plan to host the prover on a different server from the operator, it is strongly recommended to setup HTTPS for your prover. Please see [step 2](#2-certificate-private-key-format) regarding the requirements of private key format. You should also whitelist only the Public IP of your operator node for port 18232, and block all other IPs from accessing that port.
+
+## FAQs
+
+1. **Why does my container crash with the following error?**
+
+    ```bash
+    sgx-prover-avs-holesky  | thread '<unnamed>' panicked at 'index out of bounds: the len is 0 but the index is 0', /root/.cargo/git/checkouts/net-http-rs-161299090de15460/2451885/src/http_server.rs:129:43
+    sgx-prover-avs-holesky  | fatal runtime error: failed to initiate panic, error 5
+    sgx-prover-avs-holesky  | thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: SGX_ERROR_ENCLAVE_CRASHED', sgx-prover/src/main.rs:38:6
+    sgx-prover-avs-holesky  | note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+    sgx-prover-avs-holesky exited with code 101
+
+    ```
+
+    This might be due to issues in the private key format. Check that the certificate is not in DER format and it starts with `-----BEGIN RSA PRIVATE KEY-----` and ends with `-----END RSA PRIVATE KEY-----`.
 
 
 
-### Q. Help! I got the following error when I run the curl command:
-```
-curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to localhost:18232
-```
-A. If you changed the port numbers from the default, please check that the port numbers match.
+2. **Why do I get an error when I run the curl command?**
+
+    ```bash
+    curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to localhost:18232
+    ```
+
+    If you changed the port numbers from the default, please check that the port numbers match.
+
+3. **Why does my prover container report this error when the operator container tries to connect to it?**
+   ```bash
+   sgx-prover-avs-holesky  | [2024-05-31 08:12:42.853] [parallel-worker-0] [base::thread:75] [ERROR] - parallel execution fail: task:6146778, info: ResponseError("scroll_getBlockTraceByNumberOrHash(Number(6146778),) -> scroll_types::trace::BlockTrace", JsonrpcErrorObj { code: 32601, message: "the method scroll_getBlockTraceByNumberOrHash does not exist/is not available", data: None })
+   ```
+   This happens because your RPC provider does not support the RPC calls starting with `scroll_`. You will need to use a different RPC provider or double check the setup of your Scroll archive node.

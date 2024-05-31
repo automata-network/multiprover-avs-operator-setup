@@ -1,4 +1,12 @@
-# Monitoring Multiprover AVS
+## Table of Contents <!-- omit in toc -->
+- [Introduction](#introduction)
+- [Setup](#setup)
+- [Dashboards](#dashboards)
+
+## Introduction
+
+This guide covers how to setup the monitoring docker containers for Multiprover AVS.
+
 
 ## Setup
 
