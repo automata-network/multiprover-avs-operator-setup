@@ -4,7 +4,7 @@
 - [Introduction](#introduction)
 - [General Flow](#general-flow)
 - [Version Specific Changes](#version-specific-changes)
-  - [Version 0.2.0](#version-020)
+  - [Version 0.2.0 (Holesky)](#version-020-holesky)
 
 
 ## Introduction
@@ -39,17 +39,17 @@ docker compose up -d
 
 ## Version Specific Changes
 
-### Version 0.2.0
+### Version 0.2.0 (Holesky)
 
-**Required updates** to `operator.json` for both holesky and mainnet:
+**Required updates** to `operator.json`:
 - Add `"NodeApiIpPortAddress": "0.0.0.0:15692",`
 - Update `"TEELivenessVerifierAddress": "0x2E8628F6000Ef85dea615af6Da4Fd6dF4fD149e6"`
 
-**Recommended updates** to `operator.json` for holesky testnet:
+**Recommended updates** to `operator.json`:
 - Update `AttestationLayerEcdsaKey`: If you are currently using your operator's ECDSA private key for this, it is recommended to change it to use a separate externally owned account (EOA). Please fund 1 holETH to this EOA. For your security, we recommend using this EOA for the sole purpose of submitting attestations.
 
 
-**Optional updates** to `operator.json` for both holesky and mainnet:
+**Optional updates** to `operator.json`:
 - Remove `"TaskFetcher": { ... }`
 - Remove `"ETHWsURL": "wss://ethereum-holesky-rpc.publicnode.com", `
 - Remove `"Simulation": false,`
