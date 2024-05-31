@@ -155,7 +155,7 @@ $ {"jsonrpc":"2.0","result":"<the dcap attestation quote hex string>","id":1}
 
 ## Security Recommendations
 
-- If you plan to host the prover on a different server from the operator, it is strongly recommended to setup HTTPS for your prover. Please see [step 2](#2-certificate-private-key-format) regarding the requirements of private key format. You should also whitelist only the Public IP of your operator node for port 18232, and block all other IPs from accessing that port.
+- If you plan to host the prover on a different server from the operator, it is strongly recommended to setup HTTPS for your prover. Please see [this step](#2-certificate-private-key-format) regarding the requirements of private key format. You should also whitelist only the Public IP of your operator node for port 18232, and block all other IPs from accessing that port.
 
 ## FAQs
 

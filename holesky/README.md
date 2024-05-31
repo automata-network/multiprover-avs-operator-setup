@@ -249,7 +249,8 @@ We recommend setting up monitoring so that you can detect if your operator node 
 
     The `AttestationLayerEcdsaKey` is used to submit attestations to the on-chain verifier. Our calculations indicate the 1 holETH will suffice to cover gas costs for attestation verification over a long period.
 
-    During the initial launch on Holesky testnet, we used the operator's ECDSA key to submit attestations, while we decide to use another EOA to submit attestations now, which is more secure to operators since the operator ECDSA key is not used by the operator node anymore, and you can keep it more securely.
+    During the initial launch on Holesky testnet, we used the operator's ECDSA key to submit attestations.
+    However, we decided to use another EOA to submit attestations now, which is more secure for operators since the operator ECDSA key is not used by the operator node anymore, and you can keep it more securely.
 
 7. **Why do I get the following error when trying to register attestation report?**
     ```bash

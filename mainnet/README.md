@@ -264,8 +264,8 @@ We recommend setting up monitoring so that you can detect if your operator node 
     Make sure that the user you are running the command with has the appropriate permissions, such as being in the `docker` group.
 6. **Why do I need to provide the `AttestationLayerEcdsaKey` and fund it with 0.02 optimism ETH?**
     
-    The `AttestationLayerEcdsaKey` is used to submit attestations to the on-chain verifier. Each submission requires approximately 0.0002 OP ETH and expires in two weeks. Our calculations indicate the 0.02 OP ETH will suffice to cover gas costs for attestation verification over an approximate two-year period.
+    The `AttestationLayerEcdsaKey` is used to submit attestations to the on-chain verifier. Each submission requires approximately 0.0002 OP ETH and expires in two weeks. Our calculations indicate the 0.02 OP ETH will suffice to cover gas costs for attestation verification over an approximate period of 2 years.
     
-    On the Holesky testnet, we use the operator ECDSA key to submit attestations, while we decide to use another EOA to submit attestations on mainnet, which is more secure to operators since the operator ECDSA key is not used by the operator node anymore, and you can keep it more securely.
+    Using another EOA instead of the operator private ECDSA key to submit attestations is more secure to operators since the operator ECDSA key is not used by the operator node anymore and you can keep it more securely.
     
     During the initial implementation of the Multi-Prover AVS, Optimism will function as the attestation layer to help lower gas fees.
