@@ -23,7 +23,7 @@ cd mainnet
 git pull
 ```
 
-2. Please check [the section below](#version-specific-changes) for the specific changes you need to make per version before starting your services again.
+2. Please check [the section below](#version-specific-changes) for the specific changes you need to make per version before rebooting your services.
 
 3. Stop the the existing services:
 
@@ -53,5 +53,3 @@ docker compose up -d
 **Other updates**:
 - We have also included monitoring dashboards in this release. Please feel free to use them to monitor your node and services.
 
-
-Please restart your containers after pulling an updated copy of this repository.
