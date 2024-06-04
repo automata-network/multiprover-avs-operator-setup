@@ -11,6 +11,7 @@ Automata is building TEE Coprocessors on EigenLayer with Multi-Prover AVS. Decen
   * [mainnet](mainnet/CHANGELOG.md)
 
 ## Runbooks
-* [Holesky testnet](holesky/README.md)
-* [Ethereum mainnet](mainnet/README.md)
+* [Operator - Holesky testnet](holesky/README.md)
+* [Operator - Ethereum mainnet](mainnet/README.md)
 * [Moniroring](monitoring)
+* [SGX Prover](prover)
