@@ -39,25 +39,25 @@ docker compose up -d
 
 ### Version 0.2.0 (Holesky)
 
-#### Operator Configuation Updates
+#### Operator Configuation Updates <!-- omit in toc -->
 
 **Required updates** to `operator.json`:
 - Add `"NodeApiIpPortAddress": "0.0.0.0:15692",`
 - Update `"TEELivenessVerifierAddress": "0x2E8628F6000Ef85dea615af6Da4Fd6dF4fD149e6"`
 
-**Recommended updates** to `operator.json`:
+**Recommended updates** to `operator.json`: <!-- omit in toc -->
 - Update `AttestationLayerEcdsaKey`: If you are currently using your operator's ECDSA private key for this, it is recommended to change it to use a separate externally owned account (EOA). Please fund 1 holETH to this EOA. For your security, we recommend using this EOA for the sole purpose of submitting attestations.
 
 
-**Optional updates** to `operator.json`:
+**Optional updates** to `operator.json`: <!-- omit in toc -->
 - Remove `"TaskFetcher": { ... }`
 - Remove `"ETHWsURL": "wss://ethereum-holesky-rpc.publicnode.com", `
 - Remove `"Simulation": false,`
 
-#### Metrics Dashboard
+#### Metrics Dashboard <!-- omit in toc -->
 
-We have also included monitoring dashboards in this release. Please feel free to use them to monitor your node and services. [monitoring](../monitoring)
+We have also included monitoring dashboards in this release. Please feel free to use them to monitor your node and services: [monitoring](../monitoring)
 
-#### SGX Prover
+#### SGX Prover <!-- omit in toc -->
 
 In this version, we support running your own SGX Prover. This may be an important criterion for rewards in the future. Please refer to the following link for how to run: [prover](../prover)

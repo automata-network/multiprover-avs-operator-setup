@@ -3,8 +3,8 @@
 - [1. Setup server to run the TEE prover](#1-setup-server-to-run-the-tee-prover)
 - [2. Certificate Private Key Format](#2-certificate-private-key-format)
 - [3. Setup TEE prover](#3-setup-tee-prover)
-  - [Setup prover using Docker image](#31-setup-prover-using-docker-image)
-  - [Setup prover from source code](#32-setup-prover-from-source-code)
+  - [3.1 Setup prover using Docker image](#31-setup-prover-using-docker-image)
+  - [3.2 Setup prover from source code](#32-setup-prover-from-source-code)
     - [Setup the Intel SGX environment](#setup-the-intel-sgx-environment)
     - [Build prover from source](#build-prover-from-source)
 - [4. Verify that the prover works](#4-verify-that-the-prover-works)
@@ -167,7 +167,7 @@ Below are the configs that you **need to provide**:
 ```
 * **l2**:
   * the endpoint of scroll, for example: `http://localhost:8545`.
-  * For setup the scroll archive node, check it out in [Setup the Scroll Archive Node](#setup-the-scroll-archive-node)
+  * To setup the scroll archive node, check out [Setup the Scroll Archive Node](#setup-the-scroll-archive-node)
   * If you cannot run the Scroll Archive Node, you can remove the **l2** field, but this may affect your final rewards.
 
 * **server.tls**:
@@ -205,7 +205,7 @@ Expected result
 ## Setup the Scroll Archive Node
 
 For running the Scroll Archive Node, please refer to https://github.com/scroll-tech/go-ethereum.
-Then you can run geth using the following command:
+Then, you can run geth using the following command:
 ```
 ./geth --datadir /data/mainnet --http --http.api eth,web3,net,scroll -gcmode=archive --scroll --l1.endpoint ${ETH_ENDPOINT}
 ```
@@ -215,6 +215,8 @@ Then you can run geth using the following command:
 ## Security Recommendations
 
 - If you plan to host the prover on a different server from the operator, it is strongly recommended to setup HTTPS for your prover. Please see [this step](#2-certificate-private-key-format) regarding the requirements of private key format. You should also whitelist only the Public IP of your operator node for port 18232, and block all other IPs from accessing that port.
+
+- If you plan to host the Scroll archive node, and on a different server from the prover, it is strongly recommended whitelist only the prover node's IP for accessing the execution node.
 
 ## FAQs
 
