@@ -3,14 +3,24 @@ global:
 
 # Set default port for scrapping
 scrape_configs:
-  - job_name: 'multiprover-avs'
+  - job_name: 'multiprover-avs-holesky'
     scrape_interval: 1m
     static_configs:
       - targets: ['multi-prover-operator:15682']
+  - job_name: 'multiprover-avs-holesky-prover'
+    scrape_interval: 1m
+    static_configs:
+      - targets: ['multi-prover-operator:15682']
+    metrics_path: /proverMetrics
   - job_name: 'multiprover-avs-mainnet'
     scrape_interval: 1m
     static_configs:
       - targets: ['multi-prover-operator-mainnet:15682']
+  - job_name: 'multiprover-avs-mainnet-prover'
+    scrape_interval: 1m
+    static_configs:
+      - targets: ['multi-prover-operator-mainnet:15682']
+    metrics_path: /proverMetrics
   - job_name: 'node'
     static_configs:
       - targets: ['node-exporter:9100']

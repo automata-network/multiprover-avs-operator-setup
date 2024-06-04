@@ -69,7 +69,7 @@ If using HTTPS, also move your cert and key into the config folder.
 
 
 Below are the configs that you **need to provide**:
-- **l2:** the endpoint of scroll, for example: `http://localhost:8545`. This should be the endpoint of an archive node since the prover needs to fetch the states from an archive node to compute the proof. RPC methods with the `scroll_` prefix are required.
+- **l2**: the endpoint of scroll, for example: `http://localhost:8545`. This should be the endpoint of an archive node since the prover needs to fetch the states from an archive node to compute the proof. RPC methods with the `scroll_` prefix are required.
 - **server.tls**: the path to the tls cert and key. Leave as an empty string if not using HTTPS. Our scripts assume that the cert and key are inside the config folder, and that the cert and key have the same basename. For example, if the the path is set to `config/tls`, the prover will then try to load `./config/tls.crt` and `./config/tls.key`.
 
 3. Run the sgx prover
@@ -139,6 +139,7 @@ $ ./run.sh binary
 ## 4. Verify that the prover works
 Use the following curl command to verify that the prover is running in the SGX environment successfully (use https instead of http if you configured it):
 
+
 ```bash
 $ curl -k http://localhost:18232 -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":1,"method":"generateAttestationReport","params":["0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"]}'
 
@@ -152,6 +153,14 @@ $ {"jsonrpc":"2.0","result":"<the dcap attestation quote hex string>","id":1}
 - If the operator and prover dockers are running on the same host, you can use `http://172.17.0.1:18232` (this is the ip of your host on the docker0 network interface).
 
 - Otherwise please use the public ip of your VM or the DNS name that you have set for it.
+
+## 6. Setup the Scroll Archive Node
+
+For running the Scroll Archive Node, please refer to https://github.com/scroll-tech/go-ethereum.
+Then you can run geth using the following command:
+```
+./geth --datadir /data/mainnet --http --http.api eth,web3,net,scroll --http.corsdomain '*' -gcmode=archive --scroll --l1.endpoint ${ETH_ENDPOINT} -port 30304 --http.port 18545 --http.addr 0.0.0.0
+```
 
 ## Security Recommendations
 

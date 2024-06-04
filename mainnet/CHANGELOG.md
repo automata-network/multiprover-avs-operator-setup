@@ -16,8 +16,6 @@ If you are running your operator using docker compose, you can upgrade with the 
 1. First pull the latest copy of this repo:
 
 ```bash
-cd holesky
-# or
 cd mainnet
 
 git pull
@@ -38,22 +36,4 @@ docker compose up -d
 
 
 ## Version Specific Changes
-
-### Version 0.2.0 (Holesky)
-
-**Required updates** to `operator.json`:
-- Add `"NodeApiIpPortAddress": "0.0.0.0:15692",`
-- Update `"TEELivenessVerifierAddress": "0x2E8628F6000Ef85dea615af6Da4Fd6dF4fD149e6"`
-
-**Recommended updates** to `operator.json`:
-- Update `AttestationLayerEcdsaKey`: If you are currently using your operator's ECDSA private key for this, it is recommended to change it to use a separate externally owned account (EOA). Please fund 1 holETH to this EOA. For your security, we recommend using this EOA for the sole purpose of submitting attestations.
-
-
-**Optional updates** to `operator.json`:
-- Remove `"TaskFetcher": { ... }`
-- Remove `"ETHWsURL": "wss://ethereum-holesky-rpc.publicnode.com", `
-- Remove `"Simulation": false,`
-
-**Other updates**:
-- We have also included monitoring dashboards in this release. Please feel free to use them to monitor your node and services.
 
