@@ -9,6 +9,7 @@
     - [Build prover from source](#build-prover-from-source)
 - [4. Verify that the prover works](#4-verify-that-the-prover-works)
 - [5. Set the Operator "ProverURL" config](#5-set-the-operator-proverurl-config)
+- [Setup the Scroll Archive Node](#setup-the-scroll-archive-node)
 - [Security Recommendations](#security-recommendations)
 - [FAQs](#faqs)
 
@@ -84,7 +85,7 @@ Below are the configs that you **need to provide**:
 ```
 * **l2**:
   * the endpoint of scroll, for example: `http://localhost:8545`.
-  * For setup the scroll archive node, check it out in [here](./SETUP_EXECUTION_NODE.md),
+  * For setup the scroll archive node, check it out in [Setup the Scroll Archive Node](#setup-the-scroll-archive-node)
   * If you cannot run the Scroll Archive Node, you can remove the **l2** field, but this may affect your final rewards.
 
 * **server.tls**:
@@ -153,7 +154,6 @@ $ vim config/prover.json
 
 If using HTTPS, also move your cert and key into the config folder.
 
-
 Below are the configs that you **need to provide**:
 
 ```json
@@ -167,7 +167,7 @@ Below are the configs that you **need to provide**:
 ```
 * **l2**:
   * the endpoint of scroll, for example: `http://localhost:8545`.
-  * For setup the scroll archive node, check it out in [here](./SETUP_EXECUTION_NODE.md),
+  * For setup the scroll archive node, check it out in [Setup the Scroll Archive Node](#setup-the-scroll-archive-node)
   * If you cannot run the Scroll Archive Node, you can remove the **l2** field, but this may affect your final rewards.
 
 * **server.tls**:
@@ -200,14 +200,17 @@ Expected result
 - If the operator and prover dockers are running on the same host, you can use `http://172.17.0.1:18232` (this is the ip of your host on the docker0 network interface).
 
 - Otherwise please use the public ip of your VM or the DNS name that you have set for it.
+  - It's strongly recommended to setup HTTPS for your prover, whitelist only the Public IP of your operator node for the port
 
-## 6. Setup the Scroll Archive Node
+## Setup the Scroll Archive Node
 
 For running the Scroll Archive Node, please refer to https://github.com/scroll-tech/go-ethereum.
 Then you can run geth using the following command:
 ```
 ./geth --datadir /data/mainnet --http --http.api eth,web3,net,scroll -gcmode=archive --scroll --l1.endpoint ${ETH_ENDPOINT}
 ```
+
+> 💡 It's strongly recommended to whitelist only your prover node for accessing the execution node.
 
 ## Security Recommendations
 
