@@ -1,10 +1,14 @@
-# Software Upgrades
+# Change Logs
+
+>
+> 💡 Check the [README](./README.md) if you are looking for setup from scratch
+>
 
 ## Table of Contents <!-- omit in toc -->
 - [Introduction](#introduction)
 - [General Flow](#general-flow)
 - [Version Specific Changes](#version-specific-changes)
-  - [Version 0.2.0 (Holesky)](#version-020-holesky)
+  - [Version 0.2.0](#version-020)
 
 
 ## Introduction
