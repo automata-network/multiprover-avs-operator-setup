@@ -16,6 +16,10 @@
 - [Prover](#prover)
 - [FAQ](#faq)
 
+>
+> 💡 Check the [CHANGELOG](./CHANGELOG.md) if you are looking for how to upgrage from old version
+>
+
 ## Introduction
 
 This guide lays out the requirements and steps to register an operator with EigenLayer and opt-in to running the Multi-Prover AVS on Holesky testnet. Responsibilities of the operator will include sampling and proving batched transactions submitted by Scroll to the base layer.
@@ -28,7 +32,8 @@ This guide lays out the requirements and steps to register an operator with Eige
 - [EigenLayer CLI](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-installation)
 - [Docker](https://docs.docker.com/engine/install/) and [docker-compose plugin](https://docs.docker.com/compose/install/linux/)
 - Ubuntu 20.04 LTS
-- 32 ETH or LST on Holesky testnet
+- 32 ETH or LST on Holesky testnet for staking
+- 1 ETH on Holesky testnet for perform the attestation
 
 ## Operator setup
 

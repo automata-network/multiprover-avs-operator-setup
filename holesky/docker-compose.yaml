@@ -9,7 +9,6 @@ services:
     command: -c /config/operator.json
     ports:
       - "15692:15692"
-      - "15682:15682"
     expose:
       - 15682
     volumes:

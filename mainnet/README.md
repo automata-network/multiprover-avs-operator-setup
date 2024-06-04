@@ -13,8 +13,12 @@
   - [Run the operator node](#run-the-operator-node)
   - [Opt out from Multi-Prover AVS](#opt-out-from-multi-prover-avs)
 - [Monitoring](#monitoring)
+- [Prover](#prover)
 - [FAQ](#faq)
 
+>
+> 💡 Check the [CHANGELOG](./CHANGELOG.md) if you are looking for how to upgrage from old version
+>
 
 ## Introduction
 
@@ -237,6 +241,10 @@ The following logs confirm that you have opted out from the Multi-Prover AVS suc
 ## Monitoring
 
 We recommend setting up monitoring so that you can detect if your operator node is running as expected. The guide for how to setup monitoring can be found [here](../monitoring/README.md).
+
+## Prover
+
+We recommend running your own prover. The guide for how to setup the prover can be found [here](../prover/README.md).
 
 
 ## FAQ
