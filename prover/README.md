@@ -2,7 +2,7 @@
 - [Overview](#overview)
 - [1. Setup server to run the TEE prover](#1-setup-server-to-run-the-tee-prover)
 - [2. Certificate Private Key Format](#2-certificate-private-key-format)
-- [3. Setup the Scroll Archive Node](#3-setup-the-scroll-archive-node)
+- [3. Setup the Scroll Archive Node (optional)](#3-setup-the-scroll-archive-node-optional)
 - [4. Setup TEE prover](#4-setup-tee-prover)
   - [4.1 Setup prover using Docker image](#41-setup-prover-using-docker-image)
   - [4.2 Setup prover from source code](#42-setup-prover-from-source-code)
@@ -65,6 +65,7 @@ Then, you can run geth using the following command:
 **Setting l2 config in prover.json**  
 - If running the Scroll Archive node on the same host as the prover, set l2 to http://172.17.0.1:8545
 - If running the Scroll Archive node on a different host as the prover, set l2 to the Public IP or DNS name of your archive node (with the correct port number).
+- If you can't run the Scroll Archive node, set l2 to empty.
 
 > 💡 It's strongly recommended to whitelist only your prover node for accessing the execution node.
 
@@ -101,10 +102,9 @@ If using HTTPS, also move your cert and key into the config folder.
         "tls": "/a/b/c"
     }
 }
+```
 
 Below are the configs that you **need to provide**:
-
-```
 * **l2**:
   * the endpoint of scroll, for example: `http://localhost:8545`.
   * To setup the scroll archive node, please check this guide: [Setup the Scroll Archive Node](#3-setup-the-scroll-archive-node)
