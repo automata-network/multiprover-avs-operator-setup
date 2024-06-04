@@ -171,24 +171,6 @@ docker compose logs
 The following logs confirm that the operator node is running:
 
 ```bash
-multi-prover-operator  | 2024/05/10 08:52:27 [operator.NewProverClient:prover_client.go:45][INFO] connecting to prover: https://avs-prover-staging.ata.network ...
-multi-prover-operator  | 2024/05/10 08:52:27 [aggregator.NewClient:client.go:20][INFO] connecting to aggregator: https://avs-aggregator-staging.ata.network
-multi-prover-operator  | 2024/05/10 08:52:27 [operator.(*Operator).Start:operator.go:207][INFO] starting operator...
-multi-prover-operator  | 2024/05/10 08:52:27 [operator.(*Operator).RegisterAttestationReport:operator.go:360][INFO] checking tee liveness...
-multi-prover-operator  | 2024/05/10 08:52:27 [operator.(*Operator).RegisterAttestationReport:operator.go:374][INFO] Operater has registered on TEE Liveness Verifier
-multi-prover-operator  | 2024/05/10 08:52:27 [metrics.(*EigenMetrics).Start:eigenmetrics.go:81][INFO] Starting metrics server at port 0.0.0.0:15682
-multi-prover-operator  | 2024/05/10 08:52:27 [operator.(*Operator).Start:operator.go:227][INFO] Started Operator... operator info: operatorId=xxx, operatorAddr=xxx, operatorG1Pubkey=xxx, operatorG2Pubkey=xxx
-multi-prover-operator  | 2024/05/10 08:52:27 [operator.(*LogTracer).Run:log_trace.go:77][INFO] starting log-tracer: operator-log-tracer
-multi-prover-operator  | 2024/05/10 08:52:27 [operator.(*Operator).RegisterAttestationReport.func1:operator.go:393][INFO] next attestation will be at 2024-05-16 15:49:24 +0000 UTC
-multi-prover-operator  | 2024/05/10 08:52:28 [operator.(*Operator).proverGetPoe:operator.go:310][INFO] fetching poe for batch 0xf104deb84b03df7ec39083ca33068d26ba5e0c8dee5e855813e3d1f43f22baff
-multi-prover-operator  | 2024/05/10 08:52:28 [operator.(*Operator).proverGetPoe:operator.go:310][INFO] fetching poe for batch 0x7a1e312f4a2ef836e6e6ffb537311d99c73bdcfd0b7a848910dcbd9c164cee23
-multi-prover-operator  | 2024/05/10 08:52:29 [operator.(*Operator).proverGetPoe:operator.go:310][INFO] fetching poe for batch 0xf4b5059a5e7d5be829ffd8152524211edddbc71786fddb211e9e265ee6b71417
-multi-prover-operator  | 2024/05/10 08:52:43 [operator.(*LogTracer).Run:log_trace.go:140][INFO] [operator-log-tracer] scan 19838523 -> 19838556, logs: 24
-multi-prover-operator  | 2024/05/10 08:52:55 [operator.(*Operator).proverGetPoe:operator.go:310][INFO] fetching poe for batch 0xaaae5e0ecc28bc42cddbcdb1e46f49d8b29e81db4e0ca4a0d0986d8ca04853e7
-multi-prover-operator  | 2024/05/10 08:52:56 [operator.(*Operator).proverGetPoe:operator.go:310][INFO] fetching poe for batch 0xd1f7b1fef14986b4539ab105adf4aab8d673a8d82d0dd61513c8e88354bc8a66
-multi-prover-operator  | 2024/05/10 08:52:56 [operator.(*LogTracer).Run:log_trace.go:140][INFO] [operator-log-tracer] scan 19838557 -> 19838559, logs: 2
-multi-prover-operator  | 2024/05/10 08:53:21 [operator.(*LogTracer).Run:log_trace.go:140][INFO] [operator-log-tracer] scan 19838560 -> 19838561, logs: 0
-
 multi-prover-operator  | 2024/06/04 07:01:20 [xtask.NewProverClient:prover_client.go:45][INFO] connecting to prover: https://avs-prover-staging.ata.network ...
 multi-prover-operator  | 2024/06/04 07:01:20 [aggregator.NewClient:client.go:20][INFO] connecting to aggregator: https://avs-aggregator-staging.ata.network
 multi-prover-operator  | 2024/06/04 07:01:20 [operator.(*Operator).Start:operator.go:113][INFO] starting operator...
