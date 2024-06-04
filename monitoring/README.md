@@ -32,3 +32,5 @@ docker network connect multiprover-avs-mainnet-network prometheus
 
 ## Dashboards
 By default, Multiprover AVS provides a set of Grafana dashboards [here](./dashboards/), which are automatically imported if you followed the steps above. These can be used to quickly see the health of your Multiprover Node(s) and whether there are any problems.
+
+1. Open in the browser http://localhost:3000
