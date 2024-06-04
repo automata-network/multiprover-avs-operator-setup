@@ -1285,37 +1285,7 @@
   "schemaVersion": 39,
   "tags": [],
   "templating": {
-    "list": [
-      {
-        "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "prometheus"
-        },
-        "definition": "label_values()",
-        "hide": 0,
-        "includeAll": false,
-        "label": "TaskType",
-        "multi": false,
-        "name": "TaskType",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values()",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      }
-    ]
+    "list": []
   },
   "time": {
     "from": "now-6h",
@@ -1325,6 +1295,6 @@
   "timezone": "browser",
   "title": "multi-prover-avs",
   "uid": "adkvke4gnu5tsf",
-  "version": 6,
+  "version": 8,
   "weekStart": ""
 }
