@@ -34,3 +34,4 @@ docker network connect multiprover-avs-mainnet-network prometheus
 By default, Multiprover AVS provides a set of Grafana dashboards [here](./dashboards/), which are automatically imported if you followed the steps above. These can be used to quickly see the health of your Multiprover Node(s) and whether there are any problems.
 
 1. Open in the browser http://localhost:3000
+2. Enter the default username: admin, password: admin, it's set in [here](./docker-compose.yml#L53-L54)
