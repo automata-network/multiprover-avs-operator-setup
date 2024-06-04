@@ -71,9 +71,6 @@ $ vim config/prover.json
 
 If using HTTPS, also move your cert and key into the config folder.
 
-
-Below are the configs that you **need to provide**:
-
 ```json
 {
     "l2": "<Scroll Mainnet Archive Node RPC endpoint>",
@@ -82,6 +79,9 @@ Below are the configs that you **need to provide**:
         "tls": "/a/b/c"
     }
 }
+
+Below are the configs that you **need to provide**:
+
 ```
 * **l2**:
   * the endpoint of scroll, for example: `http://localhost:8545`.
@@ -153,7 +153,6 @@ $ vim config/prover.json
 
 If using HTTPS, also move your cert and key into the config folder.
 
-Below are the configs that you **need to provide**:
 
 ```json
 {
@@ -164,6 +163,9 @@ Below are the configs that you **need to provide**:
     }
 }
 ```
+
+Below are the configs that you **need to provide**:
+
 * **l2**:
   * the endpoint of scroll, for example: `http://localhost:8545`.
   * To setup the scroll archive node, please check this guide: [Setup the Scroll Archive Node](#setup-the-scroll-archive-node)
@@ -203,11 +205,20 @@ Expected result
 
 ## Setup the Scroll Archive Node
 
-For running the Scroll Archive Node, please refer to https://github.com/scroll-tech/go-ethereum.
+To build the Scroll client, please refer to https://github.com/scroll-tech/go-ethereum.
+
+> 💡 We recommend setting up the Scroll node with at least 2 CPU, 8GB RAM and 1~2TB SSD storage.
+
+When the compilation is complete, the client binary, geth, can be found in `build/bin`.
 Then, you can run geth using the following command:
 ```
 ./geth --datadir /data/mainnet --http --http.api eth,web3,net,scroll -gcmode=archive --scroll --l1.endpoint ${ETH_ENDPOINT}
 ```
+You can replace `/data/mainnet` with the directory that you intend to put the blockchain data in.
+
+**Setting l2 config in prover.json**  
+- If running the Scroll Archive node on the same host as the prover, set l2 to http://172.17.0.1:18545
+- If running the Scroll Archive node on a different host as the prover, set l2 to the Public IP or DNS name of your archive node (with the correct port number).
 
 > 💡 It's strongly recommended to whitelist only your prover node for accessing the execution node.
 
