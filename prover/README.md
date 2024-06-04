@@ -16,6 +16,8 @@
 ## Overview
 The article describes how to set up a TEE prover used by Automata Multi-Prover AVS operator and upgrade the operator node to use your own TEE prover.
 
+Running your own `TEE prover` and `scroll archive node` will be an important indicator for determining reward amounts in the future.
+
 ## 1. Setup server to run the TEE prover
 > 💡 The steps below introduce how to set up a Standard_DC4s_v3 virtual machine on Azure. If you already have a server that supports Intel SGX and DCAP, you can skip this section. Please contact us if you decide to use your own server since we need more info about your sever to get the attestation verification pass.
 

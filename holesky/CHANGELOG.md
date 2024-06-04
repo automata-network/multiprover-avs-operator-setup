@@ -64,7 +64,9 @@ We have also included monitoring dashboards in this release. Please feel free to
 
 #### SGX Prover <!-- omit in toc -->
 
-In this version, we support running your own SGX Prover. This may be an important criterion for rewards in the future. Please refer to the following link for how to run: [prover](../prover)
+In this version, we support running your own SGX Prover. Please refer to the following link for how to run: [prover](../prover)
+
+**This will be an important indicator for determining reward amounts in the future**
 
 ### FAQ
 
@@ -75,4 +77,4 @@ In this version, we support running your own SGX Prover. This may be an importan
 ```
 
 1. Check whether the `TEELivenessVerifierAddress` in config updated to `0x2E8628F6000Ef85dea615af6Da4Fd6dF4fD149e6`
-2. Check whether the balance of the `AttestationLayerEcdsaKey` is enough for sending a transaction (0.005 holETH)
+2. Check whether the balance of the `AttestationLayerEcdsaKey` is enough for sending a transaction (0.005 holETH)c
