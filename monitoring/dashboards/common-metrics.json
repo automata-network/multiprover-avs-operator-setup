@@ -650,7 +650,7 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 8,
         "x": 0,
         "y": 20
       },
@@ -744,6 +744,106 @@
                 "value": 80
               }
             ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 20
+      },
+      "id": 39,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "delta(avs_operator_submit_task_counter[5m])",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "{{instance}}",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Submit work",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
           },
           "unit": "ms"
         },
@@ -751,8 +851,8 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 20
       },
       "id": 33,
@@ -1280,7 +1380,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 71
+            "y": 79
           },
           "id": 26,
           "options": {
@@ -1375,7 +1475,7 @@
             "h": 16,
             "w": 12,
             "x": 12,
-            "y": 71
+            "y": 79
           },
           "id": 14,
           "options": {
@@ -1457,7 +1557,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 79
+            "y": 87
           },
           "id": 16,
           "options": {
@@ -1546,7 +1646,7 @@
           "type": "prometheus",
           "uid": "prometheus"
         },
-        "definition": "label_values(avs_operator_counter_fetch_task,type)",
+        "definition": "label_values(avs_operator_fetch_task_counter,type)",
         "hide": 2,
         "includeAll": false,
         "label": "TaskType",
@@ -1555,7 +1655,7 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(avs_operator_counter_fetch_task,type)",
+          "query": "label_values(avs_operator_fetch_task_counter,type)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1567,7 +1667,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-12h",
     "to": "now"
   },
   "timeRangeUpdatedDuringEditOrView": false,
@@ -1575,6 +1675,6 @@
   "timezone": "",
   "title": "AVS Specification Metrics",
   "uid": "l8RpPN94z",
-  "version": 5,
+  "version": 10,
   "weekStart": ""
 }
