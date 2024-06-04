@@ -212,7 +212,7 @@ To build the Scroll client, please refer to https://github.com/scroll-tech/go-et
 When the compilation is complete, the client binary, geth, can be found in `build/bin`.
 Then, you can run geth using the following command:
 ```
-./geth --datadir /data/mainnet --http --http.api eth,web3,net,scroll -gcmode=archive --scroll --l1.endpoint ${ETH_ENDPOINT}
+./geth --datadir /data/mainnet --http --http.api eth,web3,net,scroll -gcmode=archive --scroll --l1.endpoint ${ETH_ENDPOINT} --http.addr 0.0.0.0
 ```
 
 - You can replace `/data/mainnet` with the directory that you intend to put the blockchain data in. We recommend using a filesystem that supports snapshots in case of data corruption.
