@@ -221,7 +221,7 @@ Then, you can run geth using the following command:
 - As a default, you can use https://ethereum-rpc.publicnode.com as the ETH_ENDPOINT.
 
 **Setting l2 config in prover.json**  
-- If running the Scroll Archive node on the same host as the prover, set l2 to http://172.17.0.1:18545
+- If running the Scroll Archive node on the same host as the prover, set l2 to http://172.17.0.1:8545
 - If running the Scroll Archive node on a different host as the prover, set l2 to the Public IP or DNS name of your archive node (with the correct port number).
 
 > 💡 It's strongly recommended to whitelist only your prover node for accessing the execution node.
