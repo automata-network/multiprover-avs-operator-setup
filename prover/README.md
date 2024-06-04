@@ -214,7 +214,9 @@ Then, you can run geth using the following command:
 ```
 ./geth --datadir /data/mainnet --http --http.api eth,web3,net,scroll -gcmode=archive --scroll --l1.endpoint ${ETH_ENDPOINT}
 ```
-You can replace `/data/mainnet` with the directory that you intend to put the blockchain data in.
+
+- You can replace `/data/mainnet` with the directory that you intend to put the blockchain data in. We recommend using a filesystem that supports snapshots in case of data corruption.
+- As a default, you can use https://ethereum-rpc.publicnode.com as the ETH_ENDPOINT.
 
 **Setting l2 config in prover.json**  
 - If running the Scroll Archive node on the same host as the prover, set l2 to http://172.17.0.1:18545
@@ -258,3 +260,7 @@ You can replace `/data/mainnet` with the directory that you intend to put the bl
    sgx-prover-avs-holesky  | [2024-05-31 08:12:42.853] [parallel-worker-0] [base::thread:75] [ERROR] - parallel execution fail: task:6146778, info: ResponseError("scroll_getBlockTraceByNumberOrHash(Number(6146778),) -> scroll_types::trace::BlockTrace", JsonrpcErrorObj { code: 32601, message: "the method scroll_getBlockTraceByNumberOrHash does not exist/is not available", data: None })
    ```
    This happens because your RPC provider does not support the RPC calls starting with `scroll_`. You will need to use a different RPC provider or double check the setup of your Scroll archive node.
+
+4. **How long will it take for geth to sync the entire blockchain?**
+
+    It will take approximately 2 weeks.
