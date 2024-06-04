@@ -85,7 +85,7 @@ Below are the configs that you **need to provide**:
 ```
 * **l2**:
   * the endpoint of scroll, for example: `http://localhost:8545`.
-  * For setup the scroll archive node, check it out in [Setup the Scroll Archive Node](#setup-the-scroll-archive-node)
+  * To setup the scroll archive node, please check this guide: [Setup the Scroll Archive Node](#setup-the-scroll-archive-node)
   * If you cannot run the Scroll Archive Node, you can remove the **l2** field, but this may affect your final rewards.
 
 * **server.tls**:
@@ -124,7 +124,6 @@ $ sudo ./sgx_install_deps.sh
 $ cd ..
 $ git clone -b avs https://github.com/automata-network/sgx-prover.git
 $ cd sgx-prover
-$ git checkout avs
 ```
 
 2. Switch to the root user, and compile the code
@@ -167,7 +166,7 @@ Below are the configs that you **need to provide**:
 ```
 * **l2**:
   * the endpoint of scroll, for example: `http://localhost:8545`.
-  * To setup the scroll archive node, check out [Setup the Scroll Archive Node](#setup-the-scroll-archive-node)
+  * To setup the scroll archive node, please check this guide: [Setup the Scroll Archive Node](#setup-the-scroll-archive-node)
   * If you cannot run the Scroll Archive Node, you can remove the **l2** field, but this may affect your final rewards.
 
 * **server.tls**:
