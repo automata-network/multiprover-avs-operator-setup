@@ -3,8 +3,8 @@
 - [1. Setup server to run the TEE prover](#1-setup-server-to-run-the-tee-prover)
 - [2. Certificate Private Key Format](#2-certificate-private-key-format)
 - [3. Setup TEE prover](#3-setup-tee-prover)
-  - [Setup prover using Docker image](#setup-prover-using-docker-image)
-  - [Setup prover from source code](#setup-prover-from-source-code)
+  - [Setup prover using Docker image](#31-setup-prover-using-docker-image)
+  - [Setup prover from source code](#32-setup-prover-from-source-code)
     - [Setup the Intel SGX environment](#setup-the-intel-sgx-environment)
     - [Build prover from source](#build-prover-from-source)
 - [4. Verify that the prover works](#4-verify-that-the-prover-works)
@@ -47,8 +47,11 @@ openssl rsa -inform PEM -outform PEM -in tls.key -out tls.key
 
 ## 3. Setup TEE prover
 
-### Setup prover using Docker image
+### 3.1 Setup prover using Docker image
 > 💡 Skip this part if you want to build the prover from source code
+
+<details>
+
 
 1. Clone the setup repo and enter the `mainnet` or `holesky` folder
 ```bash
@@ -69,8 +72,24 @@ If using HTTPS, also move your cert and key into the config folder.
 
 
 Below are the configs that you **need to provide**:
-- **l2**: the endpoint of scroll, for example: `http://localhost:8545`. This should be the endpoint of an archive node since the prover needs to fetch the states from an archive node to compute the proof. RPC methods with the `scroll_` prefix are required.
-- **server.tls**: the path to the tls cert and key. Leave as an empty string if not using HTTPS. Our scripts assume that the cert and key are inside the config folder, and that the cert and key have the same basename. For example, if the the path is set to `config/tls`, the prover will then try to load `./config/tls.crt` and `./config/tls.key`.
+
+```json
+{
+    "l2": "<Scroll Mainnet Archive Node RPC endpoint>",
+    "l2_chain_id": 534352,
+    "server": {
+        "tls": "/a/b/c"
+    }
+}
+```
+* **l2**:
+  * the endpoint of scroll, for example: `http://localhost:8545`.
+  * For setup the scroll archive node, check it out in [here](./SETUP_EXECUTION_NODE.md),
+  * If you cannot run the Scroll Archive Node, you can remove the **l2** field, but this may affect your final rewards.
+
+* **server.tls**:
+  * the path to the tls cert and key.
+  * Leave as an empty string if not using HTTPS. Our scripts assume that the cert and key are inside the config folder, and that the cert and key have the same basename. For example, if the the path is set to `config/tls`, the prover will then try to load `./config/tls.crt` and `./config/tls.key`.
 
 3. Run the sgx prover
 ```bash
@@ -79,8 +98,16 @@ $ ./run.sh docker
 $ ./run.sh docker -d # to run in the background
 ```
 
-### Setup prover from source code
+---
+
+</details>
+
+### 3.2 Setup prover from source code
+
 > 💡 Skip this part if you want to run the prover using the provided docker image
+
+<details>
+
 
 #### Setup the Intel SGX environment
 1. Clone the setup repo and setup the SGX environment.
@@ -94,7 +121,7 @@ $ sudo ./sgx_install_deps.sh
 1. Change to the prover directory and clone the latest sgx-prover code and switch to the `avs` branch
 ```bash
 $ cd ..
-$ git clone https://github.com/automata-network/sgx-prover.git
+$ git clone -b avs https://github.com/automata-network/sgx-prover.git
 $ cd sgx-prover
 $ git checkout avs
 ```
@@ -128,23 +155,43 @@ If using HTTPS, also move your cert and key into the config folder.
 
 
 Below are the configs that you **need to provide**:
-- **l2:** the endpoint of scroll, for example: `http://localhost:8545`. This should be the endpoint of an archive node since the prover needs to fetch the states from an archive node to compute the proof. RPC methods with the `scroll_` prefix are required.
-- **server.tls**: the path to the tls cert and key. Leave as an empty string if not using HTTPS. Our scripts assume that the cert and key are inside the config folder, and that the cert and key have the same basename. For example, if the the path is set to `config/tls`, the prover will then try to load `./config/tls.crt` and `./config/tls.key`.
 
+```json
+{
+    "l2": "<Scroll Mainnet Archive Node RPC endpoint>",
+    "l2_chain_id": 534352,
+    "server": {
+        "tls": "/a/b/c"
+    }
+}
+```
+* **l2**:
+  * the endpoint of scroll, for example: `http://localhost:8545`.
+  * For setup the scroll archive node, check it out in [here](./SETUP_EXECUTION_NODE.md),
+  * If you cannot run the Scroll Archive Node, you can remove the **l2** field, but this may affect your final rewards.
+
+* **server.tls**:
+  * the path to the tls cert and key.
+  * Leave as an empty string if not using HTTPS. Our scripts assume that the cert and key are inside the config folder, and that the cert and key have the same basename. For example, if the the path is set to `config/tls`, the prover will then try to load `./config/tls.crt` and `./config/tls.key`.
+ 
 5. Run the sgx prover
 ```bash
 $ ./run.sh binary
 ```
+
+</details>
 
 ## 4. Verify that the prover works
 Use the following curl command to verify that the prover is running in the SGX environment successfully (use https instead of http if you configured it):
 
 
 ```bash
-$ curl -k http://localhost:18232 -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":1,"method":"generateAttestationReport","params":["0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"]}'
-
+$ curl -k http://localhost:18232 -H 'Content-Type: application/json' \
+       -d '{"jsonrpc":"2.0","id":1,"method":"prover_metadata"}'
+```
 Expected result
-$ {"jsonrpc":"2.0","result":"<the dcap attestation quote hex string>","id":1}
+```json
+{"jsonrpc":"2.0","result":{"with_context":false,"version":"v0.2.0"},"id":1}
 ```
 
 
@@ -159,7 +206,7 @@ $ {"jsonrpc":"2.0","result":"<the dcap attestation quote hex string>","id":1}
 For running the Scroll Archive Node, please refer to https://github.com/scroll-tech/go-ethereum.
 Then you can run geth using the following command:
 ```
-./geth --datadir /data/mainnet --http --http.api eth,web3,net,scroll --http.corsdomain '*' -gcmode=archive --scroll --l1.endpoint ${ETH_ENDPOINT} -port 30304 --http.port 18545 --http.addr 0.0.0.0
+./geth --datadir /data/mainnet --http --http.api eth,web3,net,scroll -gcmode=archive --scroll --l1.endpoint ${ETH_ENDPOINT}
 ```
 
 ## Security Recommendations
