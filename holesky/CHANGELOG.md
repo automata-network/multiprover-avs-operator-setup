@@ -61,3 +61,14 @@ We have also included monitoring dashboards in this release. Please feel free to
 #### SGX Prover <!-- omit in toc -->
 
 In this version, we support running your own SGX Prover. This may be an important criterion for rewards in the future. Please refer to the following link for how to run: [prover](../prover)
+
+### FAQ
+
+* **Why I got this error when I start the operator?**
+
+```
+[FATAL] [operator.(*Operator).registerAttestationReport:416(balance:0.1);operator.(*Operator).RegisterAttestationReport:462;operator.(*Operator).Start:120(xxx)] execution reverted
+```
+
+1. Check whether the `TEELivenessVerifierAddress` in config updated to `0x2E8628F6000Ef85dea615af6Da4Fd6dF4fD149e6`
+2. Check whether the balance of the `AttestationLayerEcdsaKey` is enough for sending a transaction (0.005 holETH)

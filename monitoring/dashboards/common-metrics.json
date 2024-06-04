@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -274,9 +274,9 @@
             "uid": "prometheus"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "avs_operator_counter_metadata{avs_name=\"$AvsName\"}",
+          "expr": "avs_operator_metadata_counter{avs_name=\"$AvsName\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -297,11 +297,10 @@
               "operator_addr",
               "prover_url_hash",
               "prover_version",
-              "prover_with_context",
+              "task_fetch_with_context",
               "version"
             ],
-            "mode": "rows",
-            "valueLabel": "attestation_addr"
+            "mode": "rows"
           }
         }
       ],
@@ -381,7 +380,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "avs_operator_const_liveness_ts{avs_name=\"$AvsName\"} * 1000",
+          "expr": "avs_operator_liveness_ts_gauge{avs_name=\"$AvsName\"} * 1000",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -429,7 +428,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 4,
         "x": 8,
         "y": 13
@@ -460,7 +459,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "avs_operator_const_next_attestation_ts{avs_name=\"$AvsName\"} - time()",
+          "expr": "avs_operator_next_attestation_ts_gauge{avs_name=\"$AvsName\"} - time()",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -562,7 +561,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "avs_operator_attestation_acc_balance{avs_name=\"$AvsName\"}",
+          "expr": "avs_operator_attestation_acc_balance_gauge{avs_name=\"$AvsName\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -677,7 +676,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "avs_operator_gauge_latest_task{type=\"$TaskType\", avs_name=\"$AvsName\"}",
+          "expr": "avs_operator_latest_task_gauge{type=\"$TaskType\", avs_name=\"$AvsName\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -778,7 +777,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "avs_operator_gauge_process_task_ms{type=\"$TaskType\", avs_name=\"$AvsName\"}",
+          "expr": "avs_operator_process_task_ms_gauge{type=\"$TaskType\", avs_name=\"$AvsName\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -879,7 +878,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "avs_prover_gauge_prove_ms{type=\"$TaskType\"}",
+          "expr": "avs_prover_prove_ms_gauge{type=\"$TaskType\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -980,7 +979,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "avs_prover_gauge_gen_ctx_ms{type=\"$TaskType\"}",
+          "expr": "avs_prover_ctx_ms_gauge{type=\"$TaskType\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -1266,8 +1265,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1282,7 +1280,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 47
+            "y": 71
           },
           "id": 26,
           "options": {
@@ -1366,8 +1364,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -1378,7 +1375,7 @@
             "h": 16,
             "w": 12,
             "x": 12,
-            "y": 47
+            "y": 71
           },
           "id": 14,
           "options": {
@@ -1444,8 +1441,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1461,7 +1457,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 55
+            "y": 79
           },
           "id": 16,
           "options": {
@@ -1542,7 +1538,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "scroll",
           "value": "scroll"
         },
@@ -1551,7 +1547,7 @@
           "uid": "prometheus"
         },
         "definition": "label_values(avs_operator_counter_fetch_task,type)",
-        "hide": 0,
+        "hide": 2,
         "includeAll": false,
         "label": "TaskType",
         "multi": false,
@@ -1579,6 +1575,6 @@
   "timezone": "",
   "title": "AVS Specification Metrics",
   "uid": "l8RpPN94z",
-  "version": 7,
+  "version": 5,
   "weekStart": ""
 }
