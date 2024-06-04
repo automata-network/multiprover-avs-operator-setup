@@ -2,14 +2,14 @@
 - [Overview](#overview)
 - [1. Setup server to run the TEE prover](#1-setup-server-to-run-the-tee-prover)
 - [2. Certificate Private Key Format](#2-certificate-private-key-format)
-- [3. Setup TEE prover](#3-setup-tee-prover)
-  - [3.1 Setup prover using Docker image](#31-setup-prover-using-docker-image)
-  - [3.2 Setup prover from source code](#32-setup-prover-from-source-code)
+- [3. Setup the Scroll Archive Node](#3-setup-the-scroll-archive-node)
+- [4. Setup TEE prover](#4-setup-tee-prover)
+  - [4.1 Setup prover using Docker image](#41-setup-prover-using-docker-image)
+  - [4.2 Setup prover from source code](#42-setup-prover-from-source-code)
     - [Setup the Intel SGX environment](#setup-the-intel-sgx-environment)
     - [Build prover from source](#build-prover-from-source)
-- [4. Verify that the prover works](#4-verify-that-the-prover-works)
-- [5. Set the Operator "ProverURL" config](#5-set-the-operator-proverurl-config)
-- [Setup the Scroll Archive Node](#setup-the-scroll-archive-node)
+- [5. Verify that the prover works](#5-verify-that-the-prover-works)
+- [6. Set the Operator "ProverURL" config](#6-set-the-operator-proverurl-config)
 - [Security Recommendations](#security-recommendations)
 - [FAQs](#faqs)
 
@@ -47,10 +47,30 @@ $ chmod 400 <the pem file downloaded during the setup>
 openssl rsa -inform PEM -outform PEM -in tls.key -out tls.key
 ```
 
+## 3. Setup the Scroll Archive Node (optional)
 
-## 3. Setup TEE prover
+To build the Scroll client, please refer to https://github.com/scroll-tech/go-ethereum.
 
-### 3.1 Setup prover using Docker image
+> 💡 We recommend setting up the Scroll node with at least 2 CPU, 8GB RAM and 1~2TB SSD storage.
+
+When the compilation is complete, the client binary, geth, can be found in `build/bin`.
+Then, you can run geth using the following command:
+```
+./geth --datadir /data/mainnet --http --http.api eth,web3,net,scroll -gcmode=archive --scroll --l1.endpoint ${ETH_ENDPOINT}
+```
+
+- You can replace `/data/mainnet` with the directory that you intend to put the blockchain data in. We recommend using a filesystem that supports snapshots in case of data corruption.
+- As a default, you can use https://ethereum-rpc.publicnode.com as the ETH_ENDPOINT.
+
+**Setting l2 config in prover.json**  
+- If running the Scroll Archive node on the same host as the prover, set l2 to http://172.17.0.1:8545
+- If running the Scroll Archive node on a different host as the prover, set l2 to the Public IP or DNS name of your archive node (with the correct port number).
+
+> 💡 It's strongly recommended to whitelist only your prover node for accessing the execution node.
+
+## 4. Setup TEE prover
+
+### 4.1 Setup prover using Docker image
 > 💡 Skip this part if you want to build the prover from source code
 
 <details>
@@ -87,8 +107,8 @@ Below are the configs that you **need to provide**:
 ```
 * **l2**:
   * the endpoint of scroll, for example: `http://localhost:8545`.
-  * To setup the scroll archive node, please check this guide: [Setup the Scroll Archive Node](#setup-the-scroll-archive-node)
-  * If you cannot run the Scroll Archive Node, you can remove the **l2** field, but this may affect your final rewards.
+  * To setup the scroll archive node, please check this guide: [Setup the Scroll Archive Node](#3-setup-the-scroll-archive-node)
+  * If you cannot run the Scroll Archive Node, you can set the **l2** field to blank, but this may affect your final rewards.
 
 * **server.tls**:
   * the path to the tls cert and key.
@@ -105,7 +125,7 @@ $ ./run.sh docker -d # to run in the background
 
 </details>
 
-### 3.2 Setup prover from source code
+### 4.2 Setup prover from source code
 
 > 💡 Skip this part if you want to run the prover using the provided docker image
 
@@ -170,8 +190,8 @@ Below are the configs that you **need to provide**:
 
 * **l2**:
   * the endpoint of scroll, for example: `http://localhost:8545`.
-  * To setup the scroll archive node, please check this guide: [Setup the Scroll Archive Node](#setup-the-scroll-archive-node)
-  * If you cannot run the Scroll Archive Node, you can remove the **l2** field, but this may affect your final rewards.
+  * To setup the scroll archive node, please check this guide: [Setup the Scroll Archive Node](#3-setup-the-scroll-archive-node)
+  * If you cannot run the Scroll Archive Node, you can set the **l2** field to blank, but this may affect your final rewards.
 
 * **server.tls**:
   * the path to the tls cert and key.
@@ -184,7 +204,7 @@ $ ./run.sh binary
 
 </details>
 
-## 4. Verify that the prover works
+## 5. Verify that the prover works
 Use the following curl command to verify that the prover is running in the SGX environment successfully (use https instead of http if you configured it):
 
 
@@ -198,33 +218,12 @@ Expected result
 ```
 
 
-## 5. Set the Operator "ProverURL" config
+## 6. Set the Operator "ProverURL" config
 
 - If the operator and prover dockers are running on the same host, you can use `http://172.17.0.1:18232` (this is the ip of your host on the docker0 network interface).
 
 - Otherwise please use the public ip of your VM or the DNS name that you have set for it.
   - It's strongly recommended to setup HTTPS for your prover, whitelist only the Public IP of your operator node for the port
-
-## Setup the Scroll Archive Node
-
-To build the Scroll client, please refer to https://github.com/scroll-tech/go-ethereum.
-
-> 💡 We recommend setting up the Scroll node with at least 2 CPU, 8GB RAM and 1~2TB SSD storage.
-
-When the compilation is complete, the client binary, geth, can be found in `build/bin`.
-Then, you can run geth using the following command:
-```
-./geth --datadir /data/mainnet --http --http.api eth,web3,net,scroll -gcmode=archive --scroll --l1.endpoint ${ETH_ENDPOINT} --http.addr 0.0.0.0
-```
-
-- You can replace `/data/mainnet` with the directory that you intend to put the blockchain data in. We recommend using a filesystem that supports snapshots in case of data corruption.
-- As a default, you can use https://ethereum-rpc.publicnode.com as the ETH_ENDPOINT.
-
-**Setting l2 config in prover.json**  
-- If running the Scroll Archive node on the same host as the prover, set l2 to http://172.17.0.1:8545
-- If running the Scroll Archive node on a different host as the prover, set l2 to the Public IP or DNS name of your archive node (with the correct port number).
-
-> 💡 It's strongly recommended to whitelist only your prover node for accessing the execution node.
 
 ## Security Recommendations
 
