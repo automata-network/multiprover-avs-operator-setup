@@ -13,6 +13,7 @@
   - [Run the operator node](#run-the-operator-node)
   - [Opt-out from Multi-Prover AVS](#opt-out-from-multi-prover-avs)
 - [Monitoring](#monitoring)
+- [Prover](#prover)
 - [FAQ](#faq)
 
 ## Introduction
@@ -70,7 +71,6 @@ Below are the configs that we recommend **not to use the default value if possib
 
 Below are the configs that you can **use the default value**:
 
-- **Simulation**: The default value is `false` . In the simulation mode, the operator will not actually process the task.
 - **ETHRpcURL**: Holesky RPC url used to interact with Ethereum Holesky testnet.
 - **AttestationLayerRpcURL**: The RPC url of the network that TEE liveness verifier contract is deployed on, which is the Ethereum Holesky testnet.
 - **AggregatorURL**: URL of aggregator hosted by Automata team. Aggregator will check validity of TEE prover, aggregator the BLS signature and submit the task to AVS service manager.
@@ -159,7 +159,7 @@ You will see that the `multi-prover-operator` is already running
 
 ```bash
 NAME                      IMAGE                                                       COMMAND                  SERVICE             CREATED             STATUS              PORTS
-multi-prover-operator     ghcr.io/automata-network/multi-prover-avs/operator:v0.1.0   "operator -c /config…"   operator            7 seconds ago       Up 6 seconds
+multi-prover-operator     ghcr.io/automata-network/multi-prover-avs/operator:v0.2.0   "operator -c /config…"   operator            7 seconds ago       Up 6 seconds
 ```
 
 Use `docker compose logs` to check the logs of operator node
@@ -188,6 +188,17 @@ multi-prover-operator  | 2024/05/10 08:52:55 [operator.(*Operator).proverGetPoe:
 multi-prover-operator  | 2024/05/10 08:52:56 [operator.(*Operator).proverGetPoe:operator.go:310][INFO] fetching poe for batch 0xd1f7b1fef14986b4539ab105adf4aab8d673a8d82d0dd61513c8e88354bc8a66
 multi-prover-operator  | 2024/05/10 08:52:56 [operator.(*LogTracer).Run:log_trace.go:140][INFO] [operator-log-tracer] scan 19838557 -> 19838559, logs: 2
 multi-prover-operator  | 2024/05/10 08:53:21 [operator.(*LogTracer).Run:log_trace.go:140][INFO] [operator-log-tracer] scan 19838560 -> 19838561, logs: 0
+
+multi-prover-operator  | 2024/06/04 07:01:20 [xtask.NewProverClient:prover_client.go:45][INFO] connecting to prover: https://avs-prover-staging.ata.network ...
+multi-prover-operator  | 2024/06/04 07:01:20 [aggregator.NewClient:client.go:20][INFO] connecting to aggregator: https://avs-aggregator-staging.ata.network
+multi-prover-operator  | 2024/06/04 07:01:20 [operator.(*Operator).Start:operator.go:113][INFO] starting operator...
+multi-prover-operator  | 2024/06/04 07:01:20 [nodeapi.(*NodeApi).Start:nodeapi.go:104][INFO] Starting node api server at address 0.0.0.0:15692
+multi-prover-operator  | 2024/06/04 07:01:20 [nodeapi.run.func2:nodeapi.go:238][INFO] node api server running addr=0.0.0.0:15692
+multi-prover-operator  | 2024/06/04 07:01:21 [operator.(*Operator).RegisterAttestationReport:operator.go:438][INFO] checking tee liveness... attestationLayerEcdsaAddress=***
+multi-prover-operator  | 2024/06/04 07:01:21 [operator.(*Operator).RegisterAttestationReport:operator.go:459][INFO] Operater has registered on TEE Liveness Verifier
+multi-prover-operator  | 2024/06/04 07:01:21 [operator.(*Metrics).Serve:metric.go:84][INFO] Prometheus listen on 0.0.0.0:15682
+multi-prover-operator  | 2024/06/04 07:01:21 [operator.(*Operator).Start:operator.go:136][INFO] Started Operator... operator info: operatorId=***, operatorAddr=***, operatorG1Pubkey=***, operatorG2Pubkey=***, proverVersion=v0.2.0, fetchTaskWithContext=true
+multi-prover-operator  | 2024/06/04 07:01:21 [operator.(*Operator).subscribeTask:operator.go:196][INFO] fetch task: &aggregator.FetchTaskReq{PrevTaskID:0, TaskType:1, MaxWaitSecs:100, WithContext:true}
 ```
 
 Use `docker compose down` if you want to stop the operator node
@@ -220,6 +231,10 @@ Enter the password for /root/.eigenlayer/operator_keys/eigenda.ecdsa.key.json: *
 ## Monitoring
 
 We recommend setting up monitoring so that you can detect if your operator node is running as expected. The guide for how to setup monitoring can be found [here](../monitoring/README.md).
+
+## Prover
+
+We recommend running your own prover. The guide for how to setup the prover can be found [here](../prover/README.md).
 
 ## FAQ
 
@@ -254,6 +269,6 @@ We recommend setting up monitoring so that you can detect if your operator node 
 
 7. **Why do I get the following error when trying to register attestation report?**
     ```bash
-    multi-prover-operator  | 2024/05/30 06:28:34 [main.main:main.go:42][FATAL] [operator.(*Operator).registerAttestationReport:381;operator.(*Operator).RegisterAttestationReport:409;operator.(*Operator).Start:127(0xBa8851a907474B022DbACa15B1e5f609F3682205)] execution reverted
+    multi-prover-operator  | 2024/05/30 06:28:34 [main.main:main.go:42][FATAL] [operator.(*Operator).registerAttestationReport:381;operator.(*Operator).RegisterAttestationReport:409;operator.(*Operator).Start:127(<address>)] execution reverted
     ```
     There is an update to the contract address for `"TEELivenessVerifierAddress"`. Please double check the address from the updated `config/operator.json.example`.
