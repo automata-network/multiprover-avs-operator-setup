@@ -66,8 +66,6 @@ We have also included monitoring dashboards in this release. Please feel free to
 
 In this version, we support running your own SGX Prover. Please refer to the following link for how to run: [prover](../prover)
 
-**This will be an important indicator for determining reward amounts in the future**
-
 ### FAQ
 
 * **Why I got this error when I start the operator?**

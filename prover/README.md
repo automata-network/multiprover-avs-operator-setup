@@ -16,8 +16,6 @@
 ## Overview
 The article describes how to set up a TEE prover used by Automata Multi-Prover AVS operator and upgrade the operator node to use your own TEE prover.
 
-Running your own `TEE prover` and `scroll archive node` will be an important indicator for determining reward amounts in the future.
-
 ## 1. Setup server to run the TEE prover
 > 💡 The steps below introduce how to set up a Standard_DC4s_v3 virtual machine on Azure. If you already have a server that supports Intel SGX and DCAP, you can skip this section. Please contact us if you decide to use your own server since we need more info about your sever to get the attestation verification pass.
 
@@ -108,7 +106,7 @@ Below are the configs that you **need to provide**:
 * **l2**:
   * the endpoint of scroll, for example: `http://localhost:8545`.
   * To setup the scroll archive node, please check this guide: [Setup the Scroll Archive Node](#3-setup-the-scroll-archive-node)
-  * If you cannot run the Scroll Archive Node, you can set the **l2** field to blank, but this may affect your final rewards.
+  * If you cannot run the Scroll Archive Node, you can temporarily set the **l2** field to blank.
 
 * **server.tls**:
   * the path to the tls cert and key.
@@ -191,7 +189,7 @@ Below are the configs that you **need to provide**:
 * **l2**:
   * the endpoint of scroll, for example: `http://localhost:8545`.
   * To setup the scroll archive node, please check this guide: [Setup the Scroll Archive Node](#3-setup-the-scroll-archive-node)
-  * If you cannot run the Scroll Archive Node, you can set the **l2** field to blank, but this may affect your final rewards.
+  * If you cannot run the Scroll Archive Node, you can temporarily set the **l2** field to blank.
 
 * **server.tls**:
   * the path to the tls cert and key.

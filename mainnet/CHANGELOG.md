@@ -41,3 +41,5 @@ docker compose up -d
 
 ## Version Specific Changes
 
+### Version 0.2.0
+TBD
