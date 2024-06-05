@@ -60,10 +60,10 @@ Then, you can run geth using the following command:
 - You can replace `/data/mainnet` with the directory that you intend to put the blockchain data in. We recommend using a filesystem that supports snapshots in case of data corruption.
 - As a default, you can use https://ethereum-rpc.publicnode.com as the ETH_ENDPOINT.
 
-**Setting l2 config in prover.json**  
-- If running the Scroll Archive node on the same host as the prover, set l2 to http://172.17.0.1:8545
-- If running the Scroll Archive node on a different host as the prover, set l2 to the Public IP or DNS name of your archive node (with the correct port number).
-- If you can't run the Scroll Archive node, set l2 to empty.
+**Setting `scroll_endpoint` config in prover.json**  
+- If running the Scroll Archive node on the same host as the prover, set `scroll_endpoint` to http://172.17.0.1:8545
+- If running the Scroll Archive node on a different host as the prover, set `scroll_endpoint` to the Public IP or DNS name of your archive node (with the correct port number).
+- If you can't run the Scroll Archive node, set `scroll_endpoint` to empty.
 
 > 💡 It's strongly recommended to whitelist only your prover node for accessing the execution node.
 
@@ -94,8 +94,8 @@ If using HTTPS, also move your cert and key into the config folder.
 
 ```json
 {
-    "l2": "<Scroll Mainnet Archive Node RPC endpoint>",
-    "l2_chain_id": 534352,
+    "scroll_endpoint": "<Scroll Mainnet Archive Node RPC endpoint>",
+    "scroll_chain_id": 534352,
     "server": {
         "tls": "/a/b/c"
     }
@@ -103,10 +103,10 @@ If using HTTPS, also move your cert and key into the config folder.
 ```
 
 Below are the configs that you **need to provide**:
-* **l2**:
+* **scroll_endpoint**:
   * the endpoint of scroll, for example: `http://localhost:8545`.
   * To setup the scroll archive node, please check this guide: [Setup the Scroll Archive Node](#3-setup-the-scroll-archive-node)
-  * If you cannot run the Scroll Archive Node, you can temporarily set the **l2** field to blank.
+  * If you cannot run the Scroll Archive Node, you can temporarily set the **scroll_endpoint** field to blank.
 
 * **server.tls**:
   * the path to the tls cert and key.
@@ -176,8 +176,8 @@ If using HTTPS, also move your cert and key into the config folder.
 
 ```json
 {
-    "l2": "<Scroll Mainnet Archive Node RPC endpoint>",
-    "l2_chain_id": 534352,
+    "scroll_endpoint": "<Scroll Mainnet Archive Node RPC endpoint>",
+    "scroll_chain_id": 534352,
     "server": {
         "tls": "/a/b/c"
     }
@@ -186,10 +186,10 @@ If using HTTPS, also move your cert and key into the config folder.
 
 Below are the configs that you **need to provide**:
 
-* **l2**:
+* **scroll_endpoint**:
   * the endpoint of scroll, for example: `http://localhost:8545`.
   * To setup the scroll archive node, please check this guide: [Setup the Scroll Archive Node](#3-setup-the-scroll-archive-node)
-  * If you cannot run the Scroll Archive Node, you can temporarily set the **l2** field to blank.
+  * If you cannot run the Scroll Archive Node, you can temporarily set the **scroll_endpoint** field to blank.
 
 * **server.tls**:
   * the path to the tls cert and key.
