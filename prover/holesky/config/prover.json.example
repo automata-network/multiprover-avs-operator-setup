@@ -1,0 +1,7 @@
+{
+    "scroll_endpoint": "<Scroll Mainnet Archive Node RPC endpoint>",
+    "scroll_chain_id": 534352,
+    "server": {
+        "tls": "/a/b/c"
+    }
+}

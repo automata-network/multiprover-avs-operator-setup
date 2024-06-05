@@ -1,0 +1,14 @@
+services:
+  sgx-prover:
+    image: ghcr.io/automata-network/sgx-prover:avs-v0.2.0
+    container_name: sgx-prover-avs-holesky
+    command: --disable_check_report_metadata -p ${PORT:-18232}
+    privileged: true
+    ports:
+      - ${PORT:-18232}:${PORT:-18232}
+    volumes:
+      - /dev/sgx_provision:/dev/sgx_provision
+      - /dev/sgx:/dev/sgx
+      - /dev/sgx_enclave:/dev/sgx_enclave
+      - ./config/:/workspace/config/
+    working_dir: /workspace

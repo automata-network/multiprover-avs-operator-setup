@@ -1,3 +1,10 @@
 
 holesky/config/operator.json
 holesky/config/operator_task_fetcher.offset
+mainnet/config/operator.json
+mainnet/config/operator_task_fetcher.offset
+holesky/.env
+mainnet/.env
+*/config/*.crt
+*/config/*.key
+prover/*/config/prover.json
