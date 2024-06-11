@@ -1,24 +1,9 @@
-## Table of Contents <!-- omit in toc -->
+## Table of Contents
 - [Introduction](#introduction)
 - [Requirements](#requirements)
-- [Operator setup](#operator-setup)
-  - [Install EigenLayer CLI and register as operator](#install-eigenlayer-cli-and-register-as-operator)
+- [Operator Setup](#operator-setup)
 - [Running Multi-Prover AVS](#running-multi-prover-avs)
-  - [Clone the setup repository](#clone-the-setup-repository)
-  - [Update the configuration](#update-the-configuration)
-  - [Deposit into strategies](#deposit-into-strategies)
-    - [Multi-Prover AVS restaking requirements](#multi-prover-avs-restaking-requirements)
-    - [Restaking on Ethereum Mainnet](#restaking-on-ethereum-mainnet)
-  - [Opt into Multi-Prover AVS](#opt-into-multi-prover-avs)
-  - [Run the operator node](#run-the-operator-node)
-  - [Opt out from Multi-Prover AVS](#opt-out-from-multi-prover-avs)
-- [Monitoring](#monitoring)
-- [Prover](#prover)
 - [FAQ](#faq)
-
->
-> 💡 Check the [CHANGELOG](./CHANGELOG.md) if you are looking for how to upgrage from old version
->
 
 ## Introduction
 
@@ -63,22 +48,18 @@ Below are the configs you **need to provide**:
 - **BlsKeyFile**: BLS key generated using EigenLayer CLI, the default path is `~/.eigenlayer/operator_keys/xxx.bls.key.json` . Please use absolute path for this configuration.
 - **BlsKeyPassword**: Password of the BLS key.
 - **AttestationLayerEcdsaKey**: The private key (without the 0x prefix) of an externally owned account (EOA) responsible for submitting the TEE attestation, it is **NOT** the operator's ECDSA key. Please fund 0.02 Optimism ETH to this EOA. For your security, we recommend using this EOA for the sole purpose of submitting attestations.
-
-Below are the configs that we recommend **not to use the default value if possible**:
-
-- **ProverURL**: RPC endpoint of the TEE Prover. The default value is `https://avs-prover-mainnet1.ata.network:18232` , which is a TEE prover run by Automata Network. However, we recommend running your own prover. The guide for how to setup the prover can be found [here](../prover/README.md).
-
-> 💡 We recommend running your own prover, as the TEE prover run by Automata Network will operate in whitelist mode in a future release. When whitelist mode is enabled, please contact us to whitelist your operator IP.
-
+- **TaskFetcher.Endpoint**: RPC endpoint of the Ethereum Mainnet. Replace `https://1rpc.io/eth` with the endpoint you get from the RPC service provider.
 
 Below are the configs that you can use as **the default value**:
 
+- **ProverURL**: RPC endpoint of the TEE Prover, the default value is `https://avs-prover-mainnet1.ata.network:18232` , which is a TEE prover run by Automata Network. Operators will be able to run their own TEE prover in the next release.
 - **Simulation**: The default value is `false` . In the simulation mode, the operator will not actually process the task.
 - **ETHRpcURL**: Ethereum RPC url used to interact with Ethereum Mainnet.
+- **ETHWsURL**: Ethereum WS url used to interact with Ethereum Mainnet.
 - **AttestationLayerRpcURL**: The RPC url of the network that TEE liveness verifier contract is deployed on. The TEE liveness verifier contract is deployed on Optimism Mainnet during the initial launch.
 - **AggregatorURL**: URL of aggregator hosted by Automata team. Aggregator checks the validity of TEE prover, aggregates the BLS signatures and submits the task to the AVS service manager. The verifier is deployed on Optimism Mainnet to reduce the operator's operating overheads (gas fees) when submitting the attestation.
 - **EigenMetricsIpPortAddress**: The ip + port used to fetch metrics.
-- **NodeApiIpPortAddress**: The ip + port used for Eigenlayer node API. Please see [this doc](https://docs.eigenlayer.xyz/eigenlayer/avs-guides/spec/api/) for what you can query.
+- **TaskFetcher**: Define the tasks of this operator. On Ethereum Mainnet, the task is to sample and prove the batch submitted by Scroll to L1.
 - **RegistryCoordinatorAddress**: Registry coordinator contracts address of Multi-Prover AVS on Ethereum Mainnet.
 - **TEELivenessVerifierAddress**: TEE liveness verifier contracts runs on Optimism Mainnet, which verifies the attestation provided by the TEE prover and manages its lifecycle.
 
@@ -86,7 +67,7 @@ Below are the configs that you can use as **the default value**:
 
 #### Multi-Prover AVS restaking requirements
 
-Multi-Prover AVS supports the following strategies on Ethereum Mainnet: 
+Multi-Prover AVS support the following strategies on Ethereum Mainnet: 
 
 | Token Symbol  | Token Name | Strategy Address |
 | --- | --- | --- |
@@ -237,16 +218,6 @@ The following logs confirm that you have opted out from the Multi-Prover AVS suc
 2024/04/16 09:44:15 [main.(*OprToolOptOut).FlaglyHandle:main.go:110][INFO] Tx: 0x196d2e1c543da56945cff142f6edb3fcd25ce0a290171343310f39afcf611979, Succ: true
 ```
 
-
-## Monitoring
-
-We recommend setting up monitoring so that you can detect if your operator node is running as expected. The guide for how to setup monitoring can be found [here](../monitoring/README.md).
-
-## Prover
-
-We recommend running your own prover. The guide for how to setup the prover can be found [here](../prover/README.md).
-
-
 ## FAQ
 
 1. **Why did my operator fail to opt into the Multi-Prover AVS?**
@@ -272,8 +243,8 @@ We recommend running your own prover. The guide for how to setup the prover can 
     Make sure that the user you are running the command with has the appropriate permissions, such as being in the `docker` group.
 6. **Why do I need to provide the `AttestationLayerEcdsaKey` and fund it with 0.02 optimism ETH?**
     
-    The `AttestationLayerEcdsaKey` is used to submit attestations to the on-chain verifier. Each submission requires approximately 0.0002 OP ETH and expires in two weeks. Our calculations indicate the 0.02 OP ETH will suffice to cover gas costs for attestation verification over an approximate period of 2 years.
+    The `AttestationLayerEcdsaKey` is used to submit attestations to the on-chain verifier. Each submission requires approximately 0.0002 OP ETH and expires in two weeks. Our calculations indicate the 0.02 OP ETH will suffice to cover gas costs for attestation verification over an approximate two-year period.
     
-    Using another EOA instead of the operator private ECDSA key to submit attestations is more secure to operators since the operator ECDSA key is not used by the operator node anymore and you can keep it more securely.
+    On the Holesky testnet, we use the operator ECDSA key to submit attestations, while we decide to use another EOA to submit attestations on mainnet, which is more secure to operators since the operator ECDSA key is not used by the operator node anymore, and you can keep it more securely.
     
     During the initial implementation of the Multi-Prover AVS, Optimism will function as the attestation layer to help lower gas fees.
