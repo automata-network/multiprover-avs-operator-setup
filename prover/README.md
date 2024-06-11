@@ -45,11 +45,11 @@ $ chmod 400 <the pem file downloaded during the setup>
 openssl rsa -inform PEM -outform PEM -in tls.key -out tls.key
 ```
 
-## 3. Setup the Scroll Archive Node (optional)
+## 3. Setup the Scroll Mainnet Archive Node (optional)
 
-To build the Scroll client, please refer to https://github.com/scroll-tech/go-ethereum.
+To build the Scroll client, please refer to https://github.com/scroll-tech/go-ethereum and https://docs.scroll.io/en/developers/guides/running-a-scroll-node/
 
-> 💡 We recommend setting up the Scroll node with at least 2 CPU, 8GB RAM and 1~2TB SSD storage.
+> 💡 We use the Scroll mainnet archive node in both Holesky and Mainnet, You can check the hardware requirements in the official Scroll documentation.
 
 When the compilation is complete, the client binary, geth, can be found in `build/bin`.
 Then, you can run geth using the following command:
