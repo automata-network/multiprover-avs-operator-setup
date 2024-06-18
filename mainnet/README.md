@@ -181,35 +181,18 @@ docker compose logs
 The following logs confirm that the operator node is running:
 
 ```bash
-multi-prover-operator-mainnet  | 2024/04/16 14:56:41 [operator.ParseConfigContext:operator.go:80][INFO] connecting to https://ethereum-rpc.publicnode.com...
-multi-prover-operator-mainnet  | 2024/04/16 14:56:41 [operator.ParseConfigContext:operator.go:85][INFO] connecting to https://optimism-rpc.publicnode.com...
-multi-prover-operator-mainnet  | 2024/04/16 14:56:41 [operator.ParseConfigContext:operator.go:100][INFO] build clients clients.BuildAllConfig{EthHttpUrl:"https://ethereum-rpc.publicnode.com", EthWsUrl:"wss://ethereum-rpc.publicnode.com", RegistryCoordinatorAddr:"0x414696E4F7f06273973E89bfD3499e8666D63Bd4", OperatorStateRetrieverAddr:"0x0000000000000000000000000000000000000000", AvsName:"multi-prover-operator", PromMetricsIpPortAddress:"0.0.0.0:15682"}
-multi-prover-operator-mainnet  | 2024/04/16 14:56:43 [operator.NewProverClient:prover_client.go:45][INFO] connecting to prover: https://avs-prover-mainnet1.ata.network:18232 ...
-multi-prover-operator-mainnet  | 2024/04/16 14:56:43 [aggregator.NewClient:client.go:20][INFO] connecting to aggregator: https://avs-aggregator.ata.network
-multi-prover-operator-mainnet  | 2024/04/16 14:56:43 [operator.(*Operator).Start:operator.go:306][INFO] starting operator...
-multi-prover-operator-mainnet  | 2024/04/16 14:56:43 [operator.(*Operator).RegisterAttestationReport:operator.go:454][INFO] checking tee liveness...
-multi-prover-operator-mainnet  | 2024/04/16 14:56:44 [operator.(*Operator).RegisterAttestationReport:operator.go:468][INFO] Operater has registered on TEE Liveness Verifier
-multi-prover-operator-mainnet  | 2024/04/16 14:56:44 [operator.(*Operator).Start:operator.go:321][INFO] Started Operator... operator info: operatorId=fb0ecf29f5ce1be4705e56a97c028659a668f154f1d1ff42d51218572ff85f47, operatorAddr=0x0BeaB1616e132768963C9004754E023F62299E10, operatorG1Pubkey=E([8133121261180865326391242379521587030201441070205549897769321753098540518239,12354059871397247181596143488980666128073678827609478552776966970968728095637]), operatorG2Pubkey=E([8045091577526964514115548952346393534775913087138534391196469717772783244169+18342797848162923711928053069612362066485879591289591227565606908308670652933*u,4882938050112704922608105874428645251618397472269115004313418801412696759477+7198578061496195361206641589060625697600729866425150299713458616307483204986*u])
-multi-prover-operator-mainnet  | 2024/04/16 14:56:44 [operator.(*Operator).RegisterAttestationReport.func1:operator.go:487][INFO] next attestation will be at 2024-05-01 14:44:39 +0000 UTC
-multi-prover-operator-mainnet  | 2024/04/16 14:56:44 [operator.(*Operator).proverGetPoe:operator.go:404][INFO] fetching poe for batch 0xd059aeea4c36aa6710d09da0921bb296022416f9133ee844f7c69fe2c6f9a3f5
-multi-prover-operator-mainnet  | 2024/04/16 14:56:45 [operator.(*Operator).proverGetPoe:operator.go:404][INFO] fetching poe for batch 0xe78b3161bd168f975ea918a1aee23ea402884f081ab23fa14ef4f525a23227cb
-multi-prover-operator-mainnet  | 2024/04/16 14:56:46 [operator.(*Operator).proverGetPoe:operator.go:404][INFO] fetching poe for batch 0xea9c9dd2e01373420b57568c3336a2e405520467ca53af26f95ed9c792884ddb
-multi-prover-operator-mainnet  | 2024/04/16 14:56:46 [operator.(*Operator).proverGetPoe:operator.go:404][INFO] fetching poe for batch 0x3e49ac60d7a576167774eabdba6e845a804a021c8af98efea3438a7fe9769ab9
-multi-prover-operator-mainnet  | 2024/04/16 14:56:47 [operator.(*Operator).proverGetPoe:operator.go:404][INFO] fetching poe for batch 0x8af02045d39cfabf8a76c657747578f11d479961a85e3b82fc34206a954759f0
-multi-prover-operator-mainnet  | 2024/04/16 14:56:47 [operator.(*Operator).proverGetPoe:operator.go:404][INFO] fetching poe for batch 0x82e91a0c4a154ba6fa3b2d707c0cb6907232cf5f0fa8e89939884d13b1150c54
-multi-prover-operator-mainnet  | 2024/04/16 14:56:47 [operator.(*Operator).proverGetPoe:operator.go:404][INFO] fetching poe for batch 0x23afd1060415ad6bbbb9960eb8c14a43dddc9b0143693207fb046989b6f38b3a
-multi-prover-operator-mainnet  | 2024/04/16 14:56:48 [operator.(*Operator).proverGetPoe:operator.go:404][INFO] fetching poe for batch 0x9d15c6c44e21c059a1f900a70890d5f3cd723f7d8a7535938ed0e18aa3928589
-multi-prover-operator-mainnet  | 2024/04/16 14:56:48 [operator.(*Operator).proverGetPoe:operator.go:404][INFO] fetching poe for batch 0x381501b7019979560b9406800a4fa9b1f79e0c5a4c2f3119320f641c9ea11d47
-multi-prover-operator-mainnet  | 2024/04/16 14:56:48 [operator.(*Operator).proverGetPoe:operator.go:404][INFO] fetching poe for batch 0x99e6255ef53f764fad1037005a2b7708647925fd6ff82a39493794d2ad213f0b
-multi-prover-operator-mainnet  | 2024/04/16 14:56:49 [operator.(*Operator).proverGetPoe:operator.go:404][INFO] fetching poe for batch 0x1279dc4ffb0b819a5d30503d844a23702a13348f2c53e473c8b54c9601a035e9
-multi-prover-operator-mainnet  | 2024/04/16 14:56:49 [operator.(*Operator).proverGetPoe:operator.go:404][INFO] fetching poe for batch 0x3ddd0d6a8f88d2ac41901ecb175bfbace9f973837aeb580b201a05260cdb43c9
-multi-prover-operator-mainnet  | 2024/04/16 14:56:49 [operator.(*LogTracer).Run:log_trace.go:134][INFO] [operator-log-tracer] scan 19668715 -> 19668773, logs: 12
-multi-prover-operator-mainnet  | 2024/04/16 14:57:01 [operator.(*LogTracer).Run:log_trace.go:134][INFO] [operator-log-tracer] scan 19668774 -> 19668775, logs: 0
-multi-prover-operator-mainnet  | 2024/04/16 14:57:26 [operator.(*Operator).proverGetPoe:operator.go:404][INFO] fetching poe for batch 0x7de7e3c4dfe0498cfd77815074c6aa0dd4c9157f967ebee7b86411a8c5378195
-multi-prover-operator-mainnet  | 2024/04/16 14:57:27 [operator.(*LogTracer).Run:log_trace.go:134][INFO] [operator-log-tracer] scan 19668776 -> 19668777, logs: 1
-multi-prover-operator-mainnet  | 2024/04/16 14:57:51 [operator.(*LogTracer).Run:log_trace.go:134][INFO] [operator-log-tracer] scan 19668778 -> 19668779, logs: 0
-multi-prover-operator-mainnet  | 2024/04/16 14:58:16 [operator.(*Operator).proverGetPoe:operator.go:404][INFO] fetching poe for batch 0xd34738341042ad733d2ff27d89551b46c1867c09c1cd69b33eff36c6fdccf08b
-multi-prover-operator-mainnet  | 2024/04/16 14:58:16 [operator.(*LogTracer).Run:log_trace.go:134][INFO] [operator-log-tracer] scan 19668780 -> 19668781, logs: 1
+multi-prover-operator-mainnet  | 2024/06/18 10:00:26 [xtask.NewProverClient:prover_client.go:45][INFO] connecting to prover: https://avs-prover-mainnet1.ata.network:18232 ...
+multi-prover-operator-mainnet  | 2024/06/18 10:00:26 [aggregator.NewClient:client.go:20][INFO] connecting to aggregator: https://avs-aggregator.ata.network
+multi-prover-operator-mainnet  | 2024/06/18 10:00:27 [operator.(*Operator).Start:operator.go:113][INFO] starting operator...
+multi-prover-operator-mainnet  | 2024/06/18 10:00:27 [nodeapi.(*NodeApi).Start:nodeapi.go:104][INFO] Starting node api server at address 0.0.0.0:15693
+multi-prover-operator-mainnet  | 2024/06/18 10:00:27 [nodeapi.run.func2:nodeapi.go:238][INFO] node api server running addr=0.0.0.0:15693
+multi-prover-operator-mainnet  | 2024/06/18 10:00:27 [operator.(*Operator).RegisterAttestationReport:operator.go:452][INFO] checking tee liveness... attestationLayerEcdsaAddress=0x718e75C7E0bb7Ce10c336E11E95b1b3B912AD04B
+multi-prover-operator-mainnet  | 2024/06/18 10:00:29 [operator.(*Operator).registerAttestationReport:operator.go:432][INFO] submitted liveness proof: 0x490a9b350ec7a3798432ffa29f971e3b4693735d5348281fea0db034940caab6
+multi-prover-operator-mainnet  | 2024/06/18 10:00:34 [operator.(*Operator).registerAttestationReport:operator.go:446][INFO] registered in TEELivenessVerifier: 0x490a9b350ec7a3798432ffa29f971e3b4693735d5348281fea0db034940caab6
+multi-prover-operator-mainnet  | 2024/06/18 10:00:34 [operator.(*Metrics).Serve:metric.go:84][INFO] Prometheus listen on 0.0.0.0:15682
+multi-prover-operator-mainnet  | 2024/06/18 10:00:34 [operator.(*Operator).Start:operator.go:136][INFO] Started Operator... operator info: operatorId=fb0ecf29f5ce1be4705e56a97c028659a668f154f1d1ff42d51218572ff85f47, operatorAddr=0x0BeaB1616e132768963C9004754E023F62299E10, operatorG1Pubkey=E([8133121261180865326391242379521587030201441070205549897769321753098540518239,12354059871397247181596143488980666128073678827609478552776966970968728095637]), operatorG2Pubkey=E([8045091577526964514115548952346393534775913087138534391196469717772783244169+18342797848162923711928053069612362066485879591289591227565606908308670652933*u,4882938050112704922608105874428645251618397472269115004313418801412696759477+7198578061496195361206641589060625697600729866425150299713458616307483204986*u]), proverVersion=v0.2.2, fetchTaskWithContext=true
+multi-prover-operator-mainnet  | 2024/06/18 10:00:34 [operator.(*Operator).subscribeTask:operator.go:196][INFO] fetch task: &aggregator.FetchTaskReq{PrevTaskID:0, TaskType:1, MaxWaitSecs:100, WithContext:true}
+multi-prover-operator-mainnet  | 2024/06/18 10:00:35 [operator.(*Operator).RegisterAttestationReport.func1:operator.go:494][INFO] next attestation will be at 2024-07-03 10:00:31 +0000 UTC ,validSecs= 1296000
 ```
 
 Use `docker compose down` if you want to stop the operator node:
@@ -266,7 +249,7 @@ We recommend running your own prover. The guide for how to setup the prover can 
     
 4. **Why did I receive errors when running the `docker compose xxx` commands?**
     
-    Run `. ./docker-compose-env.sh` under the `multiprover-avs-operator-setup` folder. This will update the ENV variables according to the latest `config/operator.json` file.
+    Run `./run.sh` under the `mainnet` folder. This will update the ENV variables according to the latest `config/operator.json` file.
     
 5. **I ran into docker permission errors such as** `docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock.`**How can I fix it?** 
     

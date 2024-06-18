@@ -234,13 +234,13 @@ We recommend running your own prover. The guide for how to setup the prover can 
 
     The Multi-Prover AVS requires operators to own at least 32 weighted shares in proportion to the overall staking asset. This error occurs when the amount of ETH staked is not 1:1 to the share staked.
 
-3. **How to solve the `unknown shorthand flag: `d` in -d` error?**
+3. **How to solve the `unknown shorthand flag: d in -d` error?**
 
     Please make sure that the docker-compose is installed in a [plugin](https://docs.docker.com/compose/install/linux/) way.
 
 4. **Why do I receive errors when running the `docker compose xxx` commands?**
 
-    Run `. ./docker-compose-env.sh` under the `multiprover-avs-operator-setup` folder. This will update the ENV variables according to the latest `config/operator.json` file.
+    Run `./run.sh` under the `holesky` folder. This will update the ENV variables according to the latest `config/operator.json` file.
 
 5. **There are some weird docker permission errors such as** `docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock`
 
