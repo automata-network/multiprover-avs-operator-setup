@@ -2,7 +2,7 @@
 - [Overview](#overview)
 - [1. Setup server to run the TEE prover](#1-setup-server-to-run-the-tee-prover)
 - [2. Certificate Private Key Format](#2-certificate-private-key-format)
-- [3. Setup the Scroll Archive Node (optional)](#3-setup-the-scroll-archive-node-optional)
+- [3. Setup the Scroll Mainnet Archive Node (optional)](#3-setup-the-scroll-mainnet-archive-node-optional)
 - [4. Setup TEE prover](#4-setup-tee-prover)
   - [4.1 Setup prover using Docker image](#41-setup-prover-using-docker-image)
   - [4.2 Setup prover from source code](#42-setup-prover-from-source-code)

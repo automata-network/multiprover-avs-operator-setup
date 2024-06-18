@@ -1,9 +1,24 @@
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 - [Introduction](#introduction)
 - [Requirements](#requirements)
-- [Operator Setup](#operator-setup)
+- [Operator setup](#operator-setup)
+  - [Install EigenLayer CLI and register as operator](#install-eigenlayer-cli-and-register-as-operator)
 - [Running Multi-Prover AVS](#running-multi-prover-avs)
+  - [Clone the setup repository](#clone-the-setup-repository)
+  - [Update the configuration](#update-the-configuration)
+  - [Deposit into strategies](#deposit-into-strategies)
+    - [Multi-Prover AVS restaking requirements](#multi-prover-avs-restaking-requirements)
+    - [Restaking on Holesky Testnet](#restaking-on-holesky-testnet)
+  - [Opt-in into Multi-Prover AVS](#opt-in-into-multi-prover-avs)
+  - [Run the operator node](#run-the-operator-node)
+  - [Opt-out from Multi-Prover AVS](#opt-out-from-multi-prover-avs)
+- [Monitoring](#monitoring)
+- [Prover](#prover)
 - [FAQ](#faq)
+
+>
+> 💡 Check the [CHANGELOG](./CHANGELOG.md) if you are looking for how to upgrage from old version
+>
 
 ## Introduction
 
@@ -21,7 +36,10 @@ This guide lays out the requirements and steps to register an operator with Eige
 - 0.02 ETH on Optimism Mainnet
 
 ## Operator setup
+
 >💡 Skip this section if you have already [registered](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-installation) as a node operator on EigenLayer
+
+</aside>
 
 ### Install EigenLayer CLI and register as operator
 
@@ -36,6 +54,7 @@ git clone https://github.com/automata-network/multiprover-avs-operator-setup.git
 ```
 
 ### Update the configuration
+>💡 Please pull the the latest code of main branch if you find that the configurations inside `operator.json.example` doesn’t match the documents below.
 
 ```bash
 cd multiprover-avs-operator-setup/mainnet
@@ -43,23 +62,25 @@ cp config/operator.json.example config/operator.json
 vim config/operator.json
 ```
 
-Below are the configs you **need to provide**:
+Below are the configs that you **need to provide**:
 
-- **BlsKeyFile**: BLS key generated using EigenLayer CLI, the default path is `~/.eigenlayer/operator_keys/xxx.bls.key.json` . Please use absolute path for this configuration.
+- **BlsKeyFile**: BLS key generated using EigenLayer CLI, the default path is `~/.eigenlayer/operator_keys/xxx.bls.key.json` , please use absolute path for this configuration.
 - **BlsKeyPassword**: Password of the BLS key.
 - **AttestationLayerEcdsaKey**: The private key (without the 0x prefix) of an externally owned account (EOA) responsible for submitting the TEE attestation, it is **NOT** the operator's ECDSA key. Please fund 0.02 Optimism ETH to this EOA. For your security, we recommend using this EOA for the sole purpose of submitting attestations.
-- **TaskFetcher.Endpoint**: RPC endpoint of the Ethereum Mainnet. Replace `https://1rpc.io/eth` with the endpoint you get from the RPC service provider.
 
-Below are the configs that you can use as **the default value**:
+Below are the configs that we recommend **not to use the default value if possible**:
 
-- **ProverURL**: RPC endpoint of the TEE Prover, the default value is `https://avs-prover-mainnet1.ata.network:18232` , which is a TEE prover run by Automata Network. Operators will be able to run their own TEE prover in the next release.
-- **Simulation**: The default value is `false` . In the simulation mode, the operator will not actually process the task.
+- **ProverURL**: RPC endpoint of the TEE Prover. The default value is `https://avs-prover-mainnet1.ata.network:18232` , which is a TEE prover run by Automata Network. However, we recommend running your own prover. The guide for how to setup the prover can be found [here](../prover/README.md).
+
+> 💡 We recommend running your own prover, as the TEE prover run by Automata Network will operate in whitelist mode in a future release. When whitelist mode is enabled, please contact us to whitelist your operator IP.
+
+Below are the configs that you can **use the default value**:
+
 - **ETHRpcURL**: Ethereum RPC url used to interact with Ethereum Mainnet.
-- **ETHWsURL**: Ethereum WS url used to interact with Ethereum Mainnet.
 - **AttestationLayerRpcURL**: The RPC url of the network that TEE liveness verifier contract is deployed on. The TEE liveness verifier contract is deployed on Optimism Mainnet during the initial launch.
 - **AggregatorURL**: URL of aggregator hosted by Automata team. Aggregator checks the validity of TEE prover, aggregates the BLS signatures and submits the task to the AVS service manager. The verifier is deployed on Optimism Mainnet to reduce the operator's operating overheads (gas fees) when submitting the attestation.
 - **EigenMetricsIpPortAddress**: The ip + port used to fetch metrics.
-- **TaskFetcher**: Define the tasks of this operator. On Ethereum Mainnet, the task is to sample and prove the batch submitted by Scroll to L1.
+- **NodeApiIpPortAddress**: The ip + port used for Eigenlayer node API. Please see [this doc](https://docs.eigenlayer.xyz/eigenlayer/avs-guides/spec/api/) for what you can query.
 - **RegistryCoordinatorAddress**: Registry coordinator contracts address of Multi-Prover AVS on Ethereum Mainnet.
 - **TEELivenessVerifierAddress**: TEE liveness verifier contracts runs on Optimism Mainnet, which verifies the attestation provided by the TEE prover and manages its lifecycle.
 
@@ -93,7 +114,7 @@ You will need a minimum of 0.01 ETH to get started as an operator.
 
 >💡 **Skip ahead if you have already restake on Ethereum**
 
->💡 Please refer to [FAQ #2](https://www.notion.so/Automata-Multi-Prover-AVS-Mainnet-Operator-Guide-c97ce084638e47038a00123946045859?pvs=21) if you encounter `Operator does not meet minimum stake requirement for quorum` error.
+>💡 Please refer to [FAQ #2](#faq) if you encounter `Operator does not meet minimum stake requirement for quorum` error.
 
 Follow [EigenLayer’s restaking guide](https://docs.eigenlayer.xyz/eigenlayer/restaking-guides/restaking-user-guide/) to restake the ETH or LST. 
 
@@ -148,7 +169,7 @@ You should see that the `multi-prover-operator-mainnet` is up and running:
 
 ```bash
 NAME                      IMAGE                                                       COMMAND                  SERVICE             CREATED             STATUS              PORTS
-multi-prover-operator-mainnet     ghcr.io/automata-network/multi-prover-avs/operator:v0.1.1   "operator -c /config…"   operator            7 seconds ago       Up 6 seconds
+multi-prover-operator-mainnet     ghcr.io/automata-network/multi-prover-avs/operator:v0.2.2   "operator -c /config…"   operator            7 seconds ago       Up 6 seconds
 ```
 
 Use `docker compose logs` to check the logs of operator node:
@@ -210,6 +231,7 @@ Run the following command if you want to opt out from the Multi-Prover AVS:
 The following logs confirm that you have opted out from the Multi-Prover AVS successfully:
 
 ```bash
+Enter the password for /root/.eigenlayer/operator_keys/eigenda.ecdsa.key.json: ************************
 2024/04/16 09:43:56 [avsregistry.(*AvsRegistryChainWriter).DeregisterOperator:writer.go:312][INFO] deregistering operator with the AVS's registry coordinator
 2024/04/16 09:44:09 [txmgr.(*SimpleTxManager).queryReceipt:txmgr.go:143][INFO] Transaction not yet mined txID=0x196d2e1c543da56945cff142f6edb3fcd25ce0a290171343310f39afcf611979
 2024/04/16 09:44:11 [txmgr.(*SimpleTxManager).queryReceipt:txmgr.go:143][INFO] Transaction not yet mined txID=0x196d2e1c543da56945cff142f6edb3fcd25ce0a290171343310f39afcf611979
@@ -217,6 +239,14 @@ The following logs confirm that you have opted out from the Multi-Prover AVS suc
 2024/04/16 09:44:15 [avsregistry.(*AvsRegistryChainWriter).DeregisterOperator:writer.go:325][INFO] succesfully deregistered operator with the AVS's registry coordinator txHash=0x196d2e1c543da56945cff142f6edb3fcd25ce0a290171343310f39afcf611979
 2024/04/16 09:44:15 [main.(*OprToolOptOut).FlaglyHandle:main.go:110][INFO] Tx: 0x196d2e1c543da56945cff142f6edb3fcd25ce0a290171343310f39afcf611979, Succ: true
 ```
+
+## Monitoring
+
+We recommend setting up monitoring so that you can detect if your operator node is running as expected. The guide for how to setup monitoring can be found [here](../monitoring/README.md).
+
+## Prover
+
+We recommend running your own prover. The guide for how to setup the prover can be found [here](../prover/README.md).
 
 ## FAQ
 
@@ -230,9 +260,9 @@ The following logs confirm that you have opted out from the Multi-Prover AVS suc
     
     The Multi-Prover AVS requires operators to own at least 0.01 weighted shares in proportion to the overall staking asset. This error occurs when the amount of ETH staked is not 1:1 to the share staked. 
     
-3. **How do I solve the `unknown shorthand flag: `d` in -d` error?**
+3. **How do I solve the `unknown shorthand flag: d in -d` error?**
     
-    Make sure that the docker-compose is installed in a [plugin](https://docs.docker.com/compose/install/linux/) way.
+    Please make sure that the docker-compose is installed in a [plugin](https://docs.docker.com/compose/install/linux/) way.
     
 4. **Why did I receive errors when running the `docker compose xxx` commands?**
     
@@ -248,3 +278,9 @@ The following logs confirm that you have opted out from the Multi-Prover AVS suc
     On the Holesky testnet, we use the operator ECDSA key to submit attestations, while we decide to use another EOA to submit attestations on mainnet, which is more secure to operators since the operator ECDSA key is not used by the operator node anymore, and you can keep it more securely.
     
     During the initial implementation of the Multi-Prover AVS, Optimism will function as the attestation layer to help lower gas fees.
+
+7. **Why do I get the following error when trying to register attestation report?**
+    ```bash
+    multi-prover-operator  | 2024/05/30 06:28:34 [main.main:main.go:42][FATAL] [operator.(*Operator).registerAttestationReport:381;operator.(*Operator).RegisterAttestationReport:409;operator.(*Operator).Start:127(<address>)] execution reverted
+    ```
+    There is an update to the contract address for `"TEELivenessVerifierAddress"`. Please double check the address from the updated `config/operator.json.example`.

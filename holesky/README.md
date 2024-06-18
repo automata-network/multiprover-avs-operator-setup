@@ -39,7 +39,6 @@ This guide lays out the requirements and steps to register an operator with Eige
 
 >💡 Skip this section if you have already [registered](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-installation) as a node operator on EigenLayer
 
-</aside>
 
 ### Install EigenLayer CLI and register as operator
 
