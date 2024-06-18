@@ -263,3 +263,10 @@ Expected result
 4. **How long will it take for geth to sync the entire blockchain?**
 
     It will take approximately 2 weeks.
+
+5. **we are currently running a prover with a self-signed certificate. Getting this error on startup**
+   ```
+   tls: failed to verify certificate: x509: certificate signed by unknown authority.
+   ```
+
+   If you are using a self-signed certificate, make sure to add the CA certificate to your system’s trusted certificates store.
