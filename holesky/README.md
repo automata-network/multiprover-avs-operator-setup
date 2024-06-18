@@ -139,7 +139,7 @@ If you find `execution revert` inside the logs, please contact us to add your op
 The following logs confirm that you opt-in the Multi-Prover AVS successfully:
 
 ```bash
-Enter the password for /root/.eigenlayer/operator_keys/eigenda.ecdsa.key.json: ************************
+Enter the password for /root/.eigenlayer/operator_keys/operator.ecdsa.key.json: ************************
 2024/05/10 08:51:46 [avsregistry.(*AvsRegistryChainWriter).RegisterOperatorInQuorumWithAVSRegistryCoordinator:writer.go:196][INFO] registering operator with the AVS's registry coordinator avs-service-manager=0x4665Af665df5703445645D243f0FD63eD3b9D132 operator=0x78FDDe7a5006cC64E109aeD99cA7B0Ad3d8687bb quorumNumbers=[0]
 2024/05/10 08:51:49 [txmgr.(*SimpleTxManager).queryReceipt:txmgr.go:143][INFO] Transaction not yet mined txID=0x27159248a7939b4f0eccf425d368556193a5f0a2f93010b518446d794d40f4ca
 2024/05/10 08:51:51 [avsregistry.(*AvsRegistryChainWriter).RegisterOperatorInQuorumWithAVSRegistryCoordinator:writer.go:258][INFO] successfully registered operator with AVS registry coordinator txHash=0x27159248a7939b4f0eccf425d368556193a5f0a2f93010b518446d794d40f4ca avs-service-manager=0x4665Af665df5703445645D243f0FD63eD3b9D132 operator=0x78FDDe7a5006cC64E109aeD99cA7B0Ad3d8687bb quorumNumbers=[0]
@@ -206,7 +206,7 @@ Run the following command if you want to opt-out from the Multi-Prover AVS:
 The following logs confirm that you opted-out from the Multi-Prover AVS successfully:
 
 ```bash
-Enter the password for /root/.eigenlayer/operator_keys/eigenda.ecdsa.key.json: ************************
+Enter the password for /root/.eigenlayer/operator_keys/operator.ecdsa.key.json: ************************
 2024/05/10 08:50:21 [avsregistry.(*AvsRegistryChainWriter).DeregisterOperator:writer.go:312][INFO] deregistering operator with the AVS's registry coordinator
 2024/05/10 08:50:23 [txmgr.(*SimpleTxManager).queryReceipt:txmgr.go:143][INFO] Transaction not yet mined txID=0x71c0b4994d73422cb1362c197f81c666297f7aff9d091fb9a850db8206a1cdc7
 2024/05/10 08:50:25 [txmgr.(*SimpleTxManager).queryReceipt:txmgr.go:143][INFO] Transaction not yet mined txID=0x71c0b4994d73422cb1362c197f81c666297f7aff9d091fb9a850db8206a1cdc7

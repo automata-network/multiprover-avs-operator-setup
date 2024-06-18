@@ -212,7 +212,7 @@ Run the following command if you want to opt out from the Multi-Prover AVS:
 The following logs confirm that you have opted out from the Multi-Prover AVS successfully:
 
 ```bash
-Enter the password for /root/.eigenlayer/operator_keys/eigenda.ecdsa.key.json: ************************
+Enter the password for /root/.eigenlayer/operator_keys/operator.ecdsa.key.json: ************************
 2024/04/16 09:43:56 [avsregistry.(*AvsRegistryChainWriter).DeregisterOperator:writer.go:312][INFO] deregistering operator with the AVS's registry coordinator
 2024/04/16 09:44:09 [txmgr.(*SimpleTxManager).queryReceipt:txmgr.go:143][INFO] Transaction not yet mined txID=0x196d2e1c543da56945cff142f6edb3fcd25ce0a290171343310f39afcf611979
 2024/04/16 09:44:11 [txmgr.(*SimpleTxManager).queryReceipt:txmgr.go:143][INFO] Transaction not yet mined txID=0x196d2e1c543da56945cff142f6edb3fcd25ce0a290171343310f39afcf611979
