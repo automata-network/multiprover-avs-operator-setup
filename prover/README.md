@@ -264,7 +264,7 @@ Expected result
 
     It will take approximately 2 weeks.
 
-5. **we are currently running a prover with a self-signed certificate. Getting this error on startup**
+5. **We are currently running a prover with a self-signed certificate and encountering an error on operator startup.**
    ```
    tls: failed to verify certificate: x509: certificate signed by unknown authority.
    ```
