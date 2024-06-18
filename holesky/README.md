@@ -163,7 +163,7 @@ You will see that the `multi-prover-operator` is already running
 
 ```bash
 NAME                      IMAGE                                                       COMMAND                  SERVICE             CREATED             STATUS              PORTS
-multi-prover-operator     ghcr.io/automata-network/multi-prover-avs/operator:v0.2.0   "operator -c /config…"   operator            7 seconds ago       Up 6 seconds
+multi-prover-operator     ghcr.io/automata-network/multi-prover-avs/operator:v0.2.2   "operator -c /config…"   operator            7 seconds ago       Up 6 seconds
 ```
 
 Use `docker compose logs` to check the logs of operator node

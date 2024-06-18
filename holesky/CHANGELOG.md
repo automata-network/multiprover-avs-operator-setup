@@ -8,7 +8,7 @@
 - [Introduction](#introduction)
 - [General Flow](#general-flow)
 - [Version Specific Changes](#version-specific-changes)
-  - [Version 0.2.0](#version-020)
+  - [Version 0.2](#version-02)
 
 
 ## Introduction
@@ -41,7 +41,7 @@ docker compose up -d
 
 ## Version Specific Changes
 
-### Version 0.2.0
+### Version 0.2
 
 #### Operator Configuation Updates <!-- omit in toc -->
 

@@ -58,7 +58,7 @@ Then, you can run geth using the following command:
 ```
 
 - You can replace `/data/mainnet` with the directory that you intend to put the blockchain data in. We recommend using a filesystem that supports snapshots in case of data corruption.
-- As a default, you can use https://ethereum-rpc.publicnode.com as the ETH_ENDPOINT.
+- As a default, you can use https://ethereum-rpc.publicnode.com as the ETH_ENDPOINT. The `ETH_ENDPOINT` doesn’t need to be an archive node.
 
 **Setting `scroll_endpoint` config in prover.json**  
 - If running the Scroll Archive node on the same host as the prover, set `scroll_endpoint` to http://172.17.0.1:8545
