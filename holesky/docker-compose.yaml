@@ -4,7 +4,7 @@ networks:
 
 services:
   operator:
-    image: ghcr.io/automata-network/multi-prover-avs/operator:v0.2.2
+    image: ghcr.io/automata-network/multi-prover-avs/operator:v0.2.3
     container_name: multi-prover-operator
     command: -c /config/operator.json
     ports:
