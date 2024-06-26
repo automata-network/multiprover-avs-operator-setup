@@ -2,7 +2,7 @@
 - [Overview](#overview)
 - [1. Setup server to run the TEE prover](#1-setup-server-to-run-the-tee-prover)
 - [2. Certificate Private Key Format](#2-certificate-private-key-format)
-- [3. Setup the Scroll Archive Node (optional)](#3-setup-the-scroll-archive-node-optional)
+- [3. Setup the Scroll Mainnet Archive Node (optional)](#3-setup-the-scroll-mainnet-archive-node-optional)
 - [4. Setup TEE prover](#4-setup-tee-prover)
   - [4.1 Setup prover using Docker image](#41-setup-prover-using-docker-image)
   - [4.2 Setup prover from source code](#42-setup-prover-from-source-code)
@@ -45,11 +45,11 @@ $ chmod 400 <the pem file downloaded during the setup>
 openssl rsa -inform PEM -outform PEM -in tls.key -out tls.key
 ```
 
-## 3. Setup the Scroll Archive Node (optional)
+## 3. Setup the Scroll Mainnet Archive Node (optional)
 
-To build the Scroll client, please refer to https://github.com/scroll-tech/go-ethereum.
+To build the Scroll client, please refer to https://github.com/scroll-tech/go-ethereum and https://docs.scroll.io/en/developers/guides/running-a-scroll-node/
 
-> 💡 We recommend setting up the Scroll node with at least 2 CPU, 8GB RAM and 1~2TB SSD storage.
+> 💡 We use the Scroll mainnet archive node in both Holesky and Mainnet, You can check the hardware requirements in the official Scroll documentation.
 
 When the compilation is complete, the client binary, geth, can be found in `build/bin`.
 Then, you can run geth using the following command:
@@ -58,7 +58,7 @@ Then, you can run geth using the following command:
 ```
 
 - You can replace `/data/mainnet` with the directory that you intend to put the blockchain data in. We recommend using a filesystem that supports snapshots in case of data corruption.
-- As a default, you can use https://ethereum-rpc.publicnode.com as the ETH_ENDPOINT.
+- As a default, you can use https://ethereum-rpc.publicnode.com as the ETH_ENDPOINT. The `ETH_ENDPOINT` doesn’t need to be an archive node.
 
 **Setting `scroll_endpoint` config in prover.json**  
 - If running the Scroll Archive node on the same host as the prover, set `scroll_endpoint` to http://172.17.0.1:8545
@@ -263,3 +263,10 @@ Expected result
 4. **How long will it take for geth to sync the entire blockchain?**
 
     It will take approximately 2 weeks.
+
+5. **We are currently running a prover with a self-signed certificate and encountering an error on operator startup.**
+   ```
+   tls: failed to verify certificate: x509: certificate signed by unknown authority.
+   ```
+
+   If you are using a self-signed certificate, make sure to add the CA certificate to your system’s trusted certificates store.

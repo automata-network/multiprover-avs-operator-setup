@@ -1,6 +1,6 @@
 services:
   sgx-prover:
-    image: ghcr.io/automata-network/sgx-prover:avs-v0.2.0
+    image: ghcr.io/automata-network/sgx-prover:avs-v0.2.3
     container_name: sgx-prover-avs-mainnet
     command: --disable_check_report_metadata -p ${PORT:-18232}
     privileged: true

@@ -20,7 +20,7 @@ If you are running your operator using docker compose, you can upgrade with the 
 1. First pull the latest copy of this repo:
 
 ```bash
-cd holesky
+cd mainnet
 
 git pull
 ```
@@ -46,8 +46,8 @@ docker compose up -d
 #### Operator Configuation Updates <!-- omit in toc -->
 
 **Required updates** to `operator.json`:
-- Add `"NodeApiIpPortAddress": "0.0.0.0:15692",`
-- Update `"TEELivenessVerifierAddress": "0x2E8628F6000Ef85dea615af6Da4Fd6dF4fD149e6"`
+- Add `"NodeApiIpPortAddress": "0.0.0.0:15693",`
+- Update `"TEELivenessVerifierAddress": "0x99886d5C39c0DF3B0EAB67FcBb4CA230EF373510"`
 
 **Recommended updates** to `operator.json`: <!-- omit in toc -->
 - Update `AttestationLayerEcdsaKey`: If you are currently using your operator's ECDSA private key for this, it is recommended to change it to use a separate externally owned account (EOA). Please fund 1 holETH to this EOA. For your security, we recommend using this EOA for the sole purpose of submitting attestations.
@@ -55,7 +55,7 @@ docker compose up -d
 
 **Optional updates** to `operator.json`: <!-- omit in toc -->
 - Remove `"TaskFetcher": { ... }`
-- Remove `"ETHWsURL": "wss://ethereum-holesky-rpc.publicnode.com", `
+- Remove `"ETHWsURL": "wss://ethereum-rpc.publicnode.com", `
 - Remove `"Simulation": false,`
 
 #### Metrics Dashboard <!-- omit in toc -->
@@ -74,5 +74,5 @@ In this version, we support running your own SGX Prover. Please refer to the fol
 [FATAL] [operator.(*Operator).registerAttestationReport:416(balance:0.1);operator.(*Operator).RegisterAttestationReport:462;operator.(*Operator).Start:120(xxx)] execution reverted
 ```
 
-1. Check whether the `TEELivenessVerifierAddress` in config updated to `0x2E8628F6000Ef85dea615af6Da4Fd6dF4fD149e6`
-2. Check whether the balance of the `AttestationLayerEcdsaKey` is enough for sending a transaction (0.005 holETH)
+1. Check whether the `TEELivenessVerifierAddress` in config updated to `0x99886d5C39c0DF3B0EAB67FcBb4CA230EF373510`
+2. Check whether the balance of the `AttestationLayerEcdsaKey` is enough for sending a transaction
