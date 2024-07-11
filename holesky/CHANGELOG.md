@@ -46,6 +46,8 @@ docker compose up -d
 
 #### Support Linea Mainnet
 
+This version adds support for linea. It's optional for operators. If you want to join, you can opt-in to the quorum 1.
+
 * Opt In to Linea Quorum
 ```bash
 $ cd holesky
@@ -69,7 +71,7 @@ $ ./run.sh docker -d
 $ docker compose logs -f
 ```
 
-**Note: The state required by linea will be returned by the server, so there is no need to provide execution node information for now.**
+**Note: Since linea is currently in the testing phase, the state required to execute linea blocks will be obtained from the server. At this time, the operator does not need to provide an additional execution node.**
 
 
 ### Version 0.2
