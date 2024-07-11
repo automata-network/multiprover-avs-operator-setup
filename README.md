@@ -6,6 +6,9 @@ Automata is building TEE Coprocessors on EigenLayer with Multi-Prover AVS. Decen
 
 ## ChangeLog
 
+* **v0.3**
+  * [holesky](holesky/CHANGELOG.md)
+
 * **v0.2**
   * [holesky](holesky/CHANGELOG.md)
   * [mainnet](mainnet/CHANGELOG.md)
