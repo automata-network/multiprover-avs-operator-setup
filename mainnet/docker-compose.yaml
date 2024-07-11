@@ -1,6 +1,6 @@
 services:
   operator:
-    image: ghcr.io/automata-network/multi-prover-avs/operator:v0.2.3
+    image: ghcr.io/automata-network/multi-prover-avs/operator:v0.3.0
     container_name: multi-prover-operator-mainnet
     command: -c /config/operator.json
     ports:

@@ -129,7 +129,7 @@ Alternatively, the code and tooling required to restake LST on EigenLayer is als
 >💡 Multi-Prover AVS is in PoA mode during its initial launch phase. Make sure that your ECDSA address is in the allowlist.
 
 ```bash
-./run.sh opt-in <key path of operator's ECDSA key>
+./run.sh opt-in <key path of operator's ECDSA key> -quorums 0,1
 ```
 
 - `key path of operator's ECDSA key` : the path to the operator’s ECDSA key, for example, `~/.eigenlayer/operator_keys/operator.ecdsa.key.json`.
@@ -198,7 +198,7 @@ docker compose down
 Run the following command if you want to opt-out from the Multi-Prover AVS:
 
 ```bash
-./run.sh opt-out <key path of operator's ECDSA key>
+./run.sh opt-out <key path of operator's ECDSA key> -quorums 0,1
 ```
 
 - `key path of operator's ECDSA key` : the path to the operator’s ECDSA key, for example, `~/.eigenlayer/operator_keys/operator.ecdsa.key.json`.

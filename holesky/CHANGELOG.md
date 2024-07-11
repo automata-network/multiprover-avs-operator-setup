@@ -8,6 +8,7 @@
 - [Introduction](#introduction)
 - [General Flow](#general-flow)
 - [Version Specific Changes](#version-specific-changes)
+  - [Version 0.3](#version-03)
   - [Version 0.2](#version-02)
 
 
@@ -40,6 +41,36 @@ docker compose up -d
 
 
 ## Version Specific Changes
+
+### Version 0.3
+
+#### Support Linea Mainnet
+
+* Opt In to Linea Quorum
+```bash
+$ cd holesky
+$ ./run.sh opt-in <key path of operator's ECDSA key> -quorums 1
+```
+Then restart the operator, and the newly started operator will handle both scroll and linea tasks simultaneously.
+
+* Opt Out to Linea Quorum
+```bash
+$ cd holesky
+$ ./run.sh opt-out <key path of operator's ECDSA key> -quorums 1
+```
+Then restart the operator, and the newly started operator will not handle the linea tasks.
+
+* For Self-Hosted Prover
+
+It is necessary to update the prover version to 0.3 to support linea.
+```bash
+$ cd prover/holesky
+$ ./run.sh docker -d
+$ docker compose logs -f
+```
+
+**Note: The state required by linea will be returned by the server, so there is no need to provide execution node information for now.**
+
 
 ### Version 0.2
 
