@@ -8,6 +8,7 @@
 - [Introduction](#introduction)
 - [General Flow](#general-flow)
 - [Version Specific Changes](#version-specific-changes)
+  - [Version 0.4](#version-04)
   - [Version 0.3](#version-03)
   - [Version 0.2](#version-02)
 
@@ -41,6 +42,16 @@ docker compose up -d
 
 
 ## Version Specific Changes
+
+### Version 0.4
+
+#### For Self-Hosted Scroll Archive Node
+
+It is necessary to update the scroll node to [v5.6.0](https://github.com/scroll-tech/go-ethereum/releases/tag/scroll-v5.6.0)
+
+#### For Self-Hosted Prover
+
+We recommend everyone to upgrade. In this version, we have refactored the sgx-prover and replaced SputnikVM with [revm](https://github.com/scroll-tech/revm).
 
 ### Version 0.3
 
