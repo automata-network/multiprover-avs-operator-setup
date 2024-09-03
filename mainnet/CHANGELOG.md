@@ -8,6 +8,7 @@
 - [Introduction](#introduction)
 - [General Flow](#general-flow)
 - [Version Specific Changes](#version-specific-changes)
+  - [Version 0.4.5](#version-045)
   - [Version 0.4](#version-04)
   - [Version 0.2](#version-02)
 
@@ -41,6 +42,22 @@ docker compose up -d
 
 
 ## Version Specific Changes
+
+
+### Version 0.4.5
+
+| services | version        | 
+|----------|----------------|
+| prover   | v0.4 -> v0.4.5 |
+| operator | no changed     |
+
+* upgrade prover to v0.4.5 *
+```
+$ git pull
+$ cd prover
+$ docker compose down
+$ docker compose up
+```
 
 ### Version 0.4
 
