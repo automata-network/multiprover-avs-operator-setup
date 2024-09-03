@@ -74,6 +74,8 @@ $ docker compose up -d
 <details>
 <summary>Upgrade scroll node to v5.6.0</summary>
 
+### Upgrade scroll node to v5.6.0
+
 It is necessary to update the scroll node to [v5.6.0](https://github.com/scroll-tech/go-ethereum/releases/tag/scroll-v5.6.0)  
 
 </details>
@@ -81,12 +83,16 @@ It is necessary to update the scroll node to [v5.6.0](https://github.com/scroll-
 <details>
 <summary>Upgrade prover to v0.4.0</summary>
 
+### Upgrade prover to v0.4.0
+
 We recommend everyone to upgrade. In this version, we have refactored the sgx-prover and replaced SputnikVM with [revm](https://github.com/scroll-tech/revm).  
 
 </details>
 
 <details>
 <summary>(optional) Switch to Automata Attestation Layer</summary>
+
+### (optional) Switch to Automata Attestation Layer
 
 An option is provided to switch the Attestation Layer to [Automata mainnet](https://explorer.ata.network).
 Please make sure you have sufficient balance before making the switch. 
