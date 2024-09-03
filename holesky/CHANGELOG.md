@@ -51,8 +51,8 @@ docker compose up -d
 | prover   | v0.4 -> v0.4.5 |
 | operator | no changed     |
 
-#### upgrade prover to v0.4.5
 <details>
+<summary>Upgrade prover to v0.4.5</summary>
 
 ```bash
 $ git pull
