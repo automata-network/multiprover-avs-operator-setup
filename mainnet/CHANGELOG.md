@@ -7,11 +7,6 @@
 ## Table of Contents <!-- omit in toc -->
 - [Introduction](#introduction)
 - [General Flow](#general-flow)
-- [Version Specific Changes](#version-specific-changes)
-  - [Version 0.4.5](#version-045)
-  - [Version 0.4](#version-04)
-  - [Version 0.2](#version-02)
-
 
 ## Introduction
 If you are currently running an older version of the operator and its corresponding components, this guide will cover how to upgrade to the newer version.
@@ -105,10 +100,11 @@ Please make sure you have sufficient balance before making the switch.
 </details>
 
 
-<details>
-<summary>Version 0.2</summary>
 
 ## Version 0.2
+
+<details>
+
 
 ### Operator Configuation Updates <!-- omit in toc -->
 
