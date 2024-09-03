@@ -51,13 +51,15 @@ docker compose up -d
 | prover   | v0.4 -> v0.4.5 |
 | operator | no changed     |
 
-* upgrade prover to v0.4.5 *
-```
-$ git pull
-$ cd prover
-$ docker compose down
-$ docker compose up
-```
+* upgrade prover to v0.4.5:
+  <details>
+  ```
+  $ git pull
+  $ cd prover
+  $ docker compose down
+  $ docker compose up
+  ```
+  </details>
 
 ### Version 0.4
 
