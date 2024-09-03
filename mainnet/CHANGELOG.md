@@ -4,10 +4,6 @@
 > 💡 Check the [README](./README.md) if you are looking for setup from scratch
 >
 
-## Table of Contents <!-- omit in toc -->
-- [Introduction](#introduction)
-- [General Flow](#general-flow)
-
 ## Introduction
 If you are currently running an older version of the operator and its corresponding components, this guide will cover how to upgrade to the newer version.
 
@@ -43,10 +39,11 @@ docker compose up -d
 
 ## Version 0.4.5
 
-| services | version        | 
-|----------|----------------|
-| prover   | v0.4 -> v0.4.5 |
-| operator | no changed     |
+| services    | version          | 
+|-------------|------------------|
+| scroll node | >= v5.6.0 (latest v5.7.0) |
+| prover      | v0.4 -> v0.4.5   |
+| operator    | no changed       |
 
 <details>
 <summary>Upgrade prover to v0.4.5</summary>
@@ -57,6 +54,16 @@ $ cd prover/mainnet
 $ docker compose down
 $ docker compose up -d
 ```
+
+</details>
+
+<details>
+<summary>Upgrade scroll node to v5.7.0 (minimal v5.6.0)</summary>
+
+### Upgrade scroll node to v5.7.0
+
+*Note:* If you have version 5.6.0, there’s no need to upgrade.  
+It is necessary to update the scroll node to [v5.7.0](https://github.com/scroll-tech/go-ethereum/releases/tag/scroll-v5.7.0)  
 
 </details>
 
