@@ -4,16 +4,11 @@
 > 💡 Check the [README](./README.md) if you are looking for setup from scratch
 >
 
-## Table of Contents <!-- omit in toc -->
-- [Introduction](#introduction)
-- [General Flow](#general-flow)
-- [Version Specific Changes](#version-specific-changes)
-  - [Version 0.4](#version-04)
-  - [Version 0.2](#version-02)
-
-
 ## Introduction
 If you are currently running an older version of the operator and its corresponding components, this guide will cover how to upgrade to the newer version.
+
+<details>
+<summary>General Flow</summary>
 
 ## General Flow
 If you are running your operator using docker compose, you can upgrade with the following steps.
@@ -39,31 +34,87 @@ docker compose down
 docker compose up -d
 ```
 
+</details>
 
-## Version Specific Changes
 
-### Version 0.4
+## Version 0.4.5
 
-#### For Self-Hosted Scroll Archive Node
+| services    | version          | 
+|-------------|------------------|
+| scroll node | >= v5.6.0 (latest v5.7.0) |
+| prover      | v0.4.0 -> v0.4.5   |
+| operator    | v0.4.0 (no changed)|
 
-It is necessary to update the scroll node to [v5.6.0](https://github.com/scroll-tech/go-ethereum/releases/tag/scroll-v5.6.0)
+<details>
+<summary>Upgrade prover to v0.4.5</summary>
 
-#### For Self-Hosted Prover
+```bash
+$ git pull
+$ cd prover/mainnet
+$ docker compose down
+$ docker compose up -d
+```
 
-We recommend everyone to upgrade. In this version, we have refactored the sgx-prover and replaced SputnikVM with [revm](https://github.com/scroll-tech/revm).
+</details>
 
-#### (optional) Automata Attestation Layer
+<details>
+<summary>Upgrade scroll node to v5.7.0 (minimal v5.6.0)</summary>
 
-**Updates** to `operator.json`:
-- Add `"AttestationLayerProfile": "automata",`
+
+*Note:* If you have version 5.6.0, there’s no need to upgrade.  
+It is necessary to update the scroll node to [v5.7.0](https://github.com/scroll-tech/go-ethereum/releases/tag/scroll-v5.7.0)  
+
+</details>
+
+## Version 0.4
+
+| services    | version          | 
+|-------------|------------------|
+| scroll node | v5.5.0 -> v5.6.0 |
+| prover      | v0.2.3 -> v0.4.0 |
+| operator    | v0.2.0 -> v0.4.0 |
+
+<details>
+<summary>Upgrade scroll node to v5.6.0</summary>
+
+
+It is necessary to update the scroll node to [v5.6.0](https://github.com/scroll-tech/go-ethereum/releases/tag/scroll-v5.6.0)  
+
+</details>
+
+<details>
+<summary>Upgrade prover to v0.4.0</summary>
+
+We recommend everyone to upgrade. In this version, we have refactored the sgx-prover and replaced SputnikVM with [revm](https://github.com/scroll-tech/revm).  
+
+</details>
+
+<details>
+<summary>(optional) Switch to Automata Attestation Layer</summary>
+
+### (optional) Switch to Automata Attestation Layer
 
 An option is provided to switch the Attestation Layer to [Automata mainnet](https://explorer.ata.network).
+Please make sure you have sufficient balance before making the switch. 
 
-Please make sure you have sufficient balance before making the switch. [Automata Mainnet Bridge](https://bridge.ata.network/)
+* [Mainnet (Preview)](https://docs.ata.network/protocol/mainnet-preview)
+* [Automata Mainnet Bridge](https://bridge.ata.network/)
 
-### Version 0.2
 
-#### Operator Configuation Updates <!-- omit in toc -->
+**How to switch to Automata Attestation Layer:**
+* Add `"AttestationLayerProfile": "automata",` to `operator.json`
+* Leave `AttestationLayerProfile` blank to default to `optimism`
+
+</details>
+
+
+
+## Version 0.2
+
+<details>
+
+
+### Operator Configuation Updates <!-- omit in toc -->
 
 **Required updates** to `operator.json`:
 - Add `"NodeApiIpPortAddress": "0.0.0.0:15693",`
@@ -78,11 +129,11 @@ Please make sure you have sufficient balance before making the switch. [Automata
 - Remove `"ETHWsURL": "wss://ethereum-rpc.publicnode.com", `
 - Remove `"Simulation": false,`
 
-#### Metrics Dashboard <!-- omit in toc -->
+### Metrics Dashboard <!-- omit in toc -->
 
 We have also included monitoring dashboards in this release. Please feel free to use them to monitor your node and services: [monitoring](../monitoring)
 
-#### SGX Prover <!-- omit in toc -->
+### SGX Prover <!-- omit in toc -->
 
 In this version, we support running your own SGX Prover. Please refer to the following link for how to run: [prover](../prover)
 
@@ -96,3 +147,5 @@ In this version, we support running your own SGX Prover. Please refer to the fol
 
 1. Check whether the `TEELivenessVerifierAddress` in config updated to `0x99886d5C39c0DF3B0EAB67FcBb4CA230EF373510`
 2. Check whether the balance of the `AttestationLayerEcdsaKey` is enough for sending a transaction
+
+</details>
