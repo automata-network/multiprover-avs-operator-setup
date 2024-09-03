@@ -65,17 +65,28 @@ $ docker compose up -d
 
 ### Version 0.4
 
-#### For Self-Hosted Scroll Archive Node
+| services    | version          | 
+|-------------|------------------|
+| scroll node | v5.5.0 -> v5.6.0 |
+| prover      | v0.2.3 -> v0.4.0 |
+| operator    | v0.2.0 -> v0.4.0 |
+
+<details>
+<summary>Upgrade scroll node to v5.6.0</summary>
 
 It is necessary to update the scroll node to [v5.6.0](https://github.com/scroll-tech/go-ethereum/releases/tag/scroll-v5.6.0)  
 
+</details>
 
-#### For Self-Hosted Prover
+<details>
+<summary>Upgrade prover to v0.4.0</summary>
 
 We recommend everyone to upgrade. In this version, we have refactored the sgx-prover and replaced SputnikVM with [revm](https://github.com/scroll-tech/revm).  
 
+</details>
 
-#### (optional) Automata Attestation Layer
+<details>
+<summary>(optional) Switch to Automata Attestation Layer</summary>
 
 An option is provided to switch the Attestation Layer to [Automata mainnet](https://explorer.ata.network).
 Please make sure you have sufficient balance before making the switch. 
@@ -88,7 +99,7 @@ Please make sure you have sufficient balance before making the switch.
 * Add `"AttestationLayerProfile": "automata",` to `operator.json`
 * Leave `AttestationLayerProfile` blank to default to `optimism`
 
-
+</details>
 
 ### Version 0.2
 
