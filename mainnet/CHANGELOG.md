@@ -11,6 +11,9 @@
 ## Introduction
 If you are currently running an older version of the operator and its corresponding components, this guide will cover how to upgrade to the newer version.
 
+<detail>
+<summary>General Flow</summary>
+
 ## General Flow
 If you are running your operator using docker compose, you can upgrade with the following steps.
 
@@ -34,6 +37,8 @@ docker compose down
 ```bash
 docker compose up -d
 ```
+
+</detail>
 
 
 ## Version 0.4.5
