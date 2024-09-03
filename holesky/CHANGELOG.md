@@ -37,6 +37,7 @@ docker compose up -d
 
 </details>
 
+## Version 0.4.5
 
 | services    | version          | 
 |-------------|------------------|
