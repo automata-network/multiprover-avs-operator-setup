@@ -41,10 +41,7 @@ docker compose up -d
 ```
 
 
-## Version Specific Changes
-
-
-### Version 0.4.5
+## Version 0.4.5
 
 | services | version        | 
 |----------|----------------|
@@ -63,7 +60,7 @@ $ docker compose up -d
 
 </details>
 
-### Version 0.4
+## Version 0.4
 
 | services    | version          | 
 |-------------|------------------|
@@ -107,9 +104,13 @@ Please make sure you have sufficient balance before making the switch.
 
 </details>
 
-### Version 0.2
 
-#### Operator Configuation Updates <!-- omit in toc -->
+<details>
+<summary>Version 0.2</summary>
+
+## Version 0.2
+
+### Operator Configuation Updates <!-- omit in toc -->
 
 **Required updates** to `operator.json`:
 - Add `"NodeApiIpPortAddress": "0.0.0.0:15693",`
@@ -142,3 +143,5 @@ In this version, we support running your own SGX Prover. Please refer to the fol
 
 1. Check whether the `TEELivenessVerifierAddress` in config updated to `0x99886d5C39c0DF3B0EAB67FcBb4CA230EF373510`
 2. Check whether the balance of the `AttestationLayerEcdsaKey` is enough for sending a transaction
+
+</details>
