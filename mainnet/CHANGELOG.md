@@ -42,8 +42,8 @@ docker compose up -d
 | services    | version          | 
 |-------------|------------------|
 | scroll node | >= v5.6.0 (latest v5.7.0) |
-| prover      | v0.4 -> v0.4.5   |
-| operator    | no changed       |
+| prover      | v0.4.0 -> v0.4.5   |
+| operator    | v0.4.0 (no changed)|
 
 <details>
 <summary>Upgrade prover to v0.4.5</summary>
@@ -60,7 +60,6 @@ $ docker compose up -d
 <details>
 <summary>Upgrade scroll node to v5.7.0 (minimal v5.6.0)</summary>
 
-### Upgrade scroll node to v5.7.0
 
 *Note:* If you have version 5.6.0, there’s no need to upgrade.  
 It is necessary to update the scroll node to [v5.7.0](https://github.com/scroll-tech/go-ethereum/releases/tag/scroll-v5.7.0)  
@@ -78,7 +77,6 @@ It is necessary to update the scroll node to [v5.7.0](https://github.com/scroll-
 <details>
 <summary>Upgrade scroll node to v5.6.0</summary>
 
-### Upgrade scroll node to v5.6.0
 
 It is necessary to update the scroll node to [v5.6.0](https://github.com/scroll-tech/go-ethereum/releases/tag/scroll-v5.6.0)  
 
@@ -86,8 +84,6 @@ It is necessary to update the scroll node to [v5.6.0](https://github.com/scroll-
 
 <details>
 <summary>Upgrade prover to v0.4.0</summary>
-
-### Upgrade prover to v0.4.0
 
 We recommend everyone to upgrade. In this version, we have refactored the sgx-prover and replaced SputnikVM with [revm](https://github.com/scroll-tech/revm).  
 
