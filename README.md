@@ -6,19 +6,16 @@ Automata is building TEE Coprocessors on EigenLayer with Multi-Prover AVS. Decen
 
 ## ChangeLog
 
-* **v0.4**
-  * [holesky](holesky/CHANGELOG.md)
-  * [mainnet](mainnet/CHANGELOG.md)
-
-* **v0.3**
-  * [holesky](holesky/CHANGELOG.md)
-
-* **v0.2**
-  * [holesky](holesky/CHANGELOG.md)
-  * [mainnet](mainnet/CHANGELOG.md)
-
-* **v0.1.3**
-  * [mainnet](mainnet/README.md)
+| Releases | operator | prover | scroll-node | 
+|----------|----------|--------|-------------|
+| [v0.4.5 mainnet](mainnet/CHANGELOG.md)   | v0.4.0 | v0.4.5 | v5.7.0 |
+| [v0.4.5 holesky](holesky/CHANGELOG.md) | v0.4.0 | v0.4.5 | v5.7.0 |
+| [v0.4.0 mainnet](mainnet/CHANGELOG.md) | v0.4.0 | v0.4.0 | v5.6.0 |
+| [v0.4.0 holesky](holesky/CHANGELOG.md) | v0.4.0 | v0.4.0 | v5.6.0 |
+| [v0.3.0 holesky](holesky/CHANGELOG.md) | v0.3.0 | v0.3.0 | v5.5.0 |
+| [v0.2.0 mainnet](mainnet/CHANGELOG.md) | v0.2.3 | v0.2.3 | v5.4.0 |
+| [v0.2.0 holesky](holesky/CHANGELOG.md) | v0.2.3 | v0.2.3 | v5.4.0 |
+| [v0.1.3 mainnet](mainnet/CHANGELOG.md) | v0.1.3 | v0.1.3 | v5.4.0 |
 
 ## Runbooks
 * [Operator - Holesky testnet](holesky/README.md)
