@@ -11,7 +11,7 @@
 ## Introduction
 If you are currently running an older version of the operator and its corresponding components, this guide will cover how to upgrade to the newer version.
 
-<detail>
+<details>
 <summary>General Flow</summary>
 
 ## General Flow
@@ -38,7 +38,7 @@ docker compose down
 docker compose up -d
 ```
 
-</detail>
+</details>
 
 
 ## Version 0.4.5
