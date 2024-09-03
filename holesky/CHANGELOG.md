@@ -53,12 +53,14 @@ docker compose up -d
 
 #### upgrade prover to v0.4.5
 <details>
-```
+
+```bash
 $ git pull
 $ cd prover
 $ docker compose down
 $ docker compose up
 ```
+
 </details>
 
 ### Version 0.4
