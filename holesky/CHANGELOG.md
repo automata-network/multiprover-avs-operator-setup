@@ -4,18 +4,12 @@
 > 💡 Check the [README](./README.md) if you are looking for setup from scratch
 >
 
-## Table of Contents <!-- omit in toc -->
-- [Introduction](#introduction)
-- [General Flow](#general-flow)
-- [Version Specific Changes](#version-specific-changes)
-  - [Version 0.4.5](#version-045)
-  - [Version 0.4](#version-04)
-  - [Version 0.3](#version-03)
-  - [Version 0.2](#version-02)
-
 
 ## Introduction
 If you are currently running an older version of the operator and its corresponding components, this guide will cover how to upgrade to the newer version.
+
+<details>
+<summary>General Flow</summary>
 
 ## General Flow
 If you are running your operator using docker compose, you can upgrade with the following steps.
@@ -41,15 +35,14 @@ docker compose down
 docker compose up -d
 ```
 
+</details>
 
-## Version Specific Changes
 
-### Version 0.4.5
-
-| services | version        | 
-|----------|----------------|
-| prover   | v0.4 -> v0.4.5 |
-| operator | no changed     |
+| services    | version          | 
+|-------------|------------------|
+| scroll node | >= v5.6.0 (latest v5.7.0) |
+| prover      | v0.4.0 -> v0.4.5   |
+| operator    | v0.4.0 (no changed)|
 
 <details>
 <summary>Upgrade prover to v0.4.5</summary>
@@ -63,19 +56,43 @@ $ docker compose up -d
 
 </details>
 
-### Version 0.4
+<details>
+<summary>Upgrade scroll node to v5.7.0 (minimal v5.6.0)</summary>
 
-#### For Self-Hosted Scroll Archive Node
 
-It is necessary to update the scroll node to [v5.6.0](https://github.com/scroll-tech/go-ethereum/releases/tag/scroll-v5.6.0)
+*Note:* If you have version 5.6.0, there’s no need to upgrade.  
+It is necessary to update the scroll node to [v5.7.0](https://github.com/scroll-tech/go-ethereum/releases/tag/scroll-v5.7.0)  
 
-#### For Self-Hosted Prover
+</details>
 
-We recommend everyone to upgrade. In this version, we have refactored the sgx-prover and replaced SputnikVM with [revm](https://github.com/scroll-tech/revm).
+## Version 0.4
 
-### Version 0.3
+| services    | version          | 
+|-------------|------------------|
+| scroll node | v5.5.0 -> v5.6.0 |
+| prover      | v0.2.3 -> v0.4.0 |
+| operator    | v0.2.0 -> v0.4.0 |
 
-#### Support Linea Mainnet
+<details>
+<summary>Upgrade scroll node to v5.6.0</summary>
+
+
+It is necessary to update the scroll node to [v5.6.0](https://github.com/scroll-tech/go-ethereum/releases/tag/scroll-v5.6.0)  
+
+</details>
+
+<details>
+<summary>Upgrade prover to v0.4.0</summary>
+
+We recommend everyone to upgrade. In this version, we have refactored the sgx-prover and replaced SputnikVM with [revm](https://github.com/scroll-tech/revm).  
+
+</details>
+
+## Version 0.3
+
+<details>
+
+### Support Linea Mainnet
 
 This version adds support for linea. It's optional for operators. If you want to join, you can opt-in to the quorum 1.
 
@@ -104,10 +121,13 @@ $ docker compose logs -f
 
 **Note: Since linea is currently in the testing phase, the state required to execute linea blocks will be obtained from the server. At this time, the operator does not need to provide an additional execution node.**
 
+</details>
 
-### Version 0.2
+## Version 0.2
 
-#### Operator Configuation Updates <!-- omit in toc -->
+<details>
+
+### Operator Configuation Updates <!-- omit in toc -->
 
 **Required updates** to `operator.json`:
 - Add `"NodeApiIpPortAddress": "0.0.0.0:15692",`
@@ -122,11 +142,11 @@ $ docker compose logs -f
 - Remove `"ETHWsURL": "wss://ethereum-holesky-rpc.publicnode.com", `
 - Remove `"Simulation": false,`
 
-#### Metrics Dashboard <!-- omit in toc -->
+### Metrics Dashboard <!-- omit in toc -->
 
 We have also included monitoring dashboards in this release. Please feel free to use them to monitor your node and services: [monitoring](../monitoring)
 
-#### SGX Prover <!-- omit in toc -->
+### SGX Prover <!-- omit in toc -->
 
 In this version, we support running your own SGX Prover. Please refer to the following link for how to run: [prover](../prover)
 
@@ -140,3 +160,5 @@ In this version, we support running your own SGX Prover. Please refer to the fol
 
 1. Check whether the `TEELivenessVerifierAddress` in config updated to `0x2E8628F6000Ef85dea615af6Da4Fd6dF4fD149e6`
 2. Check whether the balance of the `AttestationLayerEcdsaKey` is enough for sending a transaction (0.005 holETH)
+
+</details>

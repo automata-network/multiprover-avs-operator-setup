@@ -129,11 +129,11 @@ Please make sure you have sufficient balance before making the switch.
 - Remove `"ETHWsURL": "wss://ethereum-rpc.publicnode.com", `
 - Remove `"Simulation": false,`
 
-#### Metrics Dashboard <!-- omit in toc -->
+### Metrics Dashboard <!-- omit in toc -->
 
 We have also included monitoring dashboards in this release. Please feel free to use them to monitor your node and services: [monitoring](../monitoring)
 
-#### SGX Prover <!-- omit in toc -->
+### SGX Prover <!-- omit in toc -->
 
 In this version, we support running your own SGX Prover. Please refer to the following link for how to run: [prover](../prover)
 
