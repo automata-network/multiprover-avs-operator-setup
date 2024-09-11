@@ -1,6 +1,6 @@
 services:
   sgx-prover:
-    image: ghcr.io/automata-network/sgx-prover:avs-v0.4.5
+    image: ghcr.io/automata-network/sgx-prover:avs-v0.4.7
     container_name: sgx-prover-avs-mainnet
     command: -p ${PORT:-18232}
     privileged: true
