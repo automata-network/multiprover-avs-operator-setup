@@ -97,7 +97,7 @@ We recommend everyone to upgrade. In this version, we have refactored the sgx-pr
 An option is provided to switch the Attestation Layer to [Automata mainnet](https://explorer.ata.network).
 Please make sure you have sufficient balance before making the switch. 
 
-* [Mainnet (Preview)](https://docs.ata.network/protocol/mainnet-preview)
+* [Automata Mainnet](https://docs.ata.network/protocol/mainnet)
 * [Automata Mainnet Bridge](https://bridge.ata.network/)
 
 
