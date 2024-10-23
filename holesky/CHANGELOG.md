@@ -37,6 +37,22 @@ docker compose up -d
 
 </details>
 
+## Version 0.5.0
+
+| services    | version          | 
+|-------------|------------------|
+| scroll node | >= v5.6.0 (no changed) |
+| prover      | v0.4.5 -> v0.5.0 |
+| operator    | v0.4.0 -> v0.5.0 |
+
+**No configuration changed**
+
+* Upgraded the Automata SGX SDK to the latest version, supports the ubuntu 22.04.
+* Upgraded the Intel SGX SDK to 2.24.
+* Security improvement of attestation layer, make sure the result the operator submits must generated from the SGX prover.
+* Fixed the issue where the SGX prover sometimes gets stuck.
+
+
 ## Version 0.4.5
 
 | services    | version          | 

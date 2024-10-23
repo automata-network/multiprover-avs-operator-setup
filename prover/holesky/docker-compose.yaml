@@ -1,11 +1,12 @@
 services:
   sgx-prover:
-    image: ghcr.io/automata-network/sgx-prover:avs-v0.4.7
+    image: ghcr.io/automata-network/sgx-prover:avs-v0.5.0
     container_name: sgx-prover-avs-holesky
     command: -p ${PORT:-18232}
     privileged: true
     environment:
       - AZDCAP_BYPASS_BASE_URL=${AZDCAP_BYPASS_BASE_URL:-true}
+      - AZDCAP_DEBUG_LOG_LEVEL=${AZDCAP_DEBUG_LOG_LEVEL:-INFO}
     ports:
       - ${PORT:-18232}:${PORT:-18232}
     volumes:
