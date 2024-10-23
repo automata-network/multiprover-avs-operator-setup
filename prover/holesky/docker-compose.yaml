@@ -6,7 +6,6 @@ services:
     privileged: true
     environment:
       - AZDCAP_BYPASS_BASE_URL=${AZDCAP_BYPASS_BASE_URL:-true}
-      - AZDCAP_DEBUG_LOG_LEVEL=${AZDCAP_DEBUG_LOG_LEVEL:-INFO}
     ports:
       - ${PORT:-18232}:${PORT:-18232}
     volumes:
