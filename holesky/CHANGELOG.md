@@ -52,6 +52,28 @@ docker compose up -d
 * Security improvement of attestation layer, make sure the result the operator submits must generated from the SGX prover.
 * Fixed the issue where the SGX prover sometimes gets stuck.
 
+<details>
+<summary>Upgrade prover to v0.5.0</summary>
+
+```bash
+$ git pull
+$ cd holesky
+$ docker compose up -d
+```
+
+</details>
+
+<details>
+<summary>Upgrade operator to v0.5.0</summary>
+
+```bash
+$ git pull
+$ cd prover/holesky
+$ docker compose up -d
+```
+
+</details>
+
 
 ## Version 0.4.5
 
