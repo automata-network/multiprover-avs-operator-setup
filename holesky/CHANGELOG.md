@@ -57,7 +57,7 @@ docker compose up -d
 
 ```bash
 $ git pull
-$ cd holesky
+$ cd prover/holesky
 $ docker compose up -d
 ```
 
@@ -68,7 +68,7 @@ $ docker compose up -d
 
 ```bash
 $ git pull
-$ cd prover/holesky
+$ cd holesky
 $ docker compose up -d
 ```
 
