@@ -47,6 +47,7 @@ docker compose up -d
 **No configuration changed**
 
 * Updated Automata Attestation Layer to the latest
+* Bug fixes on sgx-prover
 
 <details>
 <summary>Upgrade prover to v0.5.1</summary>
