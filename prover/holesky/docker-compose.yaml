@@ -1,6 +1,6 @@
 services:
   sgx-prover:
-    image: ghcr.io/automata-network/sgx-prover:avs-v0.5.0
+    image: ghcr.io/automata-network/sgx-prover:avs-v0.5.1
     container_name: sgx-prover-avs-holesky
     command: -p ${PORT:-18232}
     privileged: true

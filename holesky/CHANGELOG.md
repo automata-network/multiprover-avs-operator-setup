@@ -37,6 +37,16 @@ docker compose up -d
 
 </details>
 
+## Version 0.5.1
+
+| services    | version          | 
+|-------------|------------------|
+| scroll node | >= v5.6.0 (no changed) |
+| prover      | v0.5.0 -> v0.5.1 |
+| operator    | v0.5.0 -> v0.5.1 |
+
+**No configuration changed**
+
 ## Version 0.5.0
 
 | services    | version          | 
