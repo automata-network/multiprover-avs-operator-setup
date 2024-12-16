@@ -46,6 +46,8 @@ docker compose up -d
 
 **No configuration changed**
 
+* Updated Automata Attestation Layer to the latest
+
 <details>
 <summary>Upgrade prover to v0.5.1</summary>
 
