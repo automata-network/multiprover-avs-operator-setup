@@ -6,8 +6,8 @@
     "AggregatorURL": "https://avs-aggregator.ata.network",
     "EigenMetricsIpPortAddress": "0.0.0.0:15682",
     "NodeApiIpPortAddress": "0.0.0.0:15693",
-    "AttestationLayerProfile": "optimism",
-    "AttestationLayerRpcURL": "https://optimism-rpc.publicnode.com",
+    "AttestationLayerProfile": "automata",
+    "AttestationLayerRpcURL": "https://rpc.ata.network",
     "AttestationLayerEcdsaKey": "",
     "RegistryCoordinatorAddress": "0x414696E4F7f06273973E89bfD3499e8666D63Bd4",
     "TEELivenessVerifierAddress": "0x99886d5C39c0DF3B0EAB67FcBb4CA230EF373510"

@@ -47,6 +47,32 @@ docker compose up -d
 
 **No configuration changed**
 
+* Supports Automata AttestationLayer: Add `"AttestationLayerProfile": "automata_testnet",` to `operator.json`
+* Bug fixes on sgx-prover
+
+<details>
+<summary>Upgrade prover to v0.5.1</summary>
+
+```bash
+$ git pull
+$ cd prover/holesky
+$ docker compose up -d
+```
+
+</details>
+
+<details>
+<summary>Upgrade operator to v0.5.1</summary>
+
+```bash
+$ git pull
+$ cd holesky
+$ docker compose up -d
+```
+
+</details>
+
+
 ## Version 0.5.0
 
 | services    | version          | 
