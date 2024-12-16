@@ -8,6 +8,8 @@ Automata is building TEE Coprocessors on EigenLayer with Multi-Prover AVS. Decen
 
 | Releases | operator | prover | scroll-node | 
 |----------|----------|--------|-------------|
+| [v0.5.1 mainnet](mainnet/CHANGELOG.md) | v0.5.1 | v0.5.1 | >= v5.6.0 |
+| [v0.5.1 holesky](holesky/CHANGELOG.md) | v0.5.1 | v0.5.1 | >= v5.6.0 |
 | [v0.5.0 holesky](holesky/CHANGELOG.md) | v0.5.0 | v0.5.0 | >= v5.6.0 |
 | [v0.4.5 mainnet](mainnet/CHANGELOG.md) | v0.4.0 | v0.4.5 | v5.7.0 |
 | [v0.4.5 holesky](holesky/CHANGELOG.md) | v0.4.0 | v0.4.5 | v5.7.0 |
