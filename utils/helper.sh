@@ -26,7 +26,7 @@ function _oprtool() {
 	--volume $key:$key \
 	$network \
 	$ENTRYPOINT \
-	ghcr.io/automata-network/multi-prover-avs/oprtool:v0.2.0 \
+	ghcr.io/automata-network/multi-prover-avs/oprtool:v0.5.4 \
 	$cmd -ecdsakeypath $key -config /app/config/operator.json "$@"
 }
 
