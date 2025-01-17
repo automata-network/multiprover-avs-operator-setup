@@ -36,6 +36,38 @@ docker compose up -d
 
 </details>
 
+## Version 0.6.0
+
+| services    | version          | 
+|-------------|------------------|
+| scroll node | >= v5.6.0 (no changed) |
+| prover      | v0.5.1 -> v0.6.0 |
+| operator    | v0.5.1 -> v0.6.0 |
+
+**No configuration changed**
+
+<details>
+<summary>Upgrade prover to v0.6.0</summary>
+
+```bash
+$ git pull
+$ cd prover/mainnet
+$ docker compose up -d
+```
+
+</details>
+
+<details>
+<summary>Upgrade operator to v0.6.0</summary>
+
+```bash
+$ git pull
+$ cd mainnet
+$ docker compose up -d
+```
+
+</details>
+
 ## Version 0.5.1
 
 | services    | version          | 
